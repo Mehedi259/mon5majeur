@@ -1,16 +1,8 @@
-
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:mon5majeur/core/routes/routes.dart';
+import '../../../core/routes/route_path.dart';
 
-/// HomeScreen
-/// ----------------------------------------------------
-/// Main dashboard screen showing:
-/// - User profile header with team name and logo
-/// - NBA Global League promotion card
-/// - Join/Create league options
-/// - Today's matches
-/// - User's leagues
-/// - Bottom navigation bar
-/// ----------------------------------------------------
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -160,57 +152,63 @@ class HomeScreen extends StatelessWidget {
 
                     const SizedBox(height: 20),
 
-                    /// Join/Create League Buttons
+                    /// Join/Create League Buttons (Clickable)
                     Row(
                       children: [
                         Expanded(
-                          child: Container(
-                            height: 140,
-                            decoration: BoxDecoration(
-                              color: const Color(0xFF1a1a1a),
-                              borderRadius: BorderRadius.circular(16),
-                              border: Border.all(color: const Color(0xFF333333)),
-                            ),
-                            child: const Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  'Join the League',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
+                          child: GestureDetector(
+                            onTap: () => context.go(RoutePath.chooseALeagueScreen.addBasePath),
+                            child: Container(
+                              height: 140,
+                              decoration: BoxDecoration(
+                                color: const Color(0xFF1a1a1a),
+                                borderRadius: BorderRadius.circular(16),
+                                border: Border.all(color: const Color(0xFF333333)),
+                              ),
+                              child: const Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Join the League',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
-                                ),
-                                SizedBox(height: 12),
-                                Icon(Icons.add_circle, color: Colors.grey, size: 50),
-                              ],
+                                  SizedBox(height: 12),
+                                  Icon(Icons.add_circle, color: Color(0xFFFF6B35), size: 50),
+                                ],
+                              ),
                             ),
                           ),
                         ),
                         const SizedBox(width: 16),
                         Expanded(
-                          child: Container(
-                            height: 140,
-                            decoration: BoxDecoration(
-                              color: const Color(0xFF1a1a1a),
-                              borderRadius: BorderRadius.circular(16),
-                              border: Border.all(color: const Color(0xFF333333)),
-                            ),
-                            child: const Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  'Create a league',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
+                          child: GestureDetector(
+                            //onTap: () => context.go(RoutePath.createLeague.addBasePath),
+                            child: Container(
+                              height: 140,
+                              decoration: BoxDecoration(
+                                color: const Color(0xFF1a1a1a),
+                                borderRadius: BorderRadius.circular(16),
+                                border: Border.all(color: const Color(0xFF333333)),
+                              ),
+                              child: const Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Create a League',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
-                                ),
-                                SizedBox(height: 12),
-                                Icon(Icons.add_circle, color: Colors.grey, size: 50),
-                              ],
+                                  SizedBox(height: 12),
+                                  Icon(Icons.add_circle, color: Color(0xFFFF6B35), size: 50),
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -326,7 +324,7 @@ class HomeScreen extends StatelessWidget {
                     /// See All Matches Button
                     Center(
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () => context.go(RoutePath.myMatch.addBasePath),
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(0xFFFF6B35),
                           padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 14),
@@ -359,69 +357,72 @@ class HomeScreen extends StatelessWidget {
 
                     const SizedBox(height: 16),
 
-                    /// League Card
-                    Container(
-                      padding: const EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFF1a1a1a),
-                        borderRadius: BorderRadius.circular(16),
-                        border: Border.all(color: const Color(0xFF333333)),
-                      ),
-                      child: Row(
-                        children: [
-                          Container(
-                            width: 50,
-                            height: 50,
-                            decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Color(0xFF2a2a2a),
+                    /// League Card (Clickable)
+                    GestureDetector(
+                      onTap: () => context.go(RoutePath.myLeague.addBasePath),
+                      child: Container(
+                        padding: const EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFF1a1a1a),
+                          borderRadius: BorderRadius.circular(16),
+                          border: Border.all(color: const Color(0xFF333333)),
+                        ),
+                        child: Row(
+                          children: [
+                            Container(
+                              width: 50,
+                              height: 50,
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Color(0xFF2a2a2a),
+                              ),
+                              child: const Center(
+                                child: Text('🔥', style: TextStyle(fontSize: 28)),
+                              ),
                             ),
-                            child: const Center(
-                              child: Text('🔥', style: TextStyle(fontSize: 28)),
-                            ),
-                          ),
-                          const SizedBox(width: 16),
-                          const Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'French rockster',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
+                            const SizedBox(width: 16),
+                            const Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'French rockster',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
-                                ),
-                                SizedBox(height: 4),
-                                Row(
-                                  children: [
-                                    Text(
-                                      '🏆 #2nd of 8 teams',
-                                      style: TextStyle(color: Color(0xFFFF6B35), fontSize: 12),
-                                    ),
-                                    SizedBox(width: 8),
-                                    Text(
-                                      '| Regular season | Week 3',
-                                      style: TextStyle(color: Colors.grey, fontSize: 12),
-                                    ),
-                                  ],
-                                ),
-                              ],
+                                  SizedBox(height: 4),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        '🏆 #2nd of 8 teams',
+                                        style: TextStyle(color: Color(0xFFFF6B35), fontSize: 12),
+                                      ),
+                                      SizedBox(width: 8),
+                                      Text(
+                                        '| Regular season | Week 3',
+                                        style: TextStyle(color: Colors.grey, fontSize: 12),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                          Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                            decoration: BoxDecoration(
-                              color: const Color(0xFF2a2a2a),
-                              borderRadius: BorderRadius.circular(12),
+                            Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                              decoration: BoxDecoration(
+                                color: const Color(0xFF2a2a2a),
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: const Text(
+                                'Matchday 14',
+                                style: TextStyle(color: Colors.grey, fontSize: 11),
+                              ),
                             ),
-                            child: const Text(
-                              'Matchday 14',
-                              style: TextStyle(color: Colors.grey, fontSize: 11),
-                            ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
 
@@ -430,7 +431,7 @@ class HomeScreen extends StatelessWidget {
                     /// See All Leagues Button
                     Center(
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () => context.go(RoutePath.myLeague.addBasePath),
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(0xFFFF6B35),
                           padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 14),
@@ -472,26 +473,11 @@ class HomeScreen extends StatelessWidget {
           currentIndex: 0,
           elevation: 0,
           items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: '',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.sports_basketball),
-              label: '',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.emoji_events),
-              label: '',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_cart),
-              label: '',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: '',
-            ),
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
+            BottomNavigationBarItem(icon: Icon(Icons.sports_basketball), label: ''),
+            BottomNavigationBarItem(icon: Icon(Icons.emoji_events), label: ''),
+            BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: ''),
+            BottomNavigationBarItem(icon: Icon(Icons.person), label: ''),
           ],
         ),
       ),

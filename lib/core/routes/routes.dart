@@ -11,9 +11,11 @@ import '../../presentation/screens/authentication/sign_in_screen.dart';
 import '../../presentation/screens/authentication/sign_up_screen.dart';
 import '../../presentation/screens/authentication/update_password_screen.dart';
 import '../../presentation/screens/authentication/welcome_screen.dart';
+import '../../presentation/screens/home/choose_a_league.dart';
 import '../../presentation/screens/home/home.dart';
 import '../../presentation/screens/home/my_leagues.dart';
 import '../../presentation/screens/home/my_match_today.dart';
+import '../../presentation/screens/home/private_league.dart';
 import '../../presentation/screens/profile setup/profile_setup_screen.dart';
 import 'route_observer.dart';
 import 'route_path.dart';
@@ -97,6 +99,19 @@ class AppRouter {
         name: RoutePath.myMatch,
         path: RoutePath.myMatch.addBasePath,
         builder: (context, state) => const MyMatchesTodayScreen(),
+      ),
+      GoRoute(
+        name: RoutePath.chooseALeagueScreen,
+        path: RoutePath.chooseALeagueScreen.addBasePath,
+        builder: (context, state) => const ChooseALeagueScreen(),
+      ),
+
+
+
+      GoRoute(
+        name: RoutePath.privateLeagueScreen,
+        path: RoutePath.privateLeagueScreen.addBasePath,
+        builder: (context, state) => const PrivateLeagueScreen(),
       ),
 
       /// Scan Menu

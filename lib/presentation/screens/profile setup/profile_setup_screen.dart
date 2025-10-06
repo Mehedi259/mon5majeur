@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:logger/logger.dart';
+import 'package:mon5majeur/core/routes/routes.dart';
+
+import '../../../core/routes/route_path.dart';
 
 final logger = Logger();
 
@@ -470,6 +474,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
                     logger.i("Date of Birth: $_selectedDate");
                     logger.i("Terms Accepted: $_termsAccepted");
                     logger.i("Notifications Accepted: $_notificationsAccepted");
+                    context.go(RoutePath.home.addBasePath);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFFFF6B35),

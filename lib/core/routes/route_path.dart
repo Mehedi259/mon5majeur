@@ -24,6 +24,8 @@ class RoutePath {
   static const String home = 'home';
   static const String myLeague = 'myLeague';
   static const String myMatch = 'myMatch';
+  static const String chooseALeagueScreen = 'chooseALeagueScreen';
+  static const String privateLeagueScreen = 'privateLeagueScreen';
 
 //==================================== Scan Menu screens =====================================
 
