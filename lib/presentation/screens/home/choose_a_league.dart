@@ -245,7 +245,7 @@ class ChooseALeagueScreen extends StatelessWidget {
                           width: double.infinity,
                           height: 56,
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () => context.go(RoutePath.publicLeagueScreen.addBasePath),
                             style: ElevatedButton.styleFrom(
                               backgroundColor: const Color(0xFFD85A2A),
                               shape: RoundedRectangleBorder(

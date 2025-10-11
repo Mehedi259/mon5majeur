@@ -12,10 +12,21 @@ import '../../presentation/screens/authentication/sign_up_screen.dart';
 import '../../presentation/screens/authentication/update_password_screen.dart';
 import '../../presentation/screens/authentication/welcome_screen.dart';
 import '../../presentation/screens/home/choose_a_league.dart';
+import '../../presentation/screens/home/create_league/create_private_league/create_private_league_screen.dart';
+import '../../presentation/screens/home/create_league/create_private_league/create_private_league_waiting_room_screen.dart';
+import '../../presentation/screens/home/create_league/create_private_league/edit_private_league.dart';
+import '../../presentation/screens/home/create_league/create_public_league/create_public_league_screen.dart';
+import '../../presentation/screens/home/create_league/create_public_league/create_public_league_waiting_room_screen.dart';
+import '../../presentation/screens/home/create_league/create_public_league/edit_public_league.dart';
+import '../../presentation/screens/home/create_league/create_public_league/my_league_screens_public/select_player_screen.dart';
+import '../../presentation/screens/home/create_league/createleaguescreen.dart';
 import '../../presentation/screens/home/home.dart';
 import '../../presentation/screens/home/my_leagues.dart';
 import '../../presentation/screens/home/my_match_today.dart';
 import '../../presentation/screens/home/private_league.dart';
+import '../../presentation/screens/home/privateleaguewaitingroom.dart';
+import '../../presentation/screens/home/publicleaguescreen.dart';
+import '../../presentation/screens/home/publicleaguewaitingroomscreen.dart';
 import '../../presentation/screens/profile setup/profile_setup_screen.dart';
 import 'route_observer.dart';
 import 'route_path.dart';
@@ -101,17 +112,69 @@ class AppRouter {
         builder: (context, state) => const MyMatchesTodayScreen(),
       ),
       GoRoute(
+        name: RoutePath.createLeagueScreen,
+        path: RoutePath.createLeagueScreen.addBasePath,
+        builder: (context, state) => const CreateLeagueScreen(),
+      ),
+      GoRoute(
+        name: RoutePath.createPrivateLeagueScreen,
+        path: RoutePath.createPrivateLeagueScreen.addBasePath,
+        builder: (context, state) => const CreatePrivateLeagueScreen(),
+      ),
+      GoRoute(
+        name: RoutePath.editPrivateLeagueScreen,
+        path: RoutePath.editPrivateLeagueScreen.addBasePath,
+        builder: (context, state) => const EditPrivateLeagueScreen(),
+      ),
+      GoRoute(
+        name: RoutePath.createPrivateLeagueWaitingRoomScreen,
+        path: RoutePath.createPrivateLeagueWaitingRoomScreen.addBasePath,
+        builder: (context, state) => const CreatePrivateLeagueWaitingRoomScreen(),
+      ),
+      GoRoute(
+        name: RoutePath.createPublicLeagueScreen,
+        path: RoutePath.createPublicLeagueScreen.addBasePath,
+        builder: (context, state) => const CreatePublicLeagueScreen(),
+      ),
+      GoRoute(
+        name: RoutePath.editPublicLeagueScreen,
+        path: RoutePath.editPublicLeagueScreen.addBasePath,
+        builder: (context, state) => const EditPublicLeagueScreen(),
+      ),
+      GoRoute(
+        name: RoutePath.createPublicLeagueWaitingRoomScreen,
+        path: RoutePath.createPublicLeagueWaitingRoomScreen.addBasePath,
+        builder: (context, state) => const CreatePublicLeagueWaitingRoomScreen(),
+      ),
+      GoRoute(
         name: RoutePath.chooseALeagueScreen,
         path: RoutePath.chooseALeagueScreen.addBasePath,
         builder: (context, state) => const ChooseALeagueScreen(),
       ),
-
-
-
       GoRoute(
         name: RoutePath.privateLeagueScreen,
         path: RoutePath.privateLeagueScreen.addBasePath,
         builder: (context, state) => const PrivateLeagueScreen(),
+      ),
+      GoRoute(
+        name: RoutePath.publicLeagueScreen,
+        path: RoutePath.publicLeagueScreen.addBasePath,
+        builder: (context, state) => const ExploreLeaguesScreen(),
+      ),
+      GoRoute(
+        name: RoutePath.publicLeagueWaitingRoomScreen,
+        path: RoutePath.publicLeagueWaitingRoomScreen.addBasePath,
+        builder: (context, state) => const PublicLeagueWaitingRoomScreen(),
+      ),
+      GoRoute(
+        name: RoutePath.privateLeagueWaitingRoomScreen,
+        path: RoutePath.privateLeagueWaitingRoomScreen.addBasePath,
+        builder: (context, state) => const PrivateLeagueWaitingRoomScreen(),
+      ),
+      GoRoute(
+        name: RoutePath.selectPlayerScreen ,
+        path: RoutePath.selectPlayerScreen .addBasePath,
+        builder: (context, state) => const FantasyLeagueScreen(),
       ),
 
       /// Scan Menu

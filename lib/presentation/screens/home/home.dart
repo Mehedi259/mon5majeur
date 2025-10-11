@@ -186,7 +186,7 @@ class HomeScreen extends StatelessWidget {
                         const SizedBox(width: 16),
                         Expanded(
                           child: GestureDetector(
-                            //onTap: () => context.go(RoutePath.createLeague.addBasePath),
+                            onTap: () => context.go(RoutePath.createLeagueScreen.addBasePath),
                             child: Container(
                               height: 140,
                               decoration: BoxDecoration(

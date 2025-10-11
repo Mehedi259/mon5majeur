@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:mon5majeur/core/routes/routes.dart';
+
+import '../../../core/routes/route_path.dart';
 
 class PrivateLeagueScreen extends StatefulWidget {
   const PrivateLeagueScreen({super.key});
@@ -17,23 +21,6 @@ class _PrivateLeagueScreenState extends State<PrivateLeagueScreen> {
     _codeController.dispose();
     super.dispose();
   }
-
-  void _validateAndJoin() {
-    setState(() {
-      if (_codeController.text.isEmpty) {
-        _hasError = true;
-        _errorMessage = 'Enter a valid code to join your friend\'s league';
-      } else if (_codeController.text.length != 6) {
-        _hasError = true;
-        _errorMessage = 'Invalid code, please try again';
-      } else {
-        // Simulate validation - you can add your own logic here
-        _hasError = true;
-        _errorMessage = 'Invalid code, please try again';
-      }
-    });
-  }
-
   void _clearCode() {
     setState(() {
       _codeController.clear();
@@ -263,7 +250,7 @@ class _PrivateLeagueScreenState extends State<PrivateLeagueScreen> {
                           width: double.infinity,
                           height: 56,
                           child: ElevatedButton(
-                            onPressed: _validateAndJoin,
+                            onPressed: () => context.go(RoutePath.privateLeagueWaitingRoomScreen.addBasePath),
                             style: ElevatedButton.styleFrom(
                               backgroundColor: _codeController.text.isNotEmpty
                                   ? const Color(0xFFD85A2A)
@@ -286,6 +273,7 @@ class _PrivateLeagueScreenState extends State<PrivateLeagueScreen> {
                             ),
                           ),
                         ),
+
 
                         // Bottom Helper Text (when no error)
                         if (!_hasError)
