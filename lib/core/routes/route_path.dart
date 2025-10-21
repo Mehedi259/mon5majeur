@@ -8,9 +8,9 @@ class RoutePath {
   static const String welcomeScreen = 'welcomeScreen';
   static const String signInScreen = 'signInScreen';
   static const String signUp = 'signUp';
+  static const String verifyRegistration = 'verifyRegistration';
   static const String forgetPassword = 'forgetPassword';
   static const String otpScreen  = 'otpScreen';
-  static const String passwordReset  = 'passwordReset';
   static const String updatePassword  = 'updatePassword';
   static const String success  = 'success';
 
@@ -23,7 +23,7 @@ class RoutePath {
 
   static const String home = 'home';
   static const String myLeague = 'myLeague';
-  static const String myMatch = 'myMatch';
+  static const String myMatchToday = 'myMatchToday';
   static const String createLeagueScreen = 'createLeagueScreen';
   static const String createPrivateLeagueScreen = 'createPrivateLeagueScreen';
   static const String createPrivateLeagueWaitingRoomScreen = 'createPrivateLeagueWaitingRoomScreen';
@@ -37,36 +37,24 @@ class RoutePath {
   static const String publicLeagueScreen = 'publicLeagueScreen';
   static const String publicLeagueWaitingRoomScreen = 'publicLeagueWaitingRoomScreen';
   static const String privateLeagueWaitingRoomScreen = 'privateLeagueWaitingRoomScreen';
+  static const String globalLeagueScreen = 'globalLeagueScreen';
+  static const String faqScreen = 'faqScreen';
 
-//==================================== Scan Menu screens =====================================
+//==================================== Shop screens =====================================
 
-  static const String scanMenu = 'scanMenu';
-  static const String body = 'body';
-  static const String scanResultAll = 'scanResultAll';
-  static const String scanResultSafe = 'scanResultSafe';
-  static const String scanResultModify = 'scanResultModify';
-  static const String scanResultAvoid = 'scanResultAvoid';
-  static const String scanResultBuildMyPlate = 'scanResultBuildMyPlate';
-  static const String scanResultOrderingTips = 'scanResultOrderingTips';
-  static const String scanResultSaveYourMeals = 'scanResultSaveYourMeals';
-  static const String myQrCode = 'myQrCode';
+  static const String shopScreen = 'shopScreen';
+  static const String buyToken = 'buyToken';
 
-  //==================================== Chat Bot screens =====================================
 
-  static const String askChatBot = 'askChatBot';
+  //==================================== ProfileScreen screens =====================================
 
-  //==================================== Profile And Settings screens =====================================
+  static const String profileScreen = 'profileScreen';
+  static const String profileSettingsScreen = 'profileSettingsScreen';
+  static const String passwordReset  = 'passwordReset';
 
-  static const String myProfile = 'myProfile';
-  static const String switchProfile = 'switchProfile';
-  static const String editProfile = 'editProfile';
-  static const String notification = 'notification';
-  static const String helpAndSupport = 'helpAndSupport';
-  static const String accountSettings = 'accountSettings';
-  static const String changePassword = 'changePassword';
-  static const String termsAndCondition = 'termsAndCondition';
-  static const String privacyPolicy = 'privacyPolicy';
-  static const String aboutUs = 'aboutUs';
+  //==================================== myMatch screens =====================================
+  static const String myMatch = 'myMatch';
+  static const String data = 'data';
 
   //==================================== Subscription screens =====================================
 

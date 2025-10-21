@@ -48,7 +48,7 @@ class _PasswordInputState extends State<PasswordInput> {
           borderRadius: BorderRadius.circular(8),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Color(0xFF004AAD)),
+          borderSide: const BorderSide(color: Color(0xFFE8632C)),
           borderRadius: BorderRadius.circular(8),
         ),
       ),

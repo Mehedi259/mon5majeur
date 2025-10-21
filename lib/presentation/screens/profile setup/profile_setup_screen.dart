@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:logger/logger.dart';
 import 'package:mon5majeur/core/routes/routes.dart';
-
+import '../../../core/custom_assets/assets.gen.dart';
 import '../../../core/routes/route_path.dart';
 
 final logger = Logger();
@@ -36,7 +36,14 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
   bool _notificationsAccepted = false;
   bool _showNotificationOptions = false;
 
-  final List<String> _teamLogos = ['😈', '🌸', '👽', '🐺', '🚀', '🎭'];
+  final List<AssetGenImage> _teamLogos = [
+    Assets.icons.logo1,
+    Assets.icons.logo2,
+    Assets.icons.logo3,
+    Assets.icons.logo4,
+    Assets.icons.logo5,
+    Assets.icons.logo6,
+  ];
   final List<String> _teams = [
     'Lakers',
     'Boston Celtics',
@@ -74,17 +81,13 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
                 height: 120,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  gradient: const LinearGradient(
-                    colors: [Color(0xFFFF6B35), Color(0xFFFF8C42)],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
                   border: Border.all(color: const Color(0xFFFF6B35), width: 4),
                 ),
                 child: Center(
-                  child: Text(
-                    _teamLogos[_selectedLogoIndex],
-                    style: const TextStyle(fontSize: 60),
+                  child: _teamLogos[_selectedLogoIndex].image(
+                    width: 60,
+                    height: 60,
+                    fit: BoxFit.contain,
                   ),
                 ),
               ),
@@ -92,13 +95,13 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
               const SizedBox(height: 32),
 
               /// Logo Selection Section
-              const Align(
+              Align(
                 alignment: Alignment.centerLeft,
                 child: Row(
                   children: [
-                    Text('🏆', style: TextStyle(fontSize: 24)),
-                    SizedBox(width: 8),
-                    Text(
+                    Assets.icons.league.image(width: 24, height: 24),
+                    const SizedBox(width: 8),
+                    const Text(
                       'Choose your team logo',
                       style: TextStyle(
                         fontSize: 18,
@@ -145,11 +148,6 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
                         margin: const EdgeInsets.only(right: 12),
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          gradient: isSelected
-                              ? const LinearGradient(
-                            colors: [Color(0xFFFF6B35), Color(0xFFFF8C42)],
-                          )
-                              : null,
                           color: isSelected ? null : const Color(0xFF1a1a1a),
                           border: Border.all(
                             color: isSelected
@@ -159,11 +157,10 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
                           ),
                         ),
                         child: Center(
-                          child: Text(
-                            _teamLogos[index],
-                            style: TextStyle(
-                              fontSize: isSelected ? 36 : 32,
-                            ),
+                          child: _teamLogos[index].image(
+                            width: isSelected ? 36 : 32,
+                            height: isSelected ? 36 : 32,
+                            fit: BoxFit.contain,
                           ),
                         ),
                       ),
@@ -184,7 +181,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                 child: Row(
                   children: [
-                    const Icon(Icons.person, color: Color(0xFF004AAD), size: 20),
+                    Assets.icons.profileVector.image(width: 20, height: 20),
                     const SizedBox(width: 12),
                     Expanded(
                       child: TextField(
@@ -243,7 +240,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
                   child: Row(
                     children: [
-                      const Icon(Icons.sports_basketball, color: Color(0xFFFF6B35), size: 20),
+                      Assets.icons.basketBall.image(width: 20, height: 20),
                       const SizedBox(width: 12),
                       Expanded(
                         child: Text(
@@ -296,7 +293,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
                   child: Row(
                     children: [
-                      const Icon(Icons.calendar_today, color: Colors.white, size: 20),
+                      Assets.icons.calender.image(width: 20, height: 20),
                       const SizedBox(width: 12),
                       Expanded(
                         child: Text(
@@ -469,7 +466,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
                 child: ElevatedButton(
                   onPressed: () {
                     logger.i("Team Name: ${_teamNameController.text}");
-                    logger.i("Selected Logo: ${_teamLogos[_selectedLogoIndex]}");
+                    logger.i("Selected Logo: ${_teamLogos[_selectedLogoIndex].path}");
                     logger.i("Favorite Team: $_selectedFavoriteTeam");
                     logger.i("Date of Birth: $_selectedDate");
                     logger.i("Terms Accepted: $_termsAccepted");

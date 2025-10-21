@@ -1,16 +1,14 @@
 // lib/core/routes/routes.dart
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
 import '../../presentation/screens/authentication/forget_password_screen.dart';
 import '../../presentation/screens/authentication/language_selection.dart';
 import '../../presentation/screens/authentication/otp_screen.dart';
 import '../../presentation/screens/authentication/password_updated_success_screen.dart';
-import '../../presentation/screens/authentication/reset_confirm_screen.dart';
 import '../../presentation/screens/authentication/sign_in_screen.dart';
 import '../../presentation/screens/authentication/sign_up_screen.dart';
-import '../../presentation/screens/authentication/update_password_screen.dart';
+import '../../presentation/screens/authentication/verify_code.dart';
 import '../../presentation/screens/authentication/welcome_screen.dart';
+import '../../presentation/screens/data/data_screen.dart';
 import '../../presentation/screens/home/choose_a_league.dart';
 import '../../presentation/screens/home/create_league/create_private_league/create_private_league_screen.dart';
 import '../../presentation/screens/home/create_league/create_private_league/create_private_league_waiting_room_screen.dart';
@@ -18,8 +16,10 @@ import '../../presentation/screens/home/create_league/create_private_league/edit
 import '../../presentation/screens/home/create_league/create_public_league/create_public_league_screen.dart';
 import '../../presentation/screens/home/create_league/create_public_league/create_public_league_waiting_room_screen.dart';
 import '../../presentation/screens/home/create_league/create_public_league/edit_public_league.dart';
-import '../../presentation/screens/home/create_league/create_public_league/my_league_screens_public/select_player_screen.dart';
+import '../../presentation/screens/home/create_league/create_public_league/my_league_screens_public/fantasy_league_screen.dart';
 import '../../presentation/screens/home/create_league/createleaguescreen.dart';
+import '../../presentation/screens/home/faq_screen.dart';
+import '../../presentation/screens/home/global_league/global_league.dart';
 import '../../presentation/screens/home/home.dart';
 import '../../presentation/screens/home/my_leagues.dart';
 import '../../presentation/screens/home/my_match_today.dart';
@@ -27,7 +27,14 @@ import '../../presentation/screens/home/private_league.dart';
 import '../../presentation/screens/home/privateleaguewaitingroom.dart';
 import '../../presentation/screens/home/publicleaguescreen.dart';
 import '../../presentation/screens/home/publicleaguewaitingroomscreen.dart';
+import '../../presentation/screens/mymatch/my_match_screen.dart';
 import '../../presentation/screens/profile setup/profile_setup_screen.dart';
+import '../../presentation/screens/profile/password_reset.dart';
+import '../../presentation/screens/profile/profile_screen.dart';
+import '../../presentation/screens/profile/profile_settings.dart';
+import '../../presentation/screens/profile/update_password.dart';
+import '../../presentation/screens/shop/buy_token.dart';
+import '../../presentation/screens/shop/shop_screen.dart';
 import 'route_observer.dart';
 import 'route_path.dart';
 
@@ -60,6 +67,11 @@ class AppRouter {
         builder: (context, state) => const SignUpScreen(),
       ),
       GoRoute(
+        name: RoutePath.verifyRegistration,
+        path: RoutePath.verifyRegistration.addBasePath,
+        builder: (context, state) => const VerifyRegistration(email: '',),
+      ),
+      GoRoute(
         name: RoutePath.forgetPassword,
         path: RoutePath.forgetPassword.addBasePath,
         builder: (context, state) => const ForgetPassword(),
@@ -71,16 +83,10 @@ class AppRouter {
           return const OtpScreen(email: '');
         },
       ),
-
-      GoRoute(
-        name: RoutePath.passwordReset,
-        path: RoutePath.passwordReset.addBasePath,
-        builder: (context, state) => const PasswordResetScreen(),
-      ),
       GoRoute(
         name: RoutePath.updatePassword,
         path: RoutePath.updatePassword.addBasePath,
-        builder: (context, state) => const UpdatePasswordScreen(),
+        builder: (context, state) => const ChangePasswordScreen(),
       ),
       GoRoute(
         name: RoutePath.success,
@@ -107,8 +113,8 @@ class AppRouter {
         builder: (context, state) => const MyLeaguesScreen(),
       ),
       GoRoute(
-        name: RoutePath.myMatch,
-        path: RoutePath.myMatch.addBasePath,
+        name: RoutePath.myMatchToday,
+        path: RoutePath.myMatchToday.addBasePath,
         builder: (context, state) => const MyMatchesTodayScreen(),
       ),
       GoRoute(
@@ -176,124 +182,63 @@ class AppRouter {
         path: RoutePath.selectPlayerScreen .addBasePath,
         builder: (context, state) => const FantasyLeagueScreen(),
       ),
-
-      /// Scan Menu
       GoRoute(
-        name: RoutePath.scanMenu,
-        path: RoutePath.scanMenu.addBasePath,
-        builder: (context, state) => const Placeholder(),
-      ),
-      GoRoute(
-        name: RoutePath.body,
-        path: RoutePath.body.addBasePath,
-        builder: (context, state) => const Placeholder(),
-      ),
-      GoRoute(
-        name: RoutePath.scanResultAll,
-        path: RoutePath.scanResultAll.addBasePath,
-        builder: (context, state) => const Placeholder(),
-      ),
-      GoRoute(
-        name: RoutePath.scanResultSafe,
-        path: RoutePath.scanResultSafe.addBasePath,
-        builder: (context, state) => const Placeholder(),
-      ),
-      GoRoute(
-        name: RoutePath.scanResultModify,
-        path: RoutePath.scanResultModify.addBasePath,
-        builder: (context, state) => const Placeholder(),
-      ),
-      GoRoute(
-        name: RoutePath.scanResultAvoid,
-        path: RoutePath.scanResultAvoid.addBasePath,
-        builder: (context, state) => const Placeholder(),
-      ),
-      GoRoute(
-        name: RoutePath.scanResultBuildMyPlate,
-        path: RoutePath.scanResultBuildMyPlate.addBasePath,
-        builder: (context, state) => const Placeholder(),
-      ),
-      GoRoute(
-        name: RoutePath.scanResultOrderingTips,
-        path: RoutePath.scanResultOrderingTips.addBasePath,
-        builder: (context, state) => const Placeholder(),
-      ),
-      GoRoute(
-        name: RoutePath.scanResultSaveYourMeals,
-        path: RoutePath.scanResultSaveYourMeals.addBasePath,
-        builder: (context, state) => const Placeholder(),
-      ),
-      GoRoute(
-        name: RoutePath.myQrCode,
-        path: RoutePath.myQrCode.addBasePath,
-        builder: (context, state) => const Placeholder(),
+        name: RoutePath.globalLeagueScreen ,
+        path: RoutePath.globalLeagueScreen .addBasePath,
+        builder: (context, state) => const GlobalLeagueScreen(),
       ),
 
-      /// Chat Bot
       GoRoute(
-        name: RoutePath.askChatBot,
-        path: RoutePath.askChatBot.addBasePath,
-        builder: (context, state) => const Placeholder(),
+        name: RoutePath.faqScreen ,
+        path: RoutePath.faqScreen .addBasePath,
+        builder: (context, state) => const FaqScreen(),
+      ),
+
+      /// Shop screen
+      GoRoute(
+        name: RoutePath.shopScreen,
+        path: RoutePath.shopScreen.addBasePath,
+        builder: (context, state) => const ShopScreen(),
+      ),
+      GoRoute(
+        name: RoutePath.buyToken,
+        path: RoutePath.buyToken.addBasePath,
+        builder: (context, state) => const BuyTokenScreen(),
       ),
 
 
-      /// Profile & Settings
+
+      /// Profile Screen
       GoRoute(
-        name: RoutePath.myProfile,
-        path: RoutePath.myProfile.addBasePath,
-        builder: (context, state) => const Placeholder(),
+        name: RoutePath.profileScreen,
+        path: RoutePath.profileScreen.addBasePath,
+        builder: (context, state) => const ProfileScreen(),
       ),
       GoRoute(
-        name: RoutePath.switchProfile,
-        path: RoutePath.switchProfile.addBasePath,
-        builder: (context, state) => const Placeholder(),
+        name: RoutePath.profileSettingsScreen,
+        path: RoutePath.profileSettingsScreen.addBasePath,
+        builder: (context, state) => const ProfileSettingsScreen(),
       ),
       GoRoute(
-        name: RoutePath.editProfile,
-        path: RoutePath.editProfile.addBasePath,
-        builder: (context, state) => const Placeholder(),
-      ),
-      GoRoute(
-        name: RoutePath.notification,
-        path: RoutePath.notification.addBasePath,
-        builder: (context, state) => const Placeholder(),
-      ),
-      GoRoute(
-        name: RoutePath.helpAndSupport,
-        path: RoutePath.helpAndSupport.addBasePath,
-        builder: (context, state) => const Placeholder(),
-      ),
-      GoRoute(
-        name: RoutePath.accountSettings,
-        path: RoutePath.accountSettings.addBasePath,
-        builder: (context, state) => const Placeholder(),
-      ),
-      GoRoute(
-        name: RoutePath.changePassword,
-        path: RoutePath.changePassword.addBasePath,
-        builder: (context, state) => const Placeholder(),
-      ),
-      GoRoute(
-        name: RoutePath.termsAndCondition,
-        path: RoutePath.termsAndCondition.addBasePath,
-        builder: (context, state) => const Placeholder(),
-      ),
-      GoRoute(
-        name: RoutePath.privacyPolicy,
-        path: RoutePath.privacyPolicy.addBasePath,
-        builder: (context, state) => const Placeholder(),
-      ),
-      GoRoute(
-        name: RoutePath.aboutUs,
-        path: RoutePath.aboutUs.addBasePath,
-        builder: (context, state) => const Placeholder(),
+        name: RoutePath.passwordReset,
+        path: RoutePath.passwordReset.addBasePath,
+        builder: (context, state) => const PasswordReset(),
       ),
 
-      /// Subscription
+
+      /// My league Screen
       GoRoute(
-        name: RoutePath.subscription,
-        path: RoutePath.subscription.addBasePath,
-        builder: (context, state) => const Placeholder(),
+        name: RoutePath.myMatch,
+        path: RoutePath.myMatch.addBasePath,
+        builder: (context, state) => const MyMatchScreen(),
+      ),
+
+
+      /// data
+      GoRoute(
+        name: RoutePath.data,
+        path: RoutePath.data.addBasePath,
+        builder: (context, state) => const DataScreen(),
       ),
     ],
     observers: [routeObserver],

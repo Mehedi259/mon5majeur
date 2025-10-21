@@ -19,7 +19,7 @@ class ActiveButton extends StatelessWidget {
       width: double.infinity, // Full width across device
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: const Color(0xFF004AAD),
+          backgroundColor: const Color(0xFFE8632C),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),

@@ -3,7 +3,6 @@ import 'package:mon5majeur/core/routes/routes.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import '../../../core/custom_assets/assets.gen.dart';
 import '../../../core/routes/route_path.dart';
-import '../../widgets/hover_effect_button.dart';
 import 'package:go_router/go_router.dart';
 
 class OtpScreen extends StatefulWidget {
@@ -32,60 +31,63 @@ class _OtpScreenState extends State<OtpScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-
-      // AppBar with back button
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-        elevation: 0,
-        leading: GestureDetector(
-          onTap: () => Navigator.pop(context),
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Assets.icons.backButton.image(),
-          ),
-        ),
-      ),
-
-      // Body content wrapped with SingleChildScrollView
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 21),
+          padding: const EdgeInsets.symmetric(horizontal: 24),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 100),
+              const SizedBox(height: 30),
 
-              // Title
-              const Text(
-                'Check your email',
-                style: TextStyle(
-                  fontFamily: 'Raleway',
-                  fontWeight: FontWeight.w700,
-                  fontSize: 18,
-                  letterSpacing: -0.5,
-                  color: Colors.white,
-                  height: 20 / 18,
+              /// Back Button
+              GestureDetector(
+                onTap: () => context.pop(),
+                child: SizedBox(
+                  width: 30,
+                  height: 30,
+                  child: Assets.icons.backButton.image(
+                    fit: BoxFit.contain,
+                    color: Colors.white,
+                  ),
                 ),
               ),
 
-              const SizedBox(height: 8),
+              const SizedBox(height: 60),
 
-              // Instruction text
-              const Text(
-                'We sent a reset link to your Gmail \nEnter the 6 digit code mentioned in the email',
-                style: TextStyle(
-                  fontFamily: 'Roboto',
-                  fontWeight: FontWeight.w400,
-                  fontSize: 14,
-                  letterSpacing: -0.5,
-                  color: Color(0xFFB0B3B8),
-                  height: 20 / 14,
+              /// Title
+              const Center(
+                child: Text(
+                  'Verification Code',
+                  style: TextStyle(
+                    fontFamily: 'Raleway',
+                    fontWeight: FontWeight.w700,
+                    fontSize: 28,
+                    color: Colors.white,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
               ),
 
-              const SizedBox(height: 40),
+              const SizedBox(height: 16),
 
-              // OTP input field
+              /// Subtitle
+              const Center(
+                child: Text(
+                  'Enter the verification code we just sent you\non your e-mail address',
+                  style: TextStyle(
+                    fontFamily: 'Roboto',
+                    fontWeight: FontWeight.w400,
+                    fontSize: 16,
+                    color: Color(0xFFB0B3B8),
+                    height: 1.5,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+
+              const SizedBox(height: 60),
+
+              /// OTP Input Field
               PinCodeTextField(
                 appContext: context,
                 length: 6,
@@ -93,70 +95,99 @@ class _OtpScreenState extends State<OtpScreen> {
                 keyboardType: TextInputType.number,
                 animationType: AnimationType.fade,
                 autoDisposeControllers: false,
-                cursorColor: Colors.white,
+                cursorColor: const Color(0xFFFF6B35),
                 textStyle: const TextStyle(
                   color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600,
+                  fontSize: 24,
+                  fontWeight: FontWeight.w700,
                 ),
                 pinTheme: PinTheme(
                   shape: PinCodeFieldShape.box,
-                  borderRadius: BorderRadius.circular(12),
-                  fieldHeight: 45,
-                  fieldWidth: 45,
+                  borderRadius: BorderRadius.circular(16),
+                  fieldHeight: 70,
+                  fieldWidth: 50,
                   borderWidth: 2,
-                  activeColor: const Color(0xFF004AAD),
-                  selectedColor: const Color(0xFF004AAD),
-                  inactiveColor: const Color(0xFFB0B3B8),
+                  activeColor: const Color(0xFFFF6B35),
+                  selectedColor: const Color(0xFFFF6B35),
+                  inactiveColor: const Color(0xFF333333),
                   activeFillColor: Colors.transparent,
                   selectedFillColor: Colors.transparent,
                   inactiveFillColor: Colors.transparent,
                 ),
                 animationDuration: const Duration(milliseconds: 300),
-                enableActiveFill: false,
+                enableActiveFill: true,
                 onChanged: (value) {
                   setState(() {
                     isOtpComplete = value.length == 6;
                   });
                 },
+                beforeTextPaste: (text) {
+                  return true;
+                },
               ),
 
-              const SizedBox(height: 40),
+              const SizedBox(height: 30),
 
-              // Verify button
-              HoverEffectButton(
-                onTap: () => context.go(RoutePath.passwordReset.addBasePath),
-                isActive: isOtpComplete,
-                text: "Verify Code",
-              ),
-
-              const SizedBox(height: 20),
-
-              // Resend email text
+              /// Resend Code Text
               Center(
                 child: GestureDetector(
                   onTap: () {
+                    // Resend OTP logic
                   },
                   child: RichText(
                     textAlign: TextAlign.center,
                     text: const TextSpan(
                       style: TextStyle(
-                        fontFamily: 'Inter',
-                        fontWeight: FontWeight.w600,
+                        fontFamily: 'Roboto',
+                        fontWeight: FontWeight.w400,
                         fontSize: 14,
-                        letterSpacing: -0.5,
-                        height: 20 / 14,
+                        height: 1.5,
                       ),
                       children: [
                         TextSpan(
-                          text: "Haven’t got the email yet? ",
-                          style: TextStyle(color: Colors.white),
+                          text: "If you didn't receive a code ! ",
+                          style: TextStyle(color: Color(0xFFB0B3B8)),
                         ),
                         TextSpan(
-                          text: "Resend email",
-                          style: TextStyle(color: Color(0xFF004AAD)),
+                          text: "Resend",
+                          style: TextStyle(
+                            color: Color(0xFFFF6B35),
+                            fontWeight: FontWeight.w700,
+                          ),
                         ),
                       ],
+                    ),
+                  ),
+                ),
+              ),
+
+              const SizedBox(height: 40),
+
+              /// Verify Button
+              SizedBox(
+                width: double.infinity,
+                height: 56,
+                child: ElevatedButton(
+                  onPressed: isOtpComplete
+                      ? () {
+                    context.go(RoutePath.passwordReset.addBasePath);
+                  }
+                      : null,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFFFF6B35),
+                    disabledBackgroundColor: const Color(0xFF333333),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    elevation: 0,
+                  ),
+                  child: Text(
+                    'Verify',
+                    style: TextStyle(
+                      fontFamily: 'Roboto',
+                      fontWeight: FontWeight.w700,
+                      fontSize: 16,
+                      color: isOtpComplete ? Colors.white : const Color(0xFF666666),
                     ),
                   ),
                 ),

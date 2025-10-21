@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:mon5majeur/core/routes/routes.dart';
+
+import '../../../core/custom_assets/assets.gen.dart';
+import '../../../core/routes/route_path.dart';
+import '../../widgets/custom_heading.dart';
 
 // Model
 class Match {
   final String leagueName;
-  final String leagueIcon;
+  final AssetGenImage iconAsset;
   final String team1Name;
-  final String team1Icon;
+  final AssetGenImage team1Icon;
   final String team2Name;
-  final String team2Icon;
+  final AssetGenImage team2Icon;
   final String season;
 
   Match({
     required this.leagueName,
-    required this.leagueIcon,
+    required this.iconAsset,
     required this.team1Name,
     required this.team1Icon,
     required this.team2Name,
@@ -30,38 +35,38 @@ class MyMatchesTodayScreen extends StatelessWidget {
     final matches = [
       Match(
         leagueName: 'Elite Ballers',
-        leagueIcon: '🏀',
+        iconAsset: Assets.icons.basketBall,
         team1Name: 'Paris FC',
-        team1Icon: '🐉',
+        team1Icon: Assets.icons.logo1,
         team2Name: 'Paris FC',
-        team2Icon: '💠',
+        team2Icon: Assets.icons.logo2,
         season: 'Regular Season',
       ),
       Match(
         leagueName: 'French rockster',
-        leagueIcon: '🏀',
+        iconAsset: Assets.icons.basketBall,
         team1Name: 'Paris FC',
-        team1Icon: '🐉',
+        team1Icon: Assets.icons.logo3,
         team2Name: 'Paris FC',
-        team2Icon: '🦁',
+        team2Icon: Assets.icons.logo4,
         season: 'Regular Season',
       ),
       Match(
         leagueName: 'Elite Ballers',
-        leagueIcon: '🏀',
+        iconAsset: Assets.icons.basketBall,
         team1Name: 'Paris FC',
-        team1Icon: '🐉',
+        team1Icon: Assets.icons.logo3,
         team2Name: 'Paris FC',
-        team2Icon: '💠',
+        team2Icon: Assets.icons.logo2,
         season: 'Regular Season',
       ),
       Match(
         leagueName: 'French rockster',
-        leagueIcon: '🏀',
+        iconAsset: Assets.icons.basketBall,
         team1Name: 'Paris FC',
-        team1Icon: '🐉',
+        team1Icon: Assets.icons.logo4,
         team2Name: 'Paris FC',
-        team2Icon: '🦁',
+        team2Icon: Assets.icons.logo6,
         season: 'Regular Season',
       ),
     ];
@@ -71,39 +76,14 @@ class MyMatchesTodayScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            // Header
-            Padding(
-              padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
-              child: Row(
-                children: [
-                  IconButton(
-                    icon: const Icon(Icons.arrow_back, color: Colors.white, size: 24),
-                    onPressed: () => Navigator.pop(context),
-                  ),
-                  const Expanded(
-                    child: Center(
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            'My matches today',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w600,
-                              letterSpacing: 0.2,
-                            ),
-                          ),
-                          SizedBox(width: 8),
-                          Text('🏎️', style: TextStyle(fontSize: 22)),
-                        ],
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 40),
-                ],
-              ),
+            // Header using CustomHeading
+            CustomHeading(
+              title: 'My matches today',
+              iconAsset: Assets.icons.vs,
+              routePath: RoutePath.home.addBasePath,
             ),
+
+            const SizedBox(height: 30),
 
             // Matches List
             Expanded(
@@ -143,7 +123,7 @@ class MatchCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         boxShadow: const [
           BoxShadow(
-            color: Colors.black,
+            color: Colors.black26,
             blurRadius: 10,
             offset: Offset(0, 4),
           ),
@@ -157,54 +137,50 @@ class MatchCard extends StatelessWidget {
             // League Header
             Row(
               children: [
-                Container(
-                  width: 32,
-                  height: 32,
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFFF6B35),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Center(
-                    child: Text(
-                      match.leagueIcon,
-                      style: const TextStyle(fontSize: 18),
+                SizedBox(
+                  width: 20,
+                  height: 20,
+                  child: Padding(
+                    padding: const EdgeInsets.all(0),
+                    child: match.iconAsset.image(
+                      fit: BoxFit.contain,
                     ),
                   ),
                 ),
-                const SizedBox(width: 12),
+                const SizedBox(width: 6),
                 Text(
                   match.leagueName,
                   style: const TextStyle(
                     color: Colors.white,
-                    fontSize: 17,
+                    fontSize: 14,
                     fontWeight: FontWeight.w600,
                     letterSpacing: 0.3,
                   ),
                 ),
                 const Spacer(),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                   decoration: BoxDecoration(
-                    color: const Color(0xFFFF6B35),
+                    color: const Color(0xFF462C21),
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(
-                      color: const Color(0xFFFF6B35),
+                      color: const Color(0xFF462C21),
                       width: 1,
                     ),
                   ),
                   child: Text(
                     match.season,
                     style: const TextStyle(
-                      color: Color(0xFFFFAB8A),
-                      fontSize: 11,
-                      fontWeight: FontWeight.w600,
+                      color: Color(0xFFF16C37),
+                      fontSize: 6,
+                      fontWeight: FontWeight.w500,
                       letterSpacing: 0.5,
                     ),
                   ),
                 ),
               ],
             ),
-            const SizedBox(height: 28),
+            const SizedBox(height: 16),
 
             // Match Info
             Row(
@@ -214,35 +190,35 @@ class MatchCard extends StatelessWidget {
                   child: Column(
                     children: [
                       Container(
-                        width: 80,
-                        height: 80,
+                        width: 45,
+                        height: 45,
                         decoration: BoxDecoration(
                           gradient: const LinearGradient(
                             begin: Alignment.topLeft,
                             end: Alignment.bottomRight,
                             colors: [Color(0xFF3A3D50), Color(0xFF2D2F3E)],
                           ),
-                          borderRadius: BorderRadius.circular(16),
+                          borderRadius: BorderRadius.circular(100),
                           boxShadow: const [
                             BoxShadow(
-                              color: Colors.black,
+                              color: Colors.black26,
                               blurRadius: 8,
                               offset: Offset(0, 2),
                             ),
                           ],
                         ),
-                        child: Center(
-                          child: Text(
-                            match.team1Icon,
-                            style: const TextStyle(fontSize: 40),
+                        child: Padding(
+                          padding: const EdgeInsets.all(6),
+                          child: match.team1Icon.image(
+                            fit: BoxFit.contain,
                           ),
                         ),
                       ),
-                      const SizedBox(height: 14),
+                      const SizedBox(height: 8),
                       Text(
                         match.team1Name,
                         style: const TextStyle(
-                          color: Color(0xFFB8BACA),
+                          color: Color(0xFFAAAAAA),
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
                         ),
@@ -256,18 +232,13 @@ class MatchCard extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF1F2130),
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(color: const Color(0xFF3A3D50), width: 1),
-                    ),
+                    padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
                     child: const Text(
                       'Vs',
                       style: TextStyle(
-                        color: Color(0xFF6B6E82),
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
+                        color: Color(0xFFFFFFFF),
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
                         letterSpacing: 1,
                       ),
                     ),
@@ -279,35 +250,35 @@ class MatchCard extends StatelessWidget {
                   child: Column(
                     children: [
                       Container(
-                        width: 80,
-                        height: 80,
+                        width: 45,
+                        height: 45,
                         decoration: BoxDecoration(
                           gradient: const LinearGradient(
                             begin: Alignment.topLeft,
                             end: Alignment.bottomRight,
                             colors: [Color(0xFF3A3D50), Color(0xFF2D2F3E)],
                           ),
-                          borderRadius: BorderRadius.circular(16),
+                          borderRadius: BorderRadius.circular(100),
                           boxShadow: const [
                             BoxShadow(
-                              color: Colors.black,
+                              color: Colors.black26,
                               blurRadius: 8,
                               offset: Offset(0, 2),
                             ),
                           ],
                         ),
-                        child: Center(
-                          child: Text(
-                            match.team2Icon,
-                            style: const TextStyle(fontSize: 40),
+                        child: Padding(
+                          padding: const EdgeInsets.all(6),
+                          child: match.team2Icon.image(
+                            fit: BoxFit.contain,
                           ),
                         ),
                       ),
-                      const SizedBox(height: 14),
+                      const SizedBox(height: 8),
                       Text(
                         match.team2Name,
                         style: const TextStyle(
-                          color: Color(0xFFB8BACA),
+                          color: Color(0xFFAAAAAA),
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
                         ),

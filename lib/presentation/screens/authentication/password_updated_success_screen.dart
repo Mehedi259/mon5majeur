@@ -14,7 +14,7 @@ class SuccessScreen extends StatelessWidget {
       backgroundColor: Colors.black,
       body: SafeArea(
         child: SizedBox(
-          width: double.infinity, // Full width for all devices
+          width: double.infinity,
           child: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             child: Padding(
@@ -22,60 +22,80 @@ class SuccessScreen extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // Success icon inside a circular container
-                  const CircleAvatar(
-                    radius: 50,
-                    backgroundColor: Colors.white,
-                    child: Icon(
+                  // Success icon with orange gradient background
+                  Container(
+                    width: 140,
+                    height: 140,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      gradient: LinearGradient(
+                        colors: [
+                          Color(0xFFFF8A5B),
+                          Color(0xFFE85D35),
+                        ],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      ),
+                    ),
+                    child: const Icon(
                       Icons.check,
-                      color: Colors.blue,
-                      size: 50,
+                      color: Colors.white,
+                      size: 70,
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 30),
 
                   // Success title text
                   const Text(
                     'Successful',
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
+                      fontSize: 28,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 15),
 
-                  // Informational text with padding for readability
+                  // Informational text
                   const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 30),
                     child: Text(
                       'Congratulations! Your password has been changed. Click continue to login',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        color: Colors.white70,
+                        color: Color(0xFFAAAAAA),
                         fontSize: 16,
+                        height: 1.5,
                       ),
                     ),
                   ),
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 40),
 
-                  // Continue button to redirect user to SignIn screen
-                  SizedBox(
-                    width: double.infinity, // Button takes full width
-                    child: ElevatedButton(
-                      onPressed: () => context.go(RoutePath.signInScreen.addBasePath),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blue,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
+                  // Continue button with orange color
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: () => context.go(RoutePath.signInScreen.addBasePath),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFFFF7A50),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 16,
+                          ),
+                          elevation: 0,
                         ),
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 15,
+                        child: const Text(
+                          'Continue',
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
-                      ),
-                      child: const Text(
-                        'Password Updated',
-                        style: TextStyle(fontSize: 16, color: Colors.white),
                       ),
                     ),
                   ),

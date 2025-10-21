@@ -14,122 +14,50 @@ import 'package:flutter/widgets.dart';
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
-  /// File path: assets/icons/Active_Add_video - Copy.png
-  AssetGenImage get activeAddVideoCopy =>
-      const AssetGenImage('assets/icons/Active_Add_video - Copy.png');
-
-  /// File path: assets/icons/Arrow - Left.png
-  AssetGenImage get arrowLeft =>
-      const AssetGenImage('assets/icons/Arrow - Left.png');
-
   /// File path: assets/icons/BackButton.png
   AssetGenImage get backButton =>
       const AssetGenImage('assets/icons/BackButton.png');
 
-  /// File path: assets/icons/Badges.png
-  AssetGenImage get badges => const AssetGenImage('assets/icons/Badges.png');
-
-  /// File path: assets/icons/Change_Password.png
-  AssetGenImage get changePassword =>
-      const AssetGenImage('assets/icons/Change_Password.png');
-
-  /// File path: assets/icons/Cross.png
-  AssetGenImage get cross => const AssetGenImage('assets/icons/Cross.png');
-
-  /// File path: assets/icons/In_Active_Add_video.png
-  AssetGenImage get inActiveAddVideo =>
-      const AssetGenImage('assets/icons/In_Active_Add_video.png');
-
-  /// File path: assets/icons/In_Active_Add_winner.png
-  AssetGenImage get inActiveAddWinner =>
-      const AssetGenImage('assets/icons/In_Active_Add_winner.png');
-
-  /// File path: assets/icons/In_Active_Home.png
-  AssetGenImage get inActiveHome =>
-      const AssetGenImage('assets/icons/In_Active_Home.png');
-
-  /// File path: assets/icons/In_Active_like.png
-  AssetGenImage get inActiveLike =>
-      const AssetGenImage('assets/icons/In_Active_like.png');
-
-  /// File path: assets/icons/In_Active_profile.png
-  AssetGenImage get inActiveProfile =>
-      const AssetGenImage('assets/icons/In_Active_profile.png');
-
-  /// File path: assets/icons/MyAccount.png
-  AssetGenImage get myAccount =>
-      const AssetGenImage('assets/icons/MyAccount.png');
-
-  /// File path: assets/icons/UplodedVideo.png
-  AssetGenImage get uplodedVideo =>
-      const AssetGenImage('assets/icons/UplodedVideo.png');
-
-  /// File path: assets/icons/VotedVideo.png
-  AssetGenImage get votedVideo =>
-      const AssetGenImage('assets/icons/VotedVideo.png');
+  /// File path: assets/icons/MON5MAJEUR App.zip
+  String get mON5MAJEURApp => 'assets/icons/MON5MAJEUR App.zip';
 
   /// File path: assets/icons/active_dot.png
   AssetGenImage get activeDot =>
       const AssetGenImage('assets/icons/active_dot.png');
 
-  /// File path: assets/icons/active_home.png
-  AssetGenImage get activeHome =>
-      const AssetGenImage('assets/icons/active_home.png');
-
-  /// File path: assets/icons/active_like.png
-  AssetGenImage get activeLike =>
-      const AssetGenImage('assets/icons/active_like.png');
-
-  /// File path: assets/icons/active_profile.png
-  AssetGenImage get activeProfile =>
-      const AssetGenImage('assets/icons/active_profile.png');
-
-  /// File path: assets/icons/active_winner.png
-  AssetGenImage get activeWinner =>
-      const AssetGenImage('assets/icons/active_winner.png');
-
   /// File path: assets/icons/apple.png
   AssetGenImage get apple => const AssetGenImage('assets/icons/apple.png');
 
-  /// File path: assets/icons/bx_share.png
-  AssetGenImage get bxShare => const AssetGenImage('assets/icons/bx_share.png');
+  /// File path: assets/icons/basket_ball.png
+  AssetGenImage get basketBall =>
+      const AssetGenImage('assets/icons/basket_ball.png');
 
-  /// File path: assets/icons/camera (2).png
-  AssetGenImage get camera2 =>
-      const AssetGenImage('assets/icons/camera (2).png');
+  /// File path: assets/icons/basket_ball_active.png
+  AssetGenImage get basketBallActive =>
+      const AssetGenImage('assets/icons/basket_ball_active.png');
 
-  /// File path: assets/icons/camera.png
-  AssetGenImage get camera => const AssetGenImage('assets/icons/camera.png');
+  /// File path: assets/icons/basket_ball_inactive.png
+  AssetGenImage get basketBallInactive =>
+      const AssetGenImage('assets/icons/basket_ball_inactive.png');
 
-  /// File path: assets/icons/competetion.png
-  AssetGenImage get competetion =>
-      const AssetGenImage('assets/icons/competetion.png');
+  /// File path: assets/icons/basket_ball_player_active.png
+  AssetGenImage get basketBallPlayerActive =>
+      const AssetGenImage('assets/icons/basket_ball_player_active.png');
 
-  /// File path: assets/icons/contactUs.jpg
-  AssetGenImage get contactUsJpg =>
-      const AssetGenImage('assets/icons/contactUs.jpg');
+  /// File path: assets/icons/basket_ball_player_inactive.png
+  AssetGenImage get basketBallPlayerInactive =>
+      const AssetGenImage('assets/icons/basket_ball_player_inactive.png');
 
-  /// File path: assets/icons/contactUs.png
-  AssetGenImage get contactUsPng =>
-      const AssetGenImage('assets/icons/contactUs.png');
+  /// File path: assets/icons/calender.png
+  AssetGenImage get calender =>
+      const AssetGenImage('assets/icons/calender.png');
 
-  /// File path: assets/icons/crossIcon.png
-  AssetGenImage get crossIcon =>
-      const AssetGenImage('assets/icons/crossIcon.png');
+  /// File path: assets/icons/chefcurry.png
+  AssetGenImage get chefcurry =>
+      const AssetGenImage('assets/icons/chefcurry.png');
 
-  /// File path: assets/icons/delete.png
-  AssetGenImage get delete => const AssetGenImage('assets/icons/delete.png');
-
-  /// File path: assets/icons/dislike.png
-  AssetGenImage get dislike => const AssetGenImage('assets/icons/dislike.png');
-
-  /// File path: assets/icons/dislike_blue.png
-  AssetGenImage get dislikeBlue =>
-      const AssetGenImage('assets/icons/dislike_blue.png');
-
-  /// File path: assets/icons/download.png
-  AssetGenImage get download =>
-      const AssetGenImage('assets/icons/download.png');
+  /// File path: assets/icons/dress.png
+  AssetGenImage get dress => const AssetGenImage('assets/icons/dress.png');
 
   /// File path: assets/icons/email.png
   AssetGenImage get email => const AssetGenImage('assets/icons/email.png');
@@ -140,205 +68,154 @@ class $AssetsIconsGen {
   /// File path: assets/icons/eye_off.png
   AssetGenImage get eyeOff => const AssetGenImage('assets/icons/eye_off.png');
 
-  /// File path: assets/icons/fire.png
-  AssetGenImage get fire => const AssetGenImage('assets/icons/fire.png');
+  /// File path: assets/icons/fireball.png
+  AssetGenImage get fireball =>
+      const AssetGenImage('assets/icons/fireball.png');
 
-  /// File path: assets/icons/flag.png
-  AssetGenImage get flag => const AssetGenImage('assets/icons/flag.png');
-
-  /// File path: assets/icons/full_screen.png
-  AssetGenImage get fullScreen =>
-      const AssetGenImage('assets/icons/full_screen.png');
+  /// File path: assets/icons/fr.png
+  AssetGenImage get fr => const AssetGenImage('assets/icons/fr.png');
 
   /// File path: assets/icons/google.png
   AssetGenImage get google => const AssetGenImage('assets/icons/google.png');
 
-  /// File path: assets/icons/like.png
-  AssetGenImage get like => const AssetGenImage('assets/icons/like.png');
+  /// File path: assets/icons/home_active.png
+  AssetGenImage get homeActive =>
+      const AssetGenImage('assets/icons/home_active.png');
 
-  /// File path: assets/icons/like_white.png
-  AssetGenImage get likeWhite =>
-      const AssetGenImage('assets/icons/like_white.png');
+  /// File path: assets/icons/home_inactive.png
+  AssetGenImage get homeInactive =>
+      const AssetGenImage('assets/icons/home_inactive.png');
 
-  /// File path: assets/icons/logout.png
-  AssetGenImage get logout => const AssetGenImage('assets/icons/logout.png');
+  /// File path: assets/icons/league.png
+  AssetGenImage get league => const AssetGenImage('assets/icons/league.png');
 
-  /// File path: assets/icons/notification.png
-  AssetGenImage get notification =>
-      const AssetGenImage('assets/icons/notification.png');
+  /// File path: assets/icons/livescoring.png
+  AssetGenImage get livescoring =>
+      const AssetGenImage('assets/icons/livescoring.png');
 
-  /// File path: assets/icons/notificationDot.png
-  AssetGenImage get notificationDot =>
-      const AssetGenImage('assets/icons/notificationDot.png');
+  /// File path: assets/icons/logo1.png
+  AssetGenImage get logo1 => const AssetGenImage('assets/icons/logo1.png');
 
-  /// File path: assets/icons/pause.png
-  AssetGenImage get pause => const AssetGenImage('assets/icons/pause.png');
+  /// File path: assets/icons/logo2.png
+  AssetGenImage get logo2 => const AssetGenImage('assets/icons/logo2.png');
 
-  /// File path: assets/icons/play_icon.png
-  AssetGenImage get playIcon =>
-      const AssetGenImage('assets/icons/play_icon.png');
+  /// File path: assets/icons/logo3.png
+  AssetGenImage get logo3 => const AssetGenImage('assets/icons/logo3.png');
 
-  /// File path: assets/icons/profile_active_dot.png
-  AssetGenImage get profileActiveDot =>
-      const AssetGenImage('assets/icons/profile_active_dot.png');
+  /// File path: assets/icons/logo4.png
+  AssetGenImage get logo4 => const AssetGenImage('assets/icons/logo4.png');
 
-  /// File path: assets/icons/smallLogo.png
-  AssetGenImage get smallLogo =>
-      const AssetGenImage('assets/icons/smallLogo.png');
+  /// File path: assets/icons/logo5.png
+  AssetGenImage get logo5 => const AssetGenImage('assets/icons/logo5.png');
 
-  /// File path: assets/icons/upload.png
-  AssetGenImage get upload => const AssetGenImage('assets/icons/upload.png');
+  /// File path: assets/icons/logo6.png
+  AssetGenImage get logo6 => const AssetGenImage('assets/icons/logo6.png');
 
-  /// File path: assets/icons/uploadVideo.png
-  AssetGenImage get uploadVideo =>
-      const AssetGenImage('assets/icons/uploadVideo.png');
+  /// File path: assets/icons/luxarytax.png
+  AssetGenImage get luxarytax =>
+      const AssetGenImage('assets/icons/luxarytax.png');
+
+  /// File path: assets/icons/name_logo.png
+  AssetGenImage get nameLogo =>
+      const AssetGenImage('assets/icons/name_logo.png');
+
+  /// File path: assets/icons/play.png
+  AssetGenImage get play => const AssetGenImage('assets/icons/play.png');
+
+  /// File path: assets/icons/profile_active.png
+  AssetGenImage get profileActive =>
+      const AssetGenImage('assets/icons/profile_active.png');
+
+  /// File path: assets/icons/profile_inactive.png
+  AssetGenImage get profileInactive =>
+      const AssetGenImage('assets/icons/profile_inactive.png');
+
+  /// File path: assets/icons/profile_vector.png
+  AssetGenImage get profileVector =>
+      const AssetGenImage('assets/icons/profile_vector.png');
+
+  /// File path: assets/icons/shopping_card_active.png
+  AssetGenImage get shoppingCardActive =>
+      const AssetGenImage('assets/icons/shopping_card_active.png');
+
+  /// File path: assets/icons/shopping_card_inactive.png
+  AssetGenImage get shoppingCardInactive =>
+      const AssetGenImage('assets/icons/shopping_card_inactive.png');
+
+  /// File path: assets/icons/token_icon.png
+  AssetGenImage get tokenIcon =>
+      const AssetGenImage('assets/icons/token_icon.png');
+
+  /// File path: assets/icons/uk.png
+  AssetGenImage get uk => const AssetGenImage('assets/icons/uk.png');
 
   /// File path: assets/icons/user.png
   AssetGenImage get user => const AssetGenImage('assets/icons/user.png');
 
+  /// File path: assets/icons/vs.png
+  AssetGenImage get vs => const AssetGenImage('assets/icons/vs.png');
+
+  /// File path: assets/icons/win.png
+  AssetGenImage get win => const AssetGenImage('assets/icons/win.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [
-        activeAddVideoCopy,
-        arrowLeft,
+  List<dynamic> get values => [
         backButton,
-        badges,
-        changePassword,
-        cross,
-        inActiveAddVideo,
-        inActiveAddWinner,
-        inActiveHome,
-        inActiveLike,
-        inActiveProfile,
-        myAccount,
-        uplodedVideo,
-        votedVideo,
+        mON5MAJEURApp,
         activeDot,
-        activeHome,
-        activeLike,
-        activeProfile,
-        activeWinner,
         apple,
-        bxShare,
-        camera2,
-        camera,
-        competetion,
-        contactUsJpg,
-        contactUsPng,
-        crossIcon,
-        delete,
-        dislike,
-        dislikeBlue,
-        download,
+        basketBall,
+        basketBallActive,
+        basketBallInactive,
+        basketBallPlayerActive,
+        basketBallPlayerInactive,
+        calender,
+        chefcurry,
+        dress,
         email,
         eye,
         eyeOff,
-        fire,
-        flag,
-        fullScreen,
+        fireball,
+        fr,
         google,
-        like,
-        likeWhite,
-        logout,
-        notification,
-        notificationDot,
-        pause,
-        playIcon,
-        profileActiveDot,
-        smallLogo,
-        upload,
-        uploadVideo,
-        user
+        homeActive,
+        homeInactive,
+        league,
+        livescoring,
+        logo1,
+        logo2,
+        logo3,
+        logo4,
+        logo5,
+        logo6,
+        luxarytax,
+        nameLogo,
+        play,
+        profileActive,
+        profileInactive,
+        profileVector,
+        shoppingCardActive,
+        shoppingCardInactive,
+        tokenIcon,
+        uk,
+        user,
+        vs,
+        win
       ];
 }
 
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
-  /// File path: assets/images/MainLogo.png
+  /// File path: assets/images/homebg.png
+  AssetGenImage get homebg => const AssetGenImage('assets/images/homebg.png');
+
+  /// File path: assets/images/mainLogo.png
   AssetGenImage get mainLogo =>
-      const AssetGenImage('assets/images/MainLogo.png');
-
-  /// File path: assets/images/PasswordChangedSuccessfully.png
-  AssetGenImage get passwordChangedSuccessfully =>
-      const AssetGenImage('assets/images/PasswordChangedSuccessfully.png');
-
-  /// File path: assets/images/congratulation.png
-  AssetGenImage get congratulation =>
-      const AssetGenImage('assets/images/congratulation.png');
-
-  /// File path: assets/images/like1.png
-  AssetGenImage get like1 => const AssetGenImage('assets/images/like1.png');
-
-  /// File path: assets/images/like2.png
-  AssetGenImage get like2 => const AssetGenImage('assets/images/like2.png');
-
-  /// File path: assets/images/like3.png
-  AssetGenImage get like3 => const AssetGenImage('assets/images/like3.png');
-
-  /// File path: assets/images/like4.png
-  AssetGenImage get like4 => const AssetGenImage('assets/images/like4.png');
-
-  /// File path: assets/images/playvideo.png
-  AssetGenImage get playvideo =>
-      const AssetGenImage('assets/images/playvideo.png');
-
-  /// File path: assets/images/profile_picture.jpg
-  AssetGenImage get profilePicture =>
-      const AssetGenImage('assets/images/profile_picture.jpg');
-
-  /// File path: assets/images/right.png
-  AssetGenImage get right => const AssetGenImage('assets/images/right.png');
-
-  /// File path: assets/images/theme_image.jpg
-  AssetGenImage get themeImage =>
-      const AssetGenImage('assets/images/theme_image.jpg');
-
-  /// File path: assets/images/video1.mp4
-  String get video1 => 'assets/images/video1.mp4';
-
-  /// File path: assets/images/video_four.jpg
-  AssetGenImage get videoFour =>
-      const AssetGenImage('assets/images/video_four.jpg');
-
-  /// File path: assets/images/video_one.jpg
-  AssetGenImage get videoOne =>
-      const AssetGenImage('assets/images/video_one.jpg');
-
-  /// File path: assets/images/video_three.jpg
-  AssetGenImage get videoThree =>
-      const AssetGenImage('assets/images/video_three.jpg');
-
-  /// File path: assets/images/video_two.jpg
-  AssetGenImage get videoTwo =>
-      const AssetGenImage('assets/images/video_two.jpg');
-
-  /// File path: assets/images/vote.png
-  AssetGenImage get vote => const AssetGenImage('assets/images/vote.png');
-
-  /// File path: assets/images/winners.jpg
-  AssetGenImage get winners => const AssetGenImage('assets/images/winners.jpg');
+      const AssetGenImage('assets/images/mainLogo.png');
 
   /// List of all assets
-  List<dynamic> get values => [
-        mainLogo,
-        passwordChangedSuccessfully,
-        congratulation,
-        like1,
-        like2,
-        like3,
-        like4,
-        playvideo,
-        profilePicture,
-        right,
-        themeImage,
-        video1,
-        videoFour,
-        videoOne,
-        videoThree,
-        videoTwo,
-        vote,
-        winners
-      ];
+  List<AssetGenImage> get values => [homebg, mainLogo];
 }
 
 class Assets {

@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:mon5majeur/core/routes/routes.dart';
+
+import '../../../core/custom_assets/assets.gen.dart';
+import '../../../core/routes/route_path.dart';
+import '../../widgets/custom_heading.dart';
 
 // Models
 class League {
   final String name;
-  final String iconPath;
+  final AssetGenImage iconAsset;
   final int rank;
   final int totalRanks;
   final String season;
@@ -13,7 +18,7 @@ class League {
 
   League({
     required this.name,
-    required this.iconPath,
+    required this.iconAsset,
     required this.rank,
     required this.totalRanks,
     required this.season,
@@ -32,7 +37,7 @@ class MyLeaguesScreen extends StatelessWidget {
     final leagues = [
       League(
         name: 'French Rockster',
-        iconPath: '🏀',
+        iconAsset: Assets.icons.logo2,
         rank: 4,
         totalRanks: 10,
         season: 'Regular season',
@@ -41,7 +46,7 @@ class MyLeaguesScreen extends StatelessWidget {
       ),
       League(
         name: 'Paris Rockster',
-        iconPath: '🦓',
+        iconAsset: Assets.icons.logo1,
         rank: 4,
         totalRanks: 10,
         season: 'Regular season',
@@ -50,7 +55,7 @@ class MyLeaguesScreen extends StatelessWidget {
       ),
       League(
         name: 'Oyshiks Rockster',
-        iconPath: '🐉',
+        iconAsset: Assets.icons.logo1,
         rank: 4,
         totalRanks: 10,
         season: 'Regular season',
@@ -59,7 +64,7 @@ class MyLeaguesScreen extends StatelessWidget {
       ),
       League(
         name: 'Paris Rockster',
-        iconPath: '🦓',
+        iconAsset: Assets.icons.logo1,
         rank: 4,
         totalRanks: 10,
         season: 'Regular season',
@@ -68,7 +73,7 @@ class MyLeaguesScreen extends StatelessWidget {
       ),
       League(
         name: 'Oyshiks Rockster',
-        iconPath: '🐉',
+        iconAsset: Assets.icons.logo1,
         rank: 0,
         totalRanks: 10,
         season: 'Regular season',
@@ -83,31 +88,14 @@ class MyLeaguesScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            // Header
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Row(
-                children: [
-                  IconButton(
-                    icon: const Icon(Icons.arrow_back, color: Colors.white),
-                    onPressed: () => Navigator.pop(context),
-                  ),
-                  const Spacer(),
-                  const Text(
-                    'My leagues',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  const Text('🏆', style: TextStyle(fontSize: 20)),
-                  const Spacer(),
-                  const SizedBox(width: 48),
-                ],
-              ),
+            // Header using CustomHeading
+            CustomHeading(
+              title: 'My leagues',
+              iconAsset: Assets.icons.win,
+              routePath: RoutePath.home.addBasePath,
             ),
+
+            const SizedBox(height: 16),
 
             // Search Bar
             Padding(
@@ -148,7 +136,6 @@ class MyLeaguesScreen extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: const BottomNavBar(currentIndex: 1),
     );
   }
 }
@@ -169,38 +156,79 @@ class LeagueCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
       ),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // League Icon
           Container(
-            width: 56,
-            height: 56,
+            width: 44,
+            height: 44,
             decoration: BoxDecoration(
               color: const Color(0xFF1A1A2A),
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(33),
             ),
             child: Center(
-              child: Text(
-                league.iconPath,
-                style: const TextStyle(fontSize: 32),
+              child: SizedBox(
+                width: 24,
+                height: 24,
+                child: league.iconAsset.image(
+                  fit: BoxFit.contain,
+
+                ),
               ),
             ),
           ),
           const SizedBox(width: 16),
 
-          // League Info
+          // League Info + Matchday Row
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  league.name,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                  ),
+                /// Top Row: League name + Matchday badge
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Text(
+                        league.name,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12, vertical: 6),
+                      decoration: BoxDecoration(
+                        color: league.status == 'waiting'
+                            ? Colors.grey[800]
+                            : const Color(0xFFFF6B35),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Text(
+                        league.status == 'waiting'
+                            ? 'waiting'
+                            : 'Matchday ${league.matchday}',
+                        style: TextStyle(
+                          color: league.status == 'waiting'
+                              ? Colors.grey
+                              : Colors.white,
+                          fontSize: 8,
+                          fontWeight: league.status == 'waiting'
+                              ? FontWeight.normal
+                              : FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
+
                 const SizedBox(height: 8),
+
+                /// Rank, Season, Week info
                 Row(
                   children: [
                     const Icon(
@@ -208,38 +236,38 @@ class LeagueCard extends StatelessWidget {
                       color: Color(0xFFFF6B35),
                       size: 16,
                     ),
-                    const SizedBox(width: 4),
+                    const SizedBox(width: 2),
                     Text(
                       'Rank ${league.rank}/${league.totalRanks}',
                       style: const TextStyle(
                         color: Color(0xFFFF6B35),
-                        fontSize: 14,
+                        fontSize: 10,
                       ),
                     ),
-                    const SizedBox(width: 8),
+                    const SizedBox(width: 4),
                     const Text('|', style: TextStyle(color: Colors.grey)),
-                    const SizedBox(width: 8),
+                    const SizedBox(width: 4),
                     const Icon(
                       Icons.sports_basketball,
                       color: Color(0xFFFF6B35),
-                      size: 16,
+                      size: 10,
                     ),
-                    const SizedBox(width: 4),
+                    const SizedBox(width: 2),
                     Text(
                       league.season,
                       style: TextStyle(
                         color: Colors.grey[400],
-                        fontSize: 14,
+                        fontSize: 10,
                       ),
                     ),
-                    const SizedBox(width: 8),
+                    const SizedBox(width: 4),
                     const Text('|', style: TextStyle(color: Colors.grey)),
-                    const SizedBox(width: 8),
+                    const SizedBox(width: 4),
                     Text(
                       'Week ${league.week}',
                       style: TextStyle(
                         color: Colors.grey[400],
-                        fontSize: 14,
+                        fontSize: 10,
                       ),
                     ),
                   ],
@@ -247,80 +275,8 @@ class LeagueCard extends StatelessWidget {
               ],
             ),
           ),
-
-          // Matchday Badge
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-            decoration: BoxDecoration(
-              color: league.status == 'waiting'
-                  ? Colors.grey[800]
-                  : const Color(0xFFFF6B35),
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: Text(
-              league.status == 'waiting'
-                  ? 'waiting'
-                  : 'Matchday ${league.matchday}',
-              style: TextStyle(
-                color: league.status == 'waiting' ? Colors.grey : Colors.white,
-                fontSize: 12,
-                fontWeight: league.status == 'waiting'
-                    ? FontWeight.normal
-                    : FontWeight.w600,
-              ),
-            ),
-          ),
         ],
       ),
-    );
-  }
-}
-
-// Bottom Navigation Bar
-class BottomNavBar extends StatelessWidget {
-  final int currentIndex;
-
-  const BottomNavBar({super.key, required this.currentIndex});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        color: Color(0xFF2A2A2A),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black,
-            blurRadius: 10,
-            offset: Offset(0, -5),
-          ),
-        ],
-      ),
-      child: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              _buildNavItem(Icons.home, 0),
-              _buildNavItem(Icons.emoji_events, 1),
-              _buildNavItem(Icons.sports_soccer, 2),
-              _buildNavItem(Icons.person, 3),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildNavItem(IconData icon, int index) {
-    final isActive = currentIndex == index;
-    return IconButton(
-      icon: Icon(
-        icon,
-        color: isActive ? const Color(0xFFFF6B35) : Colors.grey[600],
-        size: 28,
-      ),
-      onPressed: () {},
     );
   }
 }
