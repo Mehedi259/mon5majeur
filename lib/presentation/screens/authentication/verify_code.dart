@@ -42,7 +42,7 @@ class _VerifyRegistrationState extends State<VerifyRegistration> {
 
               /// Back Button
               GestureDetector(
-                onTap: () => context.pop(),
+                onTap: () => context.go(RoutePath.forgetPassword.addBasePath),
                 child: SizedBox(
                   width: 30,
                   height: 30,

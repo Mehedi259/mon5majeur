@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mon5majeur/core/routes/routes.dart';
 
+import '../../../core/custom_assets/assets.gen.dart';
 import '../../../core/routes/route_path.dart';
 import '../../widgets/navigation.dart';
 
@@ -30,7 +31,7 @@ class ProfileScreen extends StatelessWidget {
                       icon: const Icon(
                         Icons.settings,
                         color: Colors.grey,
-                        size: 28,
+                        size: 30,
                       ),
                     ),
                   ],
@@ -39,8 +40,8 @@ class ProfileScreen extends StatelessWidget {
 
               /// Team Logo
               Container(
-                width: 140,
-                height: 140,
+                width: 100,
+                height: 100,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: const Color(0xFF1a1a1a),
@@ -51,45 +52,45 @@ class ProfileScreen extends StatelessWidget {
                 ),
                 child: Center(
                   child: Container(
-                    width: 100,
-                    height: 100,
+                    width: 56,
+                    height: 60,
                     decoration: const BoxDecoration(
                       shape: BoxShape.circle,
                     ),
-                    child: const Center(
-                      child: Text(
-                        '😈',
-                        style: TextStyle(fontSize: 70),
+                    child: ClipOval(
+                      child: Assets.icons.logo1.image(
+                        width: 56,
+                        height: 60,
+                        fit: BoxFit.cover,
                       ),
                     ),
                   ),
                 ),
               ),
 
-              const SizedBox(height: 16),
+              const SizedBox(height: 4),
 
               /// Team Name
               const Text(
                 'Paris FC',
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
+                  fontSize: 24,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
 
-              const SizedBox(height: 4),
 
               /// Since Year
               const Text(
                 'Since 2025',
                 style: TextStyle(
                   color: Colors.grey,
-                  fontSize: 16,
+                  fontSize: 14,
                 ),
               ),
 
-              const SizedBox(height: 40),
+              const SizedBox(height: 30),
 
               /// Statistics Overview Section
               const Padding(
@@ -101,8 +102,8 @@ class ProfileScreen extends StatelessWidget {
                       'Statistics Overview',
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                     SizedBox(height: 16),
@@ -151,42 +152,42 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(height: 40),
+              const SizedBox(height: 20),
 
               /// Trophies Section
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.0),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       'Trophies',
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
 
                     /// Trophy Cards
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         _TrophyCard(
-                          icon: '🦅',
+                          iconAsset: Assets.icons.trophie1,
                           count: '2x',
                         ),
                         _TrophyCard(
-                          icon: '🏆',
+                          iconAsset: Assets.icons.trophie2,
                           count: '5x',
                         ),
                         _TrophyCard(
-                          icon: '🏀',
+                          iconAsset: Assets.icons.trophie3,
                           count: '4x',
                         ),
                         _TrophyCard(
-                          icon: '🥉',
+                          iconAsset: Assets.icons.trophie4,
                           count: '0x',
                         ),
                       ],
@@ -207,8 +208,8 @@ class ProfileScreen extends StatelessWidget {
                       'Performance Highlights',
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                     const SizedBox(height: 16),
@@ -224,22 +225,22 @@ class ProfileScreen extends StatelessWidget {
                           color: const Color(0xFF333333),
                         ),
                       ),
-                      child: Column(
+                      child: const Column(
                         children: [
-                          const Text(
+                          Text(
                             'Average Point Scored',
                             style: TextStyle(
                               color: Colors.grey,
                               fontSize: 16,
                             ),
                           ),
-                          const SizedBox(height: 12),
+                          SizedBox(height: 12),
                           Text(
                             '92.3',
                             style: TextStyle(
-                              color: Colors.green[400],
-                              fontSize: 48,
-                              fontWeight: FontWeight.bold,
+                              color: Color(0xFF3CDF1C),
+                              fontSize: 40,
+                              fontWeight: FontWeight.w700,
                             ),
                           ),
                         ],
@@ -259,22 +260,22 @@ class ProfileScreen extends StatelessWidget {
                           color: const Color(0xFF333333),
                         ),
                       ),
-                      child: Column(
+                      child: const Column(
                         children: [
-                          const Text(
+                          Text(
                             'Average Point Conceded',
                             style: TextStyle(
                               color: Colors.grey,
                               fontSize: 16,
                             ),
                           ),
-                          const SizedBox(height: 12),
+                          SizedBox(height: 12),
                           Text(
                             '87.3',
                             style: TextStyle(
-                              color: Colors.red[400],
-                              fontSize: 48,
-                              fontWeight: FontWeight.bold,
+                              color: Color(0xFFD32F2F),
+                              fontSize: 40,
+                              fontWeight: FontWeight.w700,
                             ),
                           ),
                         ],
@@ -348,11 +349,11 @@ class _StatCard extends StatelessWidget {
 
 /// Trophy Card Widget
 class _TrophyCard extends StatelessWidget {
-  final String icon;
+  final AssetGenImage iconAsset;
   final String count;
 
   const _TrophyCard({
-    required this.icon,
+    required this.iconAsset,
     required this.count,
   });
 
@@ -370,9 +371,10 @@ class _TrophyCard extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Text(
-            icon,
-            style: const TextStyle(fontSize: 40),
+          iconAsset.image(
+            width: 60,
+            height: 60,
+            fit: BoxFit.contain,
           ),
           const SizedBox(height: 12),
           Text(

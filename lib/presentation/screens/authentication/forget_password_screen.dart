@@ -46,7 +46,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
 
               /// Back Button
               GestureDetector(
-                onTap: () => context.pop(),
+                onTap: () => context.go(RoutePath.signInScreen.addBasePath),
                 child: SizedBox(
                   width: 30,
                   height: 30,

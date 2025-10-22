@@ -41,7 +41,7 @@ class _OtpScreenState extends State<OtpScreen> {
 
               /// Back Button
               GestureDetector(
-                onTap: () => context.pop(),
+                onTap: () => context.go(RoutePath.signUp.addBasePath),
                 child: SizedBox(
                   width: 30,
                   height: 30,

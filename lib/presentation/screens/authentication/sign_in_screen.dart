@@ -33,7 +33,7 @@ class _SignInScreenState extends State<SignInScreen> {
             children: [
               /// Back Button
               GestureDetector(
-                onTap: () => context.pop(),
+                onTap: () => context.go(RoutePath.welcomeScreen.addBasePath),
                 child: SizedBox(
                   width: 30,
                   height: 30,

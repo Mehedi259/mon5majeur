@@ -106,6 +106,8 @@ class ShopScreen extends StatelessWidget {
                     buttonColor: const Color(0xFFFF6B35),
                     badge: 'Popular',
                     badgeColor: const Color(0xFFFF6B35),
+                    showMoreCoinIcon: true,
+                    showStarIcon: true,
                   ),
 
                   const SizedBox(height: 16),
@@ -114,7 +116,7 @@ class ShopScreen extends StatelessWidget {
                   _BonusCard(
                     backgroundColor: const Color(0xFF1a2744),
                     borderColor: const Color(0xFF2d4a7c),
-                    iconAsset: Assets.icons.user, // Using user icon as 6thman placeholder
+                    iconAsset: Assets.icons.sixman,
                     title: '6th Man',
                     subtitle: 'Extra Player',
                     description: 'Add one substitute player',
@@ -129,7 +131,7 @@ class ShopScreen extends StatelessWidget {
                   _BonusCard(
                     backgroundColor: const Color(0xFF1a3d32),
                     borderColor: const Color(0xFF2d6b54),
-                    iconAsset: Assets.icons.win, // Using win icon as luxarytax placeholder
+                    iconAsset: Assets.icons.luxarytax,
                     title: 'Luxary Tax',
                     subtitle: 'Budget Boost',
                     description: '+5M extra budget to strengthen your team',
@@ -162,7 +164,7 @@ class ShopScreen extends StatelessWidget {
                   _BonusCard(
                     backgroundColor: const Color(0xFF1a2744),
                     borderColor: const Color(0xFF2d4a7c),
-                    iconAsset: Assets.icons.dress,
+                    iconAsset: Assets.icons.jersey,
                     title: 'Jersey',
                     subtitle: 'Buy Custom Jerseys',
                     description: 'Coming SOON',
@@ -200,6 +202,8 @@ class _BonusCard extends StatelessWidget {
   final String? badge;
   final Color? badgeColor;
   final bool isComingSoon;
+  final bool showMoreCoinIcon;
+  final bool showStarIcon;
 
   const _BonusCard({
     required this.backgroundColor,
@@ -215,6 +219,8 @@ class _BonusCard extends StatelessWidget {
     this.badge,
     this.badgeColor,
     this.isComingSoon = false,
+    this.showMoreCoinIcon = false,
+    this.showStarIcon = false,
   });
 
   @override
@@ -277,7 +283,7 @@ class _BonusCard extends StatelessWidget {
                 ),
               ),
 
-              /// Badge (Popular/PRO)
+              /// Badge (Popular/PRO) with optional star icon
               if (badge != null)
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
@@ -285,13 +291,25 @@ class _BonusCard extends StatelessWidget {
                     color: badgeColor,
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  child: Text(
-                    badge!,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 11,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      if (showStarIcon) ...[
+                        Assets.icons.star.image(
+                          width: 14,
+                          height: 14,
+                        ),
+                        const SizedBox(width: 4),
+                      ],
+                      Text(
+                        badge!,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 11,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
             ],
@@ -319,7 +337,7 @@ class _BonusCard extends StatelessWidget {
               if (!isComingSoon)
                 Row(
                   children: [
-                    Assets.icons.tokenIcon.image(
+                    Assets.icons.morecoin.image(
                       width: 24,
                       height: 24,
                     ),
@@ -350,11 +368,6 @@ class _BonusCard extends StatelessWidget {
                         ),
                       ),
                   ],
-                )
-              else
-                Assets.icons.tokenIcon.image(
-                  width: 24,
-                  height: 24,
                 ),
 
               /// Unlock Button

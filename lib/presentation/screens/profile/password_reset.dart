@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mon5majeur/core/routes/routes.dart';
 import '../../../core/custom_assets/assets.gen.dart';
+import '../../../core/routes/route_path.dart';
 
 class PasswordReset extends StatefulWidget {
   const PasswordReset({super.key});
@@ -51,7 +53,7 @@ class _PasswordResetState extends State<PasswordReset> {
 
               /// Back Button
               GestureDetector(
-                onTap: () => context.pop(),
+                onTap: () => context.go(RoutePath.forgetPassword.addBasePath),
                 child: SizedBox(
                   width: 30,
                   height: 30,

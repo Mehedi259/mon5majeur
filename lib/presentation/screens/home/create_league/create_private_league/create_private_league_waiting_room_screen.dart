@@ -3,8 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mon5majeur/core/routes/routes.dart';
 
+import '../../../../../core/custom_assets/assets.gen.dart';
 import '../../../../../core/routes/route_path.dart';
-
 
 class CreatePrivateLeagueWaitingRoomScreen extends StatefulWidget {
   const CreatePrivateLeagueWaitingRoomScreen({super.key});
@@ -25,14 +25,26 @@ class _CreatePrivateLeagueWaitingRoomScreenState
   final int maxTeams = 8;
 
   final List<Map<String, dynamic>> teams = [
-    {'name': 'Thunder Bolts', 'status': 'creator', 'icon': '⚡'},
-    {'name': 'Thunder Bolts', 'status': 'joined', 'icon': '⚡'},
-    {'name': 'Thunder Bolts', 'status': 'joined', 'icon': '⚡'},
-    {'name': 'Thunder Bolts', 'status': 'joined', 'icon': '🔥'},
-    {'name': 'Thunder Bolts', 'status': 'joined', 'icon': '⚡'},
-    {'name': 'Waiting for players...', 'status': 'waiting', 'icon': '⏳'},
-    {'name': 'Waiting for players...', 'status': 'waiting', 'icon': '🏆'},
-    {'name': 'Waiting for players...', 'status': 'waiting', 'icon': '🏆'},
+    {'name': 'Thunder Bolts', 'status': 'creator', 'logo': Assets.icons.logo1},
+    {'name': 'Thunder Bolts', 'status': 'joined', 'logo': Assets.icons.logo2},
+    {'name': 'Thunder Bolts', 'status': 'joined', 'logo': Assets.icons.logo3},
+    {'name': 'Thunder Bolts', 'status': 'joined', 'logo': Assets.icons.logo4},
+    {'name': 'Thunder Bolts', 'status': 'joined', 'logo': Assets.icons.logo5},
+    {
+      'name': 'Waiting for players...',
+      'status': 'waiting',
+      'logo': Assets.icons.waiting
+    },
+    {
+      'name': 'Waiting for players...',
+      'status': 'waiting',
+      'logo': Assets.icons.hourglass
+    },
+    {
+      'name': 'Waiting for players...',
+      'status': 'waiting',
+      'logo': Assets.icons.waiting
+    },
   ];
 
   void _copyCode() {
@@ -63,11 +75,12 @@ class _CreatePrivateLeagueWaitingRoomScreenState
               fontWeight: FontWeight.w700,
             ),
           ),
-          actionsPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          actionsPadding:
+          const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           actions: [
             TextButton(
               onPressed: () {
-                Navigator.pop(context); // Close dialog
+                Navigator.pop(context);
               },
               child: const Text(
                 'Cancel',
@@ -80,14 +93,13 @@ class _CreatePrivateLeagueWaitingRoomScreenState
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.pop(context); // Close dialog
+                Navigator.pop(context);
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
                     content: Text('League deleted successfully!'),
                     backgroundColor: Color(0xFFDC3545),
                   ),
                 );
-            
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFFDC3545),
@@ -110,7 +122,6 @@ class _CreatePrivateLeagueWaitingRoomScreenState
     );
   }
 
-
   void _kickTeam(int index) {
     if (teams[index]['status'] != 'creator') {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -126,28 +137,23 @@ class _CreatePrivateLeagueWaitingRoomScreenState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF000000),
+      backgroundColor: const Color(0xFF121212),
       body: SafeArea(
         child: Column(
           children: [
-            // Header
+            // Header with Back Button
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Row(
                 children: [
                   GestureDetector(
-                    onTap: () => Navigator.pop(context),
-                    child: Container(
-                      width: 48,
-                      height: 48,
-                      decoration: BoxDecoration(
-                        color: Colors.transparent,
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: const Icon(
-                        Icons.arrow_back,
-                        color: Colors.white,
-                        size: 28,
+                    onTap: () =>
+                        context.go(RoutePath.createLeagueScreen.addBasePath),
+                    child: SizedBox(
+                      width: 30,
+                      height: 30,
+                      child: Assets.icons.backButton.image(
+                        fit: BoxFit.contain,
                       ),
                     ),
                   ),
@@ -156,184 +162,256 @@ class _CreatePrivateLeagueWaitingRoomScreenState
               ),
             ),
 
-            // Content
+            // Scrollable Content
             Expanded(
               child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: Column(
                   children: [
-                    // League Logo and Name
+                    const SizedBox(height: 10),
+
+                    // League Logo
                     Container(
-                      width: 100,
-                      height: 100,
+                      width: 65,
+                      height: 66,
                       decoration: BoxDecoration(
-                        color: const Color(0xFF2A2D3E),
+                        color: const Color(0xFF1A1A1A),
                         shape: BoxShape.circle,
                         border: Border.all(
-                          color: const Color(0xFFD85A2A),
-                          width: 3,
+                          color: const Color(0xFFCC5123),
+                          width: 1,
                         ),
                       ),
-                      child: const Center(
-                        child: Text(
-                          '🦁',
-                          style: TextStyle(fontSize: 50),
+                      child: Center(
+                        child: Assets.icons.lion.image(
+                          width: 29,
+                          height: 33,
+                          fit: BoxFit.contain,
                         ),
                       ),
                     ),
-                    const SizedBox(height: 16),
+
+                    const SizedBox(height: 17),
+
+                    // League Name
                     Text(
                       leagueName,
+                      textAlign: TextAlign.center,
                       style: const TextStyle(
                         color: Colors.white,
-                        fontSize: 24,
-                        fontWeight: FontWeight.w700,
+                        fontSize: 20,
+                        fontFamily: 'Lato',
+                        fontWeight: FontWeight.w600,
+                        height: 1.10,
                       ),
                     ),
+
                     const SizedBox(height: 4),
+
+                    // League Type
                     const Text(
                       'Private League',
+                      textAlign: TextAlign.center,
                       style: TextStyle(
-                        color: Color(0xFF9B9EAF),
-                        fontSize: 14,
+                        color: Color(0xFFAAAAAA),
+                        fontSize: 16,
+                        fontFamily: 'Lato',
+                        fontWeight: FontWeight.w600,
+                        height: 1.38,
                       ),
                     ),
 
-                    const SizedBox(height: 24),
+                    const SizedBox(height: 29),
 
-                    // League Information Section
+                    // League Information Card
                     Container(
                       width: double.infinity,
                       decoration: BoxDecoration(
                         gradient: const LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          colors: [
-                            Color(0xFF2A2D3E),
-                            Color(0xFF1F2230),
-                          ],
+                          begin: Alignment(0.50, 0.00),
+                          end: Alignment(0.50, 1.00),
+                          colors: [Color(0x8C1C1F26), Color(0x8C0F1116)],
                         ),
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(
+                          color: const Color(0xFF2C2C2C),
+                          width: 1,
+                        ),
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(20.0),
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            // Header with Creator Badge
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 const Text(
                                   'League Information',
+                                  textAlign: TextAlign.center,
                                   style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w700,
+                                    fontSize: 16,
+                                    fontFamily: 'Lato',
+                                    fontWeight: FontWeight.w600,
+                                    height: 1.38,
                                   ),
                                 ),
+                                const SizedBox(width: 60),
                                 Container(
                                   padding: const EdgeInsets.symmetric(
-                                    horizontal: 12,
-                                    vertical: 4,
+                                    horizontal: 10,
+                                    vertical: 5,
                                   ),
                                   decoration: BoxDecoration(
-                                    color: const Color(0xFFD85A2A),
-                                    borderRadius: BorderRadius.circular(6),
+                                    color: const Color(0xFF1A1A1A),
+                                    borderRadius: BorderRadius.circular(4),
+                                    border: Border.all(
+                                      color: const Color(0xFFB0B0B0),
+                                      width: 1,
+                                    ),
                                   ),
                                   child: const Text(
                                     'Creator',
                                     style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w600,
+                                      fontSize: 10,
+                                      fontFamily: 'Inter',
+                                      fontWeight: FontWeight.w400,
+                                      height: 2.20,
                                     ),
                                   ),
                                 ),
                               ],
                             ),
+
                             const SizedBox(height: 8),
+
                             const Text(
                               'Custom settings by you',
+                              textAlign: TextAlign.center,
                               style: TextStyle(
-                                color: Color(0xFF6B6E82),
-                                fontSize: 13,
+                                color: Color(0xFF777777),
+                                fontSize: 12,
+                                fontFamily: 'Roboto',
+                                fontWeight: FontWeight.w400,
+                                height: 1.83,
                               ),
                             ),
+
                             const SizedBox(height: 20),
-                            _buildInfoRow('🏆', 'Format', format),
-                            const SizedBox(height: 16),
-                            _buildInfoRow('👥', 'Teams', totalTeams.toString()),
-                            const SizedBox(height: 16),
-                            _buildInfoRow('💰', 'Budget', budget),
+
+                            // Info Rows
+                            _buildInfoRow(
+                                Assets.icons.win, 'Format', format),
+                            const SizedBox(height: 8),
+                            _buildInfoRow(Assets.icons.teamgroup, 'Teams',
+                                totalTeams.toString()),
+                            const SizedBox(height: 8),
+                            _buildInfoRow(
+                                Assets.icons.moneybag, 'Budget', budget),
                           ],
                         ),
                       ),
                     ),
 
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 30),
 
-                    // Waiting Room Section
+                    // Waiting Room Card
                     Container(
                       width: double.infinity,
                       decoration: BoxDecoration(
                         gradient: const LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          colors: [
-                            Color(0xFF2A2D3E),
-                            Color(0xFF1F2230),
-                          ],
+                          begin: Alignment(0.50, 0.00),
+                          end: Alignment(0.50, 1.00),
+                          colors: [Color(0x8C1C1F26), Color(0x8C0F1116)],
                         ),
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(
+                          color: const Color(0xFF2C2C2C),
+                          width: 1,
+                        ),
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(20.0),
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const Text(
                               'Waiting Room',
+                              textAlign: TextAlign.center,
                               style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w700,
+                                fontSize: 16,
+                                fontFamily: 'Lato',
+                                fontWeight: FontWeight.w600,
+                                height: 1.38,
                               ),
                             ),
                             const SizedBox(height: 8),
                             const Text(
                               'Waiting for teams to join or for you to start the league',
+                              textAlign: TextAlign.center,
                               style: TextStyle(
-                                color: Color(0xFF6B6E82),
-                                fontSize: 13,
+                                color: Color(0xFF777777),
+                                fontSize: 12,
+                                fontFamily: 'Roboto',
+                                fontWeight: FontWeight.w400,
+                                height: 1.83,
                               ),
                             ),
-                            const SizedBox(height: 20),
+                            const SizedBox(height: 26),
                             Text(
                               '$teamsJoined/$maxTeams Teams joined',
+                              textAlign: TextAlign.center,
                               style: const TextStyle(
                                 color: Colors.white,
-                                fontSize: 15,
-                                fontWeight: FontWeight.w600,
+                                fontSize: 12,
+                                fontFamily: 'Roboto',
+                                fontWeight: FontWeight.w500,
+                                height: 1.83,
                               ),
                             ),
                             const SizedBox(height: 12),
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(8),
-                              child: LinearProgressIndicator(
-                                value: teamsJoined / maxTeams,
-                                backgroundColor: const Color(0xFF1A1C2A),
-                                valueColor: const AlwaysStoppedAnimation<Color>(
-                                  Color(0xFF4CAF50),
+                            // Progress Bar
+                            Stack(
+                              children: [
+                                Container(
+                                  width: double.infinity,
+                                  height: 14,
+                                  decoration: BoxDecoration(
+                                    color: const Color(0xFF2C2C2C),
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
                                 ),
-                                minHeight: 8,
-                              ),
+                                FractionallySizedBox(
+                                  widthFactor: teamsJoined / maxTeams,
+                                  child: Container(
+                                    height: 14,
+                                    decoration: BoxDecoration(
+                                      gradient: const LinearGradient(
+                                        begin: Alignment(0.00, 0.50),
+                                        end: Alignment(1.00, 0.50),
+                                        colors: [
+                                          Color(0xFF4CAF50),
+                                          Color(0xFF66BB6A)
+                                        ],
+                                      ),
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
-                            const SizedBox(height: 12),
+                            const SizedBox(height: 20),
                             const Text(
                               'The league starts when you hit start',
+                              textAlign: TextAlign.center,
                               style: TextStyle(
-                                color: Color(0xFF6B6E82),
-                                fontSize: 13,
+                                color: Color(0xFFB0B0B0),
+                                fontSize: 12,
+                                fontFamily: 'Roboto',
+                                fontWeight: FontWeight.w400,
+                                height: 1.83,
                               ),
                             ),
                           ],
@@ -341,40 +419,44 @@ class _CreatePrivateLeagueWaitingRoomScreenState
                       ),
                     ),
 
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 18),
 
-                    // Joined Team Lists
+                    // Joined Team Lists Card
                     Container(
                       width: double.infinity,
                       decoration: BoxDecoration(
                         gradient: const LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          colors: [
-                            Color(0xFF2A2D3E),
-                            Color(0xFF1F2230),
-                          ],
+                          begin: Alignment(0.50, 0.00),
+                          end: Alignment(0.50, 1.00),
+                          colors: [Color(0x8C1C1F26), Color(0x8C0F1116)],
                         ),
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(
+                          color: const Color(0xFF2C2C2C),
+                          width: 1,
+                        ),
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(20.0),
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Row(
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text(
-                                  '🏅',
-                                  style: TextStyle(fontSize: 18),
+                                Assets.icons.teamgroup.image(
+                                  width: 20,
+                                  height: 20,
                                 ),
-                                SizedBox(width: 8),
-                                Text(
+                                const SizedBox(width: 8),
+                                const Text(
                                   'Joined team lists',
+                                  textAlign: TextAlign.center,
                                   style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w700,
+                                    fontSize: 16,
+                                    fontFamily: 'Lato',
+                                    fontWeight: FontWeight.w600,
+                                    height: 1.38,
                                   ),
                                 ),
                               ],
@@ -385,13 +467,13 @@ class _CreatePrivateLeagueWaitingRoomScreenState
                               physics: const NeverScrollableScrollPhysics(),
                               itemCount: teams.length,
                               separatorBuilder: (context, index) =>
-                              const SizedBox(height: 12),
+                              const SizedBox(height: 10),
                               itemBuilder: (context, index) {
                                 final team = teams[index];
                                 return _buildTeamItem(
                                   index + 1,
                                   team['name'],
-                                  team['icon'],
+                                  team['logo'],
                                   team['status'],
                                 );
                               },
@@ -401,177 +483,215 @@ class _CreatePrivateLeagueWaitingRoomScreenState
                       ),
                     ),
 
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 32),
 
                     // Join Code Section
-                    Container(
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        gradient: const LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          colors: [
-                            Color(0xFF2A2D3E),
-                            Color(0xFF1F2230),
-                          ],
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'Join Code',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontFamily: 'Lato',
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        const SizedBox(height: 16),
+                        Row(
                           children: [
-                            const Text(
-                              'Join Code',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w700,
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 50,
+                                vertical: 12,
+                              ),
+                              decoration: BoxDecoration(
+                                color: const Color(0xFF1A1A1A),
+                                borderRadius: BorderRadius.circular(12),
+                                border: Border.all(
+                                  color: const Color(0xFFCC5123),
+                                  width: 1,
+                                ),
+                              ),
+                              child: Text(
+                                leagueCode,
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14,
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w700,
+                                  letterSpacing: 2,
+                                ),
                               ),
                             ),
-                            const SizedBox(height: 16),
-                            Row(
-                              children: [
-                                Container(
+                            const SizedBox(width: 12),
+                            Expanded(
+                              child: GestureDetector(
+                                onTap: _copyCode,
+                                child: Container(
                                   padding: const EdgeInsets.symmetric(
-                                    horizontal: 20,
                                     vertical: 12,
+                                    horizontal: 18,
                                   ),
                                   decoration: BoxDecoration(
-                                    color: const Color(0xFF000000),
+                                    gradient: const LinearGradient(
+                                      begin: Alignment(0.50, 0.00),
+                                      end: Alignment(0.50, 1.00),
+                                      colors: [
+                                        Color(0xFFE8632C),
+                                        Color(0xFFFF8A50)
+                                      ],
+                                    ),
                                     borderRadius: BorderRadius.circular(12),
                                     border: Border.all(
-                                      color: const Color(0xFF3A3D50),
+                                      color: const Color(0xFFCC5123),
                                       width: 1,
                                     ),
                                   ),
-                                  child: Text(
-                                    leagueCode,
-                                    style: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w700,
-                                      letterSpacing: 2,
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(width: 12),
-                                GestureDetector(
-                                  onTap: _copyCode,
-                                  child: Container(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 24,
-                                      vertical: 12,
-                                    ),
-                                    decoration: BoxDecoration(
-                                      color: const Color(0xFFFF8C42),
-                                      borderRadius: BorderRadius.circular(12),
-                                    ),
-                                    child: const Text(
+                                  child: const Center(
+                                    child: Text(
                                       'Copy',
                                       style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: 16,
+                                        fontSize: 14,
+                                        fontFamily: 'Inter',
                                         fontWeight: FontWeight.w700,
                                       ),
                                     ),
                                   ),
                                 ),
-                              ],
+                              ),
                             ),
                           ],
                         ),
-                      ),
+                      ],
                     ),
 
-                    const SizedBox(height: 24),
+                    const SizedBox(height: 16),
+
+                    // Bottom Buttons
+                    Column(
+                      children: [
+                        // Edit League Button
+                        SizedBox(
+                          width: double.infinity,
+                          height: 44,
+                          child: OutlinedButton(
+                            onPressed: () => context.go(
+                                RoutePath.editPrivateLeagueScreen.addBasePath),
+                            style: OutlinedButton.styleFrom(
+                              backgroundColor: const Color(0xFF1A1A1A),
+                              side: const BorderSide(
+                                color: Color(0xFF777777),
+                                width: 1,
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                            ),
+                            child: const Text(
+                              'Edit League',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 13,
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w600,
+                                height: 1.69,
+                              ),
+                            ),
+                          ),
+                        ),
+
+                        const SizedBox(height: 16),
+
+                        // Delete League Button
+                        SizedBox(
+                          width: double.infinity,
+                          height: 44,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              _showDeleteConfirmationDialog(context);
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(0xFFD32F2F),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              elevation: 0,
+                            ),
+                            child: const Text(
+                              'Delete League',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 13,
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w600,
+                                height: 1.69,
+                              ),
+                            ),
+                          ),
+                        ),
+
+                        const SizedBox(height: 16),
+
+                        // Start League Button
+                        SizedBox(
+                          width: double.infinity,
+                          height: 42,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              // Start league functionality
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.transparent,
+                              padding: EdgeInsets.zero,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              elevation: 0,
+                            ),
+                            child: Ink(
+                              decoration: BoxDecoration(
+                                gradient: const LinearGradient(
+                                  begin: Alignment(0.50, 0.00),
+                                  end: Alignment(0.50, 1.00),
+                                  colors: [
+                                    Color(0xFFE8632C),
+                                    Color(0xFFFF8A50)
+                                  ],
+                                ),
+                                borderRadius: BorderRadius.circular(12),
+                                border: Border.all(
+                                  color: const Color(0xFFCC5123),
+                                  width: 1,
+                                ),
+                              ),
+                              child: Container(
+                                alignment: Alignment.center,
+                                child: const Text(
+                                  'Start League',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 14,
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.w700,
+                                    height: 1.57,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    const SizedBox(height: 40),
                   ],
                 ),
-              ),
-            ),
-
-            // Bottom Buttons
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                children: [
-                  SizedBox(
-                    width: double.infinity,
-                    height: 56,
-                    child: OutlinedButton(
-                      onPressed: () => context.go(RoutePath.editPrivateLeagueScreen.addBasePath),
-                      style: OutlinedButton.styleFrom(
-                        side: const BorderSide(
-                          color: Color(0xFF3A3D50),
-                          width: 2,
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                      ),
-                      child: const Text(
-                        'Edit League',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 17,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-                  SizedBox(
-                    width: double.infinity,
-                    height: 56,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        _showDeleteConfirmationDialog(context);
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFFDC3545),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        elevation: 0,
-                      ),
-                      child: const Text(
-                        'Delete League',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 17,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                    ),
-                  ),
-
-                  const SizedBox(height: 12),
-                  SizedBox(
-                    width: double.infinity,
-                    height: 56,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        // Start league functionality
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFFFF8C42),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        elevation: 0,
-                      ),
-                      child: const Text(
-                        'Start League',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 17,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
               ),
             ),
           ],
@@ -580,144 +700,157 @@ class _CreatePrivateLeagueWaitingRoomScreenState
     );
   }
 
-  Widget _buildInfoRow(String icon, String label, String value) {
-    return Row(
-      children: [
-        Text(
-          icon,
-          style: const TextStyle(fontSize: 20),
+  Widget _buildInfoRow(AssetGenImage icon, String label, String value) {
+    return Container(
+      width: double.infinity,
+      height: 32,
+      decoration: BoxDecoration(
+        color: const Color(0xFF1A1A1A),
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(
+          color: const Color(0xFF2C2C2C),
+          width: 1,
         ),
-        const SizedBox(width: 12),
-        Text(
-          label,
-          style: const TextStyle(
-            color: Color(0xFF9B9EAF),
-            fontSize: 14,
+      ),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: Row(
+        children: [
+          icon.image(width: 14, height: 14),
+          const SizedBox(width: 8),
+          Text(
+            label,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 10,
+              fontFamily: 'Roboto',
+              fontWeight: FontWeight.w500,
+              height: 2.20,
+            ),
           ),
-        ),
-        const Spacer(),
-        Text(
-          value,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 14,
-            fontWeight: FontWeight.w600,
+          const Spacer(),
+          Text(
+            value,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 10,
+              fontFamily: 'Roboto',
+              fontWeight: FontWeight.w500,
+              height: 2.20,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
-  Widget _buildTeamItem(int index, String name, String icon, String status) {
+  Widget _buildTeamItem(
+      int index, String name, AssetGenImage logo, String status) {
     final isWaiting = status == 'waiting';
     final isCreator = status == 'creator';
 
     return Container(
-      padding: const EdgeInsets.all(16),
+      height: 44,
       decoration: BoxDecoration(
-        color: const Color(0xFF1A1C2A),
-        borderRadius: BorderRadius.circular(12),
+        color: const Color(0x3535363B),
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(
+          color: const Color(0xFF2C2C2C),
+          width: 1,
+        ),
       ),
+      padding: const EdgeInsets.symmetric(horizontal: 14),
       child: Row(
         children: [
-          Text(
-            '$index.',
-            style: const TextStyle(
-              color: Color(0xFF6B6E82),
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-          const SizedBox(width: 12),
-          Container(
-            width: 40,
-            height: 40,
-            decoration: BoxDecoration(
-              color: const Color(0xFF2A2D3E),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Center(
-              child: Text(
-                icon,
-                style: const TextStyle(fontSize: 20),
+          SizedBox(
+            width: 14,
+            child: Text(
+              '$index.',
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                color: Color(0xFFB0B0B0),
+                fontSize: 16,
+                fontFamily: 'Roboto',
+                fontWeight: FontWeight.w700,
+                height: 1.38,
               ),
             ),
           ),
-          const SizedBox(width: 12),
+          const SizedBox(width: 7),
+          Container(
+            width: 27,
+            height: 26,
+            decoration: BoxDecoration(
+              color: const Color(0xFF1A1A1A),
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(
+                color: const Color(0xFF2C2C2C),
+                width: 1,
+              ),
+            ),
+            child: Center(
+              child: logo.image(
+                width: 14,
+                height: 15,
+                fit: BoxFit.contain,
+              ),
+            ),
+          ),
+          const SizedBox(width: 9),
           Expanded(
             child: Text(
               name,
+              textAlign: TextAlign.center,
               style: TextStyle(
-                color: isWaiting ? const Color(0xFF6B6E82) : Colors.white,
-                fontSize: 15,
-                fontWeight: FontWeight.w600,
+                color: isWaiting ? const Color(0xFF777777) : Colors.white,
+                fontSize: 13,
+                fontFamily: 'Roboto',
+                fontWeight: FontWeight.w500,
                 fontStyle: isWaiting ? FontStyle.italic : FontStyle.normal,
+                height: 1.69,
               ),
             ),
           ),
+          const SizedBox(width: 8),
           if (isCreator)
             Container(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 12,
-                vertical: 4,
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
               decoration: BoxDecoration(
-                color: const Color(0xFFD85A2A),
-                borderRadius: BorderRadius.circular(6),
+                borderRadius: BorderRadius.circular(26),
               ),
               child: const Text(
                 'Creator',
+                textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 12,
-                  fontWeight: FontWeight.w600,
+                  color: Color(0xFFAAAAAA),
+                  fontSize: 11,
+                  fontFamily: 'Inter',
+                  fontWeight: FontWeight.w500,
+                  height: 2,
                 ),
               ),
             )
           else if (!isWaiting)
-            GestureDetector(
-              onTap: () => _kickTeam(index - 1),
-              child: Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 6,
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(4),
+                border: Border.all(
+                  color: const Color(0xFFD32F2F),
+                  width: 1,
                 ),
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: const Color(0xFFDC3545),
-                    width: 1.5,
-                  ),
-                  borderRadius: BorderRadius.circular(6),
-                ),
+              ),
+              child: GestureDetector(
+                onTap: () => _kickTeam(index - 1),
                 child: const Text(
                   'Kick',
+                  textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: Color(0xFFDC3545),
-                    fontSize: 13,
-                    fontWeight: FontWeight.w600,
+                    color: Color(0xFFD32F2F),
+                    fontSize: 11,
+                    fontFamily: 'Inter',
+                    fontWeight: FontWeight.w500,
+                    height: 2,
                   ),
-                ),
-              ),
-            )
-          else
-            Container(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 16,
-                vertical: 6,
-              ),
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: const Color(0xFF3A3D50),
-                  width: 1.5,
-                ),
-                borderRadius: BorderRadius.circular(6),
-              ),
-              child: const Text(
-                'Kick',
-                style: TextStyle(
-                  color: Color(0xFF3A3D50),
-                  fontSize: 13,
-                  fontWeight: FontWeight.w600,
                 ),
               ),
             ),

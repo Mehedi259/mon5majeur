@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:mon5majeur/core/routes/routes.dart';
+import '../../../../../core/custom_assets/assets.gen.dart';
+import '../../../../../core/routes/route_path.dart';
 
 class EditPublicLeagueScreen extends StatefulWidget {
   const EditPublicLeagueScreen({super.key});
@@ -12,12 +16,19 @@ class _EditPublicLeagueScreenState extends State<EditPublicLeagueScreen> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
 
-  String? _selectedLogo;
+  AssetGenImage? _selectedLogo;
   String _selectedBudget = '80 M';
   int _selectedPlayers = 6;
   bool _showLogoSelector = false;
 
-  final List<String> _logoOptions = ['🦁', '🦹', '🏀', '🏀', '🦁', '🐉'];
+  final List<AssetGenImage> _logoOptions = [
+    Assets.icons.logo1,
+    Assets.icons.logo2,
+    Assets.icons.logo3,
+    Assets.icons.logo4,
+    Assets.icons.logo5,
+    Assets.icons.logo6,
+  ];
 
   @override
   void dispose() {
@@ -41,11 +52,18 @@ class _EditPublicLeagueScreenState extends State<EditPublicLeagueScreen> {
           child: Container(
             padding: const EdgeInsets.all(32),
             decoration: BoxDecoration(
-              color: const Color(0xFF1F2230),
+              gradient: const LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Color(0xFF3A3D50),
+                  Color(0xFF2A2D3E),
+                ],
+              ),
               borderRadius: BorderRadius.circular(24),
               border: Border.all(
-                color: const Color(0xFF3A3D50),
-                width: 1,
+                color: const Color(0xFF323232),
+                width: 2,
               ),
             ),
             child: Column(
@@ -56,7 +74,7 @@ class _EditPublicLeagueScreenState extends State<EditPublicLeagueScreen> {
                   width: 80,
                   height: 80,
                   decoration: const BoxDecoration(
-                    color: Color(0xFFFF8C42),
+                    color: Color(0xFFD85A2A),
                     shape: BoxShape.circle,
                   ),
                   child: const Icon(
@@ -85,14 +103,16 @@ class _EditPublicLeagueScreenState extends State<EditPublicLeagueScreen> {
                   height: 48,
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.of(context).pop(); // Close dialog
-                      // You can add navigation or other actions here
-                      // Navigator.pop(context); // Go back to previous screen
+                      Navigator.of(context).pop();
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFFFF8C42),
+                      backgroundColor: const Color(0xFFD85A2A),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(16),
+                        side: const BorderSide(
+                          color: Color(0xFF323232),
+                          width: 2,
+                        ),
                       ),
                       elevation: 0,
                     ),
@@ -116,10 +136,6 @@ class _EditPublicLeagueScreenState extends State<EditPublicLeagueScreen> {
 
   void _saveChanges() {
     if (_isFormValid) {
-      // Add your save logic here
-      // Example: Save to database, API call, etc.
-
-      // Show success dialog
       _showSuccessDialog();
     }
   }
@@ -132,46 +148,8 @@ class _EditPublicLeagueScreenState extends State<EditPublicLeagueScreen> {
         children: [
           SafeArea(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Header
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Row(
-                    children: [
-                      GestureDetector(
-                        onTap: () => Navigator.pop(context),
-                        child: Container(
-                          width: 48,
-                          height: 48,
-                          decoration: BoxDecoration(
-                            color: Colors.transparent,
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: const Icon(
-                            Icons.arrow_back,
-                            color: Colors.white,
-                            size: 28,
-                          ),
-                        ),
-                      ),
-                      const Expanded(
-                        child: Center(
-                          child: Text(
-                            'Edit League',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w700,
-                              letterSpacing: 0.3,
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 48),
-                    ],
-                  ),
-                ),
-
                 // Content
                 Expanded(
                   child: SingleChildScrollView(
@@ -179,19 +157,48 @@ class _EditPublicLeagueScreenState extends State<EditPublicLeagueScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        /// Back Button
+                        GestureDetector(
+                          onTap: () => context.go(RoutePath.createPublicLeagueWaitingRoomScreen.addBasePath),
+                          child: SizedBox(
+                            width: 30,
+                            height: 30,
+                            child: Assets.icons.backButton.image(
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                        ),
+
+                        const SizedBox(height: 16),
+
+                        /// Title
+                        const Center(
+                          child: Text(
+                            'Edit League',
+                            style: TextStyle(
+                              fontFamily: 'Raleway',
+                              fontWeight: FontWeight.w700,
+                              fontSize: 20,
+                              color: Colors.white,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+
+                        const SizedBox(height: 8),
+
                         // Basic Info Section
                         Container(
                           width: double.infinity,
-                          decoration: BoxDecoration(
-                            gradient: const LinearGradient(
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                              colors: [
-                                Color(0xFF2A2D3E),
-                                Color(0xFF1F2230),
-                              ],
+                          decoration: ShapeDecoration(
+                            color: const Color(0xFF1A1A1A),
+                            shape: RoundedRectangleBorder(
+                              side: const BorderSide(
+                                width: 3,
+                                color: Color(0xFF2C2C2C),
+                              ),
+                              borderRadius: BorderRadius.circular(12),
                             ),
-                            borderRadius: BorderRadius.circular(20),
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(20.0),
@@ -231,21 +238,22 @@ class _EditPublicLeagueScreenState extends State<EditPublicLeagueScreen> {
                                     });
                                   },
                                   child: Container(
-                                    width: 80,
-                                    height: 80,
+                                    width: 56,
+                                    height: 56,
                                     decoration: BoxDecoration(
                                       color: const Color(0xFF1A1C2A),
-                                      borderRadius: BorderRadius.circular(16),
+                                      borderRadius: BorderRadius.circular(100),
                                       border: Border.all(
-                                        color: const Color(0xFFD85A2A),
+                                        color: const Color(0xFFE8632C),
                                         width: 2,
                                       ),
                                     ),
                                     child: Center(
                                       child: _selectedLogo != null
-                                          ? Text(
-                                        _selectedLogo!,
-                                        style: const TextStyle(fontSize: 40),
+                                          ? _selectedLogo!.image(
+                                        width: 40,
+                                        height: 40,
+                                        fit: BoxFit.contain,
                                       )
                                           : const Icon(
                                         Icons.add,
@@ -287,9 +295,26 @@ class _EditPublicLeagueScreenState extends State<EditPublicLeagueScreen> {
                                     ),
                                     filled: true,
                                     fillColor: const Color(0xFF000000),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                      borderSide: const BorderSide(
+                                        color: Color(0xFF323232),
+                                        width: 2,
+                                      ),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                      borderSide: const BorderSide(
+                                        color: Color(0xFF323232),
+                                        width: 2,
+                                      ),
+                                    ),
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(12),
-                                      borderSide: BorderSide.none,
+                                      borderSide: const BorderSide(
+                                        color: Color(0xFF323232),
+                                        width: 2,
+                                      ),
                                     ),
                                     contentPadding: const EdgeInsets.all(16),
                                   ),
@@ -321,9 +346,26 @@ class _EditPublicLeagueScreenState extends State<EditPublicLeagueScreen> {
                                     ),
                                     filled: true,
                                     fillColor: const Color(0xFF000000),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                      borderSide: const BorderSide(
+                                        color: Color(0xFF323232),
+                                        width: 2,
+                                      ),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                      borderSide: const BorderSide(
+                                        color: Color(0xFF323232),
+                                        width: 2,
+                                      ),
+                                    ),
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(12),
-                                      borderSide: BorderSide.none,
+                                      borderSide: const BorderSide(
+                                        color: Color(0xFF323232),
+                                        width: 2,
+                                      ),
                                     ),
                                     contentPadding: const EdgeInsets.all(16),
                                     counterStyle: const TextStyle(
@@ -342,16 +384,15 @@ class _EditPublicLeagueScreenState extends State<EditPublicLeagueScreen> {
                         // Game Setup Section
                         Container(
                           width: double.infinity,
-                          decoration: BoxDecoration(
-                            gradient: const LinearGradient(
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                              colors: [
-                                Color(0xFF2A2D3E),
-                                Color(0xFF1F2230),
-                              ],
+                          decoration: ShapeDecoration(
+                            color: const Color(0xFF1A1A1A),
+                            shape: RoundedRectangleBorder(
+                              side: const BorderSide(
+                                width: 3,
+                                color: Color(0xFF2C2C2C),
+                              ),
+                              borderRadius: BorderRadius.circular(12),
                             ),
-                            borderRadius: BorderRadius.circular(20),
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(20.0),
@@ -400,7 +441,7 @@ class _EditPublicLeagueScreenState extends State<EditPublicLeagueScreen> {
                                   ],
                                 ),
 
-                                const SizedBox(height: 24),
+                                const SizedBox(height: 12),
 
                                 // Number of Players
                                 const Text(
@@ -424,7 +465,7 @@ class _EditPublicLeagueScreenState extends State<EditPublicLeagueScreen> {
                                   ],
                                 ),
 
-                                const SizedBox(height: 24),
+                                const SizedBox(height: 12),
 
                                 // League Format
                                 const Text(
@@ -438,12 +479,16 @@ class _EditPublicLeagueScreenState extends State<EditPublicLeagueScreen> {
                                 const SizedBox(height: 12),
                                 Container(
                                   padding: const EdgeInsets.symmetric(
-                                    horizontal: 20,
-                                    vertical: 14,
+                                    horizontal: 18,
+                                    vertical: 8,
                                   ),
                                   decoration: BoxDecoration(
                                     color: const Color(0xFFD85A2A),
                                     borderRadius: BorderRadius.circular(12),
+                                    border: Border.all(
+                                      color: const Color(0xFF323232),
+                                      width: 2,
+                                    ),
                                   ),
                                   child: const Text(
                                     'Head to Head',
@@ -464,16 +509,15 @@ class _EditPublicLeagueScreenState extends State<EditPublicLeagueScreen> {
                         // Rules Reminder Section
                         Container(
                           width: double.infinity,
-                          decoration: BoxDecoration(
-                            gradient: const LinearGradient(
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                              colors: [
-                                Color(0xFF2A2D3E),
-                                Color(0xFF1F2230),
-                              ],
+                          decoration: ShapeDecoration(
+                            color: const Color(0xFF1A1A1A),
+                            shape: RoundedRectangleBorder(
+                              side: const BorderSide(
+                                width: 3,
+                                color: Color(0xFF2C2C2C),
+                              ),
+                              borderRadius: BorderRadius.circular(12),
                             ),
-                            borderRadius: BorderRadius.circular(20),
                           ),
                           child: const Padding(
                             padding: EdgeInsets.all(20.0),
@@ -555,6 +599,10 @@ class _EditPublicLeagueScreenState extends State<EditPublicLeagueScreen> {
                             : const Color(0xFF3A3D4A),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16),
+                          side: const BorderSide(
+                            color: Color(0xFF323232),
+                            width: 2,
+                          ),
                         ),
                         elevation: 0,
                       ),
@@ -601,8 +649,8 @@ class _EditPublicLeagueScreenState extends State<EditPublicLeagueScreen> {
                         ),
                         borderRadius: BorderRadius.circular(24),
                         border: Border.all(
-                          color: const Color(0xFF3A3D50),
-                          width: 1,
+                          color: const Color(0xFFE8632C),
+                          width: 2,
                         ),
                       ),
                       child: Column(
@@ -660,14 +708,15 @@ class _EditPublicLeagueScreenState extends State<EditPublicLeagueScreen> {
                                     border: Border.all(
                                       color: isSelected
                                           ? const Color(0xFFD85A2A)
-                                          : Colors.transparent,
-                                      width: 3,
+                                          : const Color(0xFF323232),
+                                      width: 2,
                                     ),
                                   ),
                                   child: Center(
-                                    child: Text(
-                                      logo,
-                                      style: const TextStyle(fontSize: 40),
+                                    child: logo.image(
+                                      width: 40,
+                                      height: 40,
+                                      fit: BoxFit.contain,
                                     ),
                                   ),
                                 ),
@@ -695,10 +744,14 @@ class _EditPublicLeagueScreenState extends State<EditPublicLeagueScreen> {
         });
       },
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         decoration: BoxDecoration(
           color: isSelected ? const Color(0xFFD85A2A) : const Color(0xFF1A1C2A),
           borderRadius: BorderRadius.circular(12),
+          border: Border.all(
+            color: const Color(0xFF323232),
+            width: 2,
+          ),
         ),
         child: Text(
           budget,
@@ -722,10 +775,14 @@ class _EditPublicLeagueScreenState extends State<EditPublicLeagueScreen> {
           });
         },
         child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 14),
+          padding: const EdgeInsets.symmetric(vertical: 8),
           decoration: BoxDecoration(
             color: isSelected ? const Color(0xFFD85A2A) : const Color(0xFF1A1C2A),
             borderRadius: BorderRadius.circular(12),
+            border: Border.all(
+              color: const Color(0xFF323232),
+              width: 2,
+            ),
           ),
           child: Center(
             child: Text(

@@ -47,7 +47,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             children: [
               /// Back Button
               GestureDetector(
-                onTap: () => context.pop(),
+                onTap: () => context.go(RoutePath.welcomeScreen.addBasePath),
                 child: SizedBox(
                   width: 30,
                   height: 30,

@@ -68,44 +68,44 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
                 style: TextStyle(
                   fontFamily: 'Raleway',
                   fontWeight: FontWeight.w700,
-                  fontSize: 24,
+                  fontSize: 20,
                   color: Colors.white,
                 ),
               ),
 
-              const SizedBox(height: 40),
+              const SizedBox(height: 20),
 
               /// Selected Logo Display
               Container(
-                width: 120,
-                height: 120,
+                width: 80,
+                height: 80,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   border: Border.all(color: const Color(0xFFFF6B35), width: 4),
                 ),
                 child: Center(
                   child: _teamLogos[_selectedLogoIndex].image(
-                    width: 60,
-                    height: 60,
+                    width: 40,
+                    height: 40,
                     fit: BoxFit.contain,
                   ),
                 ),
               ),
 
-              const SizedBox(height: 32),
+              const SizedBox(height: 26),
 
               /// Logo Selection Section
               Align(
                 alignment: Alignment.centerLeft,
                 child: Row(
                   children: [
-                    Assets.icons.league.image(width: 24, height: 24),
+                    Assets.icons.league.image(width: 20, height: 20),
                     const SizedBox(width: 8),
                     const Text(
                       'Choose your team logo',
                       style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
                         color: Colors.white,
                       ),
                     ),
@@ -130,7 +130,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
 
               /// Logo Options
               SizedBox(
-                height: 70,
+                height: 48,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: _teamLogos.length,
@@ -143,9 +143,9 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
                         });
                       },
                       child: Container(
-                        width: 70,
-                        height: 70,
-                        margin: const EdgeInsets.only(right: 12),
+                        width: 48,
+                        height: 48,
+                        margin: const EdgeInsets.only(right: 8),
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           color: isSelected ? null : const Color(0xFF1a1a1a),
@@ -169,7 +169,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
                 ),
               ),
 
-              const SizedBox(height: 24),
+              const SizedBox(height: 20),
 
               /// Team Name Input
               Container(
@@ -178,7 +178,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
                   borderRadius: BorderRadius.circular(16),
                   border: Border.all(color: const Color(0xFF333333)),
                 ),
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
                 child: Row(
                   children: [
                     Assets.icons.profileVector.image(width: 20, height: 20),
@@ -237,7 +237,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
                     borderRadius: BorderRadius.circular(16),
                     border: Border.all(color: const Color(0xFF333333)),
                   ),
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                   child: Row(
                     children: [
                       Assets.icons.basketBall.image(width: 20, height: 20),
@@ -290,7 +290,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
                     borderRadius: BorderRadius.circular(16),
                     border: Border.all(color: const Color(0xFF333333)),
                   ),
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                   child: Row(
                     children: [
                       Assets.icons.calender.image(width: 20, height: 20),
@@ -457,12 +457,12 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
                 ],
               ),
 
-              const SizedBox(height: 40),
+              const SizedBox(height: 20),
 
               /// Save & Continue Button
               SizedBox(
                 width: double.infinity,
-                height: 56,
+                height: 40,
                 child: ElevatedButton(
                   onPressed: () {
                     logger.i("Team Name: ${_teamNameController.text}");
@@ -482,7 +482,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
                   child: const Text(
                     'Save & Continue',
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: 16,
                       fontWeight: FontWeight.w600,
                       color: Colors.white,
                     ),
@@ -490,7 +490,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
                 ),
               ),
 
-              const SizedBox(height: 20),
+              const SizedBox(height: 16),
 
               /// Bottom Info Text
               const Text(

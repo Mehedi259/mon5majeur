@@ -1,4 +1,4 @@
-// dart format width=80
+// lib/core/custom_assets/assets.gen.dart
 
 /// GENERATED CODE - DO NOT MODIFY BY HAND
 /// *****************************************************
@@ -17,9 +17,6 @@ class $AssetsIconsGen {
   /// File path: assets/icons/BackButton.png
   AssetGenImage get backButton =>
       const AssetGenImage('assets/icons/BackButton.png');
-
-  /// File path: assets/icons/MON5MAJEUR App.zip
-  String get mON5MAJEURApp => 'assets/icons/MON5MAJEUR App.zip';
 
   /// File path: assets/icons/active_dot.png
   AssetGenImage get activeDot =>
@@ -48,9 +45,16 @@ class $AssetsIconsGen {
   AssetGenImage get basketBallPlayerInactive =>
       const AssetGenImage('assets/icons/basket_ball_player_inactive.png');
 
+  /// File path: assets/icons/basketballtrophee.png
+  AssetGenImage get basketballtrophee =>
+      const AssetGenImage('assets/icons/basketballtrophee.png');
+
   /// File path: assets/icons/calender.png
   AssetGenImage get calender =>
       const AssetGenImage('assets/icons/calender.png');
+
+  /// File path: assets/icons/cap.png
+  AssetGenImage get cap => const AssetGenImage('assets/icons/cap.png');
 
   /// File path: assets/icons/chefcurry.png
   AssetGenImage get chefcurry =>
@@ -62,6 +66,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/email.png
   AssetGenImage get email => const AssetGenImage('assets/icons/email.png');
 
+  /// File path: assets/icons/entry.png
+  AssetGenImage get entry => const AssetGenImage('assets/icons/entry.png');
+
   /// File path: assets/icons/eye.png
   AssetGenImage get eye => const AssetGenImage('assets/icons/eye.png');
 
@@ -71,6 +78,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/fireball.png
   AssetGenImage get fireball =>
       const AssetGenImage('assets/icons/fireball.png');
+
+  /// File path: assets/icons/fly.png
+  AssetGenImage get fly => const AssetGenImage('assets/icons/fly.png');
 
   /// File path: assets/icons/fr.png
   AssetGenImage get fr => const AssetGenImage('assets/icons/fr.png');
@@ -86,12 +96,25 @@ class $AssetsIconsGen {
   AssetGenImage get homeInactive =>
       const AssetGenImage('assets/icons/home_inactive.png');
 
+  /// File path: assets/icons/hourglass.png
+  AssetGenImage get hourglass =>
+      const AssetGenImage('assets/icons/hourglass.png');
+
+  /// File path: assets/icons/jersey.png
+  AssetGenImage get jersey => const AssetGenImage('assets/icons/jersey.png');
+
   /// File path: assets/icons/league.png
   AssetGenImage get league => const AssetGenImage('assets/icons/league.png');
+
+  /// File path: assets/icons/lion.png
+  AssetGenImage get lion => const AssetGenImage('assets/icons/lion.png');
 
   /// File path: assets/icons/livescoring.png
   AssetGenImage get livescoring =>
       const AssetGenImage('assets/icons/livescoring.png');
+
+  /// File path: assets/icons/lock.png
+  AssetGenImage get lock => const AssetGenImage('assets/icons/lock.png');
 
   /// File path: assets/icons/logo1.png
   AssetGenImage get logo1 => const AssetGenImage('assets/icons/logo1.png');
@@ -115,6 +138,14 @@ class $AssetsIconsGen {
   AssetGenImage get luxarytax =>
       const AssetGenImage('assets/icons/luxarytax.png');
 
+  /// File path: assets/icons/moneybag.png
+  AssetGenImage get moneybag =>
+      const AssetGenImage('assets/icons/moneybag.png');
+
+  /// File path: assets/icons/morecoin.png
+  AssetGenImage get morecoin =>
+      const AssetGenImage('assets/icons/morecoin.png');
+
   /// File path: assets/icons/name_logo.png
   AssetGenImage get nameLogo =>
       const AssetGenImage('assets/icons/name_logo.png');
@@ -134,6 +165,10 @@ class $AssetsIconsGen {
   AssetGenImage get profileVector =>
       const AssetGenImage('assets/icons/profile_vector.png');
 
+  /// File path: assets/icons/runningball.png
+  AssetGenImage get runningball =>
+      const AssetGenImage('assets/icons/runningball.png');
+
   /// File path: assets/icons/shopping_card_active.png
   AssetGenImage get shoppingCardActive =>
       const AssetGenImage('assets/icons/shopping_card_active.png');
@@ -142,9 +177,35 @@ class $AssetsIconsGen {
   AssetGenImage get shoppingCardInactive =>
       const AssetGenImage('assets/icons/shopping_card_inactive.png');
 
+  /// File path: assets/icons/sixman.png
+  AssetGenImage get sixman => const AssetGenImage('assets/icons/sixman.png');
+
+  /// File path: assets/icons/star.png
+  AssetGenImage get star => const AssetGenImage('assets/icons/star.png');
+
+  /// File path: assets/icons/teamgroup.png
+  AssetGenImage get teamgroup =>
+      const AssetGenImage('assets/icons/teamgroup.png');
+
   /// File path: assets/icons/token_icon.png
   AssetGenImage get tokenIcon =>
       const AssetGenImage('assets/icons/token_icon.png');
+
+  /// File path: assets/icons/trophie1.png
+  AssetGenImage get trophie1 =>
+      const AssetGenImage('assets/icons/trophie1.png');
+
+  /// File path: assets/icons/trophie2.png
+  AssetGenImage get trophie2 =>
+      const AssetGenImage('assets/icons/trophie2.png');
+
+  /// File path: assets/icons/trophie3.png
+  AssetGenImage get trophie3 =>
+      const AssetGenImage('assets/icons/trophie3.png');
+
+  /// File path: assets/icons/trophie4.png
+  AssetGenImage get trophie4 =>
+      const AssetGenImage('assets/icons/trophie4.png');
 
   /// File path: assets/icons/uk.png
   AssetGenImage get uk => const AssetGenImage('assets/icons/uk.png');
@@ -155,13 +216,15 @@ class $AssetsIconsGen {
   /// File path: assets/icons/vs.png
   AssetGenImage get vs => const AssetGenImage('assets/icons/vs.png');
 
+  /// File path: assets/icons/waiting.png
+  AssetGenImage get waiting => const AssetGenImage('assets/icons/waiting.png');
+
   /// File path: assets/icons/win.png
   AssetGenImage get win => const AssetGenImage('assets/icons/win.png');
 
   /// List of all assets
-  List<dynamic> get values => [
+  List<AssetGenImage> get values => [
         backButton,
-        mON5MAJEURApp,
         activeDot,
         apple,
         basketBall,
@@ -169,19 +232,27 @@ class $AssetsIconsGen {
         basketBallInactive,
         basketBallPlayerActive,
         basketBallPlayerInactive,
+        basketballtrophee,
         calender,
+        cap,
         chefcurry,
         dress,
         email,
+        entry,
         eye,
         eyeOff,
         fireball,
+        fly,
         fr,
         google,
         homeActive,
         homeInactive,
+        hourglass,
+        jersey,
         league,
+        lion,
         livescoring,
+        lock,
         logo1,
         logo2,
         logo3,
@@ -189,17 +260,28 @@ class $AssetsIconsGen {
         logo5,
         logo6,
         luxarytax,
+        moneybag,
+        morecoin,
         nameLogo,
         play,
         profileActive,
         profileInactive,
         profileVector,
+        runningball,
         shoppingCardActive,
         shoppingCardInactive,
+        sixman,
+        star,
+        teamgroup,
         tokenIcon,
+        trophie1,
+        trophie2,
+        trophie3,
+        trophie4,
         uk,
         user,
         vs,
+        waiting,
         win
       ];
 }
