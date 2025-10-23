@@ -95,10 +95,11 @@ class _MyTeamTabState extends State<MyTeamTab> {
                 fit: BoxFit.cover,
               ),
             ),
+            // Semi-transparent overlay
             Positioned.fill(
               child: Container(
-                decoration: const BoxDecoration(
-                  color: Colors.black,
+                decoration: BoxDecoration(
+                  color: Colors.black.withOpacity(0.3),
                 ),
               ),
             ),

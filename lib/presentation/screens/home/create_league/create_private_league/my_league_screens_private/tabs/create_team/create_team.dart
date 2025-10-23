@@ -211,7 +211,7 @@ class _BuildYourTeamTabState extends State<BuildYourTeamTab> {
         borderRadius: BorderRadius.circular(12),
         child: Stack(
           children: [
-            // Playground background image
+            // playground background
             Positioned.fill(
               child: Assets.images.playground.image(
                 fit: BoxFit.cover,
@@ -220,8 +220,8 @@ class _BuildYourTeamTabState extends State<BuildYourTeamTab> {
             // Semi-transparent overlay
             Positioned.fill(
               child: Container(
-                decoration: const BoxDecoration(
-                  color: Colors.black,
+                decoration: BoxDecoration(
+                  color: Colors.black.withOpacity(0.3),
                 ),
               ),
             ),

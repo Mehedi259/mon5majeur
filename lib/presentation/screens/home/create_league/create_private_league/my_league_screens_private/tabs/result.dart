@@ -334,8 +334,8 @@ class _ResultTabState extends State<ResultTab> {
             // Semi-transparent overlay
             Positioned.fill(
               child: Container(
-                decoration: const BoxDecoration(
-                  color: Colors.black,
+                decoration: BoxDecoration(
+                  color: Colors.black.withOpacity(0.3),
                 ),
               ),
             ),

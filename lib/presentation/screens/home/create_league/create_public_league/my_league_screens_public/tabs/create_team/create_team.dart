@@ -220,8 +220,8 @@ class _BuildYourTeamTabState extends State<BuildYourTeamTab> {
             // Semi-transparent overlay
             Positioned.fill(
               child: Container(
-                decoration: const BoxDecoration(
-                  color: Colors.black,
+                decoration: BoxDecoration(
+                  color: Colors.black.withOpacity(0.3),
                 ),
               ),
             ),
@@ -235,7 +235,6 @@ class _BuildYourTeamTabState extends State<BuildYourTeamTab> {
               right: 20,
               child: _buildBonusButton(),
             ),
-            // Index 0 থেকে 4 পর্যন্ত
             Positioned(
               top: 150,
               left: 40,
