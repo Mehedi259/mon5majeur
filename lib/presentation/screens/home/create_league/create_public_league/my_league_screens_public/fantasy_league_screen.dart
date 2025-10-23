@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mon5majeur/core/routes/routes.dart';
+import 'package:mon5majeur/presentation/screens/home/create_league/create_public_league/my_league_screens_public/tabs/create_team/create_team.dart';
 import '../../../../../../core/custom_assets/assets.gen.dart';
 import '../../../../../../core/routes/route_path.dart';
-import 'tabs/create_team.dart';
 import 'tabs/my_team.dart';
 import 'tabs/result.dart';
 import 'tabs/leaderboard.dart';
@@ -127,12 +127,12 @@ class _FantasyLeagueScreenState extends State<FantasyLeagueScreen> {
     return Container(
       width: 35,
       height: 36,
-      decoration: ShapeDecoration(
-        color: const Color(0xFF1A1A1A),
+      decoration: const ShapeDecoration(
+        color: Color(0xFF1A1A1A),
         shape: OvalBorder(
           side: BorderSide(
             width: 1,
-            color: const Color(0xFFB0B0B0),
+            color: Color(0xFFB0B0B0),
           ),
         ),
       ),
@@ -160,16 +160,16 @@ class _FantasyLeagueScreenState extends State<FantasyLeagueScreen> {
           borderRadius: BorderRadius.circular(8),
         ),
       ),
-      child: Row(
+      child: const Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Icon(
+          Icon(
             Icons.wallet,
             color: Colors.white,
             size: 15,
           ),
-          const SizedBox(width: 6),
-          const Text(
+          SizedBox(width: 6),
+          Text(
             'Get extra 2M to your budget',
             style: TextStyle(
               color: Colors.white,
@@ -178,8 +178,8 @@ class _FantasyLeagueScreenState extends State<FantasyLeagueScreen> {
               fontWeight: FontWeight.w400,
             ),
           ),
-          const SizedBox(width: 6),
-          const Icon(
+          SizedBox(width: 6),
+          Icon(
             Icons.arrow_forward_ios,
             color: Colors.white,
             size: 8,

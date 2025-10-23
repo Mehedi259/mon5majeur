@@ -533,10 +533,10 @@ class _AnimatedActionCardState extends State<_AnimatedActionCard> {
             child: Container(
               height: 140,
               decoration: BoxDecoration(
-                gradient: LinearGradient(
+                gradient: const LinearGradient(
                   colors: [
-                    const Color(0xFF1a1a1a),
-                    const Color(0xFF2a2a2a),
+                    Color(0xFF1a1a1a),
+                    Color(0xFF2a2a2a),
                   ],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
@@ -863,9 +863,9 @@ class _AnimatedOrangeButtonState extends State<_AnimatedOrangeButton> {
                 colors: [Color(0xFFFF6B35), Color(0xFFFF8C42)],
               ),
               borderRadius: BorderRadius.circular(12),
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
-                  color: const Color(0xFFFF6B35),
+                  color: Color(0xFFFF6B35),
                   blurRadius: 15,
                   spreadRadius: 1,
                 ),

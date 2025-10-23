@@ -1,4 +1,4 @@
-// lib/core/custom_assets/assets.gen.dart
+// dart format width=80
 
 /// GENERATED CODE - DO NOT MODIFY BY HAND
 /// *****************************************************
@@ -85,6 +85,21 @@ class $AssetsIconsGen {
   /// File path: assets/icons/fr.png
   AssetGenImage get fr => const AssetGenImage('assets/icons/fr.png');
 
+  /// File path: assets/icons/gercy1.png
+  AssetGenImage get gercy1 => const AssetGenImage('assets/icons/gercy1.png');
+
+  /// File path: assets/icons/gercy2.png
+  AssetGenImage get gercy2 => const AssetGenImage('assets/icons/gercy2.png');
+
+  /// File path: assets/icons/gercy3.png
+  AssetGenImage get gercy3 => const AssetGenImage('assets/icons/gercy3.png');
+
+  /// File path: assets/icons/gercy4.png
+  AssetGenImage get gercy4 => const AssetGenImage('assets/icons/gercy4.png');
+
+  /// File path: assets/icons/gercy5.png
+  AssetGenImage get gercy5 => const AssetGenImage('assets/icons/gercy5.png');
+
   /// File path: assets/icons/google.png
   AssetGenImage get google => const AssetGenImage('assets/icons/google.png');
 
@@ -108,6 +123,10 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/lion.png
   AssetGenImage get lion => const AssetGenImage('assets/icons/lion.png');
+
+  /// File path: assets/icons/livematch.png
+  AssetGenImage get livematch =>
+      const AssetGenImage('assets/icons/livematch.png');
 
   /// File path: assets/icons/livescoring.png
   AssetGenImage get livescoring =>
@@ -187,6 +206,9 @@ class $AssetsIconsGen {
   AssetGenImage get teamgroup =>
       const AssetGenImage('assets/icons/teamgroup.png');
 
+  /// File path: assets/icons/timer.png
+  AssetGenImage get timer => const AssetGenImage('assets/icons/timer.png');
+
   /// File path: assets/icons/token_icon.png
   AssetGenImage get tokenIcon =>
       const AssetGenImage('assets/icons/token_icon.png');
@@ -244,6 +266,11 @@ class $AssetsIconsGen {
         fireball,
         fly,
         fr,
+        gercy1,
+        gercy2,
+        gercy3,
+        gercy4,
+        gercy5,
         google,
         homeActive,
         homeInactive,
@@ -251,6 +278,7 @@ class $AssetsIconsGen {
         jersey,
         league,
         lion,
+        livematch,
         livescoring,
         lock,
         logo1,
@@ -273,6 +301,7 @@ class $AssetsIconsGen {
         sixman,
         star,
         teamgroup,
+        timer,
         tokenIcon,
         trophie1,
         trophie2,
@@ -289,15 +318,24 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/MainLogo.png
+  AssetGenImage get mainLogo =>
+      const AssetGenImage('assets/images/MainLogo.png');
+
+  /// File path: assets/images/fullplayground.png
+  AssetGenImage get fullplayground =>
+      const AssetGenImage('assets/images/fullplayground.png');
+
   /// File path: assets/images/homebg.png
   AssetGenImage get homebg => const AssetGenImage('assets/images/homebg.png');
 
-  /// File path: assets/images/mainLogo.png
-  AssetGenImage get mainLogo =>
-      const AssetGenImage('assets/images/mainLogo.png');
+  /// File path: assets/images/playground.png
+  AssetGenImage get playground =>
+      const AssetGenImage('assets/images/playground.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [homebg, mainLogo];
+  List<AssetGenImage> get values =>
+      [mainLogo, fullplayground, homebg, playground];
 }
 
 class Assets {
