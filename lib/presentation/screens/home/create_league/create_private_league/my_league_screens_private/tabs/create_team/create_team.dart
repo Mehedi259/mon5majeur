@@ -235,7 +235,7 @@ class _BuildYourTeamTabState extends State<BuildYourTeamTab> {
               right: 20,
               child: _buildBonusButton(),
             ),
-            // Index 0 থেকে 4 পর্যন্ত
+
             Positioned(
               top: 150,
               left: 40,

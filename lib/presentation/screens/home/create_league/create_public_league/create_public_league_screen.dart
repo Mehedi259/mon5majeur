@@ -67,7 +67,7 @@ class _CreatePublicLeagueScreenState extends State<CreatePublicLeagueScreen> {
                       children: [
                         /// Back Button
                         GestureDetector(
-                          onTap: () => Navigator.pop(context),
+                          onTap: () => context.go(RoutePath.createLeagueScreen.addBasePath),
                           child: SizedBox(
                             width: 30,
                             height: 30,

@@ -12,6 +12,7 @@ import '../../presentation/screens/data/data_screen.dart';
 import '../../presentation/screens/home/create_league/create_private_league/create_private_league_screen.dart';
 import '../../presentation/screens/home/create_league/create_private_league/create_private_league_waiting_room_screen.dart';
 import '../../presentation/screens/home/create_league/create_private_league/edit_private_league.dart';
+import '../../presentation/screens/home/create_league/create_private_league/my_league_screens_private/fantasy_league_screen.dart';
 import '../../presentation/screens/home/create_league/create_public_league/create_public_league_screen.dart';
 import '../../presentation/screens/home/create_league/create_public_league/create_public_league_waiting_room_screen.dart';
 import '../../presentation/screens/home/create_league/create_public_league/edit_public_league.dart';
@@ -178,9 +179,9 @@ class AppRouter {
         builder: (context, state) => const PrivateLeagueWaitingRoomScreen(),
       ),
       GoRoute(
-        name: RoutePath.selectPlayerScreen ,
-        path: RoutePath.selectPlayerScreen .addBasePath,
-        builder: (context, state) => const FantasyLeagueScreen(),
+        name: RoutePath.selectPlayerScreenPublic ,
+        path: RoutePath.selectPlayerScreenPublic .addBasePath,
+        builder: (context, state) => const FantasyLeagueScreenpublic(),
       ),
       GoRoute(
         name: RoutePath.globalLeagueScreen ,
@@ -192,6 +193,11 @@ class AppRouter {
         name: RoutePath.faqScreen ,
         path: RoutePath.faqScreen .addBasePath,
         builder: (context, state) => const FaqScreen(),
+      ),
+      GoRoute(
+        name: RoutePath.fantasyLeagueScreenPrivate ,
+        path: RoutePath.fantasyLeagueScreenPrivate .addBasePath,
+        builder: (context, state) => const FantasyLeagueScreenPrivate(),
       ),
 
       /// Shop screen

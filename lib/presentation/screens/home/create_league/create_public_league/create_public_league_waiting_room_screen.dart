@@ -543,7 +543,7 @@ class _CreatePublicLeagueWaitingRoomScreenState
                           height: 42,
                           child: ElevatedButton(
                             onPressed: () => context
-                                .go(RoutePath.selectPlayerScreen.addBasePath),
+                                .go(RoutePath.selectPlayerScreenPublic.addBasePath),
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.transparent,
                               padding: EdgeInsets.zero,

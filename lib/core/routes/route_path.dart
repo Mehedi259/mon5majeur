@@ -31,7 +31,7 @@ class RoutePath {
   static const String createPublicLeagueScreen = 'createPublicLeagueScreen';
   static const String createPublicLeagueWaitingRoomScreen = 'createPublicLeagueWaitingRoomScreen';
   static const String editPublicLeagueScreen = 'editPublicLeagueScreen';
-  static const String selectPlayerScreen = 'selectPlayerScreen';
+  static const String selectPlayerScreenPublic = 'selectPlayerScreenPublic';
   static const String chooseALeagueScreen = 'chooseALeagueScreen';
   static const String privateLeagueScreen = 'privateLeagueScreen';
   static const String publicLeagueScreen = 'publicLeagueScreen';
@@ -39,6 +39,7 @@ class RoutePath {
   static const String privateLeagueWaitingRoomScreen = 'privateLeagueWaitingRoomScreen';
   static const String globalLeagueScreen = 'globalLeagueScreen';
   static const String faqScreen = 'faqScreen';
+  static const String fantasyLeagueScreenPrivate = 'fantasyLeagueScreenPrivate';
 
 //==================================== Shop screens =====================================
 

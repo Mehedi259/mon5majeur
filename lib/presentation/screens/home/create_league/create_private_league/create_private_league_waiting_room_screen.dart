@@ -642,9 +642,7 @@ class _CreatePrivateLeagueWaitingRoomScreenState
                           width: double.infinity,
                           height: 42,
                           child: ElevatedButton(
-                            onPressed: () {
-                              // Start league functionality
-                            },
+                            onPressed: () => context.go(RoutePath.fantasyLeagueScreenPrivate.addBasePath),
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.transparent,
                               padding: EdgeInsets.zero,

@@ -9,14 +9,14 @@ import 'tabs/my_team.dart';
 import 'tabs/result.dart';
 import 'tabs/rules.dart';
 
-class FantasyLeagueScreenpublic extends StatefulWidget {
-  const FantasyLeagueScreenpublic({super.key});
+class FantasyLeagueScreenPrivate extends StatefulWidget {
+  const FantasyLeagueScreenPrivate({super.key});
 
   @override
-  State<FantasyLeagueScreenpublic> createState() => _FantasyLeagueScreenpublicState();
+  State<FantasyLeagueScreenPrivate> createState() => _FantasyLeagueScreenPrivateState();
 }
 
-class _FantasyLeagueScreenpublicState extends State<FantasyLeagueScreenpublic> {
+class _FantasyLeagueScreenPrivateState extends State<FantasyLeagueScreenPrivate> {
   int _selectedTab = 0;
 
   @override
@@ -65,7 +65,7 @@ class _FantasyLeagueScreenpublicState extends State<FantasyLeagueScreenpublic> {
             children: [
               // Back Button
               GestureDetector(
-                onTap: () => context.go(RoutePath.createPublicLeagueWaitingRoomScreen.addBasePath),
+                onTap: () => context.go(RoutePath.createPrivateLeagueWaitingRoomScreen.addBasePath),
                 child: SizedBox(
                   width: 30,
                   height: 30,
@@ -94,7 +94,7 @@ class _FantasyLeagueScreenpublicState extends State<FantasyLeagueScreenpublic> {
                     ),
                     const SizedBox(height: 2),
                     const Text(
-                      'Public League',
+                      'private League',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.white,

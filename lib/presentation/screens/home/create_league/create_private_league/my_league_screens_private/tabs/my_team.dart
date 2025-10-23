@@ -97,13 +97,12 @@ class _MyTeamTabState extends State<MyTeamTab> {
             ),
             Positioned.fill(
               child: Container(
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   color: Colors.black,
                 ),
               ),
             ),
             Positioned(
-              top: 30,
               right: 20,
               child: _buildBonusButton(),
             ),
