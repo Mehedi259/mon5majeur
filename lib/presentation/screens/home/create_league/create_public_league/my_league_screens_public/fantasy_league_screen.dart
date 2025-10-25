@@ -160,30 +160,17 @@ class _FantasyLeagueScreenpublicState extends State<FantasyLeagueScreenpublic> {
           borderRadius: BorderRadius.circular(8),
         ),
       ),
-      child: const Row(
+      child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(
-            Icons.wallet,
-            color: Colors.white,
-            size: 15,
-          ),
-          SizedBox(width: 6),
-          Text(
+          Assets.icons.play.image(width: 6, height: 6),
+          const SizedBox(width: 6),
+          const Text(
             'Get extra 2M to your budget',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 7,
-              fontFamily: 'Roboto',
-              fontWeight: FontWeight.w400,
-            ),
+            style: TextStyle(color: Colors.white, fontSize: 6),
           ),
-          SizedBox(width: 6),
-          Icon(
-            Icons.arrow_forward_ios,
-            color: Colors.white,
-            size: 8,
-          ),
+          const SizedBox(width: 4),
+          const Text('🎉', style: TextStyle(fontSize: 6)),
         ],
       ),
     );

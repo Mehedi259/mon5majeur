@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+
 import '../../../../../../core/custom_assets/assets.gen.dart';
 import '../../../../../../data/models/player.dart';
 
-class SelectPlayerScreenprivate extends StatefulWidget {
+class SelectPlayerScreenglobal extends StatefulWidget {
   final List<Player> players;
   final double remainingBudget;
   final Function(Player) onPlayerSelected;
 
-  const SelectPlayerScreenprivate({
+  const SelectPlayerScreenglobal({
     super.key,
     required this.players,
     required this.remainingBudget,
@@ -15,10 +16,10 @@ class SelectPlayerScreenprivate extends StatefulWidget {
   });
 
   @override
-  State<SelectPlayerScreenprivate> createState() => _SelectPlayerScreenprivateState();
+  State<SelectPlayerScreenglobal> createState() => _SelectPlayerScreenglobalState();
 }
 
-class _SelectPlayerScreenprivateState extends State<SelectPlayerScreenprivate> {
+class _SelectPlayerScreenglobalState extends State<SelectPlayerScreenglobal> {
   String searchQuery = '';
 
   @override

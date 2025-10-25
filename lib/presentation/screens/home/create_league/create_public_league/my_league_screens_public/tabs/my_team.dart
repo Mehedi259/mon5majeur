@@ -103,11 +103,6 @@ class _MyTeamTabState extends State<MyTeamTab> {
                 ),
               ),
             ),
-            Positioned(
-              top: 30,
-              right: 20,
-              child: _buildBonusButton(),
-            ),
             // Player positions matching BuildYourTeamTab layout
             Positioned(
               top: 150,
@@ -281,41 +276,6 @@ class _MyTeamTabState extends State<MyTeamTab> {
     );
   }
 
-  Widget _buildBonusButton() {
-    return Container(
-      width: 42,
-      height: 42,
-      decoration: ShapeDecoration(
-        color: const Color(0xFF1A1A1A),
-        shape: RoundedRectangleBorder(
-          side: const BorderSide(
-            width: 1,
-            color: Color(0xFF2C2C2C),
-          ),
-          borderRadius: BorderRadius.circular(6),
-        ),
-      ),
-      child: const Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SizedBox(
-            width: 30,
-            height: 5,
-          ),
-          Text(
-            '+ Bonuses',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 8,
-              fontFamily: 'Roboto',
-              fontWeight: FontWeight.w300,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 
   Widget _buildTotalPoints() {
     return Padding(

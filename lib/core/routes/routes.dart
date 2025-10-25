@@ -19,7 +19,7 @@ import '../../presentation/screens/home/create_league/create_public_league/edit_
 import '../../presentation/screens/home/create_league/create_public_league/my_league_screens_public/fantasy_league_screen.dart';
 import '../../presentation/screens/home/create_league/createleaguescreen.dart';
 import '../../presentation/screens/home/faq_screen.dart';
-import '../../presentation/screens/home/global_league/global_league.dart';
+import '../../presentation/screens/home/global_league/fantasy_league_screen.dart';
 import '../../presentation/screens/home/home.dart';
 import '../../presentation/screens/home/join_league/choose_a_league.dart';
 import '../../presentation/screens/home/join_league/join_private_league/private_league.dart';
@@ -33,7 +33,6 @@ import '../../presentation/screens/profile setup/profile_setup_screen.dart';
 import '../../presentation/screens/profile/password_reset.dart';
 import '../../presentation/screens/profile/profile_screen.dart';
 import '../../presentation/screens/profile/profile_settings.dart';
-import '../../presentation/screens/profile/update_password.dart';
 import '../../presentation/screens/shop/buy_token.dart';
 import '../../presentation/screens/shop/shop_screen.dart';
 import 'route_observer.dart';
@@ -83,11 +82,6 @@ class AppRouter {
         builder: (context, state) {
           return const OtpScreen(email: '');
         },
-      ),
-      GoRoute(
-        name: RoutePath.updatePassword,
-        path: RoutePath.updatePassword.addBasePath,
-        builder: (context, state) => const ChangePasswordScreen(),
       ),
       GoRoute(
         name: RoutePath.success,

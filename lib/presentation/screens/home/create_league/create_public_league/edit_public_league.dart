@@ -102,9 +102,7 @@ class _EditPublicLeagueScreenState extends State<EditPublicLeagueScreen> {
                   width: double.infinity,
                   height: 48,
                   child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
+                    onPressed: () => context.go(RoutePath.createPublicLeagueWaitingRoomScreen.addBasePath),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFFD85A2A),
                       shape: RoundedRectangleBorder(

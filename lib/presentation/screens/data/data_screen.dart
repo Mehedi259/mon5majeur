@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../core/custom_assets/assets.gen.dart';
 import '../../widgets/navigation.dart';
+import 'player_info.dart';
 
 // Player Model
 class Player {
@@ -320,6 +321,7 @@ class _DataScreenState extends State<DataScreen> {
                       player.position,
                       player.avg,
                       '${player.price}M',
+                      player.team,
                     );
                   },
                 ),
@@ -633,90 +635,106 @@ class _DataScreenState extends State<DataScreen> {
     );
   }
 
-  Widget _buildPlayerCard(String name, String position, int avg, String price) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 8),
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: const Color(0xFF1a1a1a),
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: const Color(0xFF333333)),
-      ),
-      child: Row(
-        children: [
-          /// Player Avatar/Jersey
-          Center(
-            child: Assets.icons.dress.image(width: 28, height: 42),
-          ),
-          const SizedBox(width: 12),
-
-          /// Player Name
-          Expanded(
-            flex: 3,
-            child: Text(
-              name,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-              ),
+  Widget _buildPlayerCard(String name, String position, int avg, String price, String team) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => PlayerInfoScreen(
+              name: name,
+              position: position,
+              avg: avg,
+              price: price,
+              team: team,
             ),
           ),
+        );
+      },
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 8),
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: const Color(0xFF1a1a1a),
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: const Color(0xFF333333)),
+        ),
+        child: Row(
+          children: [
+            /// Player Avatar/Jersey
+            Center(
+              child: Assets.icons.dress.image(width: 28, height: 42),
+            ),
+            const SizedBox(width: 12),
 
-          /// Position Badge
-          Expanded(
-            flex: 2,
-            child: Center(
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                decoration: BoxDecoration(
-                  color: const Color(0xFFFF6B35),
-                  borderRadius: BorderRadius.circular(12),
+            /// Player Name
+            Expanded(
+              flex: 3,
+              child: Text(
+                name,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
                 ),
-                child: Text(
-                  position,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 12,
-                    fontWeight: FontWeight.bold,
+              ),
+            ),
+
+            /// Position Badge
+            Expanded(
+              flex: 2,
+              child: Center(
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFFF6B35),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Text(
+                    position,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
 
-          /// Average Score with Progress Bar
-          Expanded(
-            flex: 1,
-            child: Column(
-              children: [
-                Text(
-                  avg.toString(),
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
+            /// Average Score
+            Expanded(
+              flex: 1,
+              child: Column(
+                children: [
+                  Text(
+                    avg.toString(),
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
-                ),
-              ],
-            ),
-          ),
-
-          /// Price
-          Expanded(
-            flex: 1,
-            child: Text(
-              price,
-              textAlign: TextAlign.right,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
+                ],
               ),
             ),
-          ),
-        ],
+
+            /// Price
+            Expanded(
+              flex: 1,
+              child: Text(
+                price,
+                textAlign: TextAlign.right,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

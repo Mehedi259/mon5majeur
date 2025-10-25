@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mon5majeur/core/routes/routes.dart';
-import 'package:mon5majeur/presentation/screens/home/create_league/create_private_league/my_league_screens_private/tabs/create_team/create_team.dart';
-import 'package:mon5majeur/presentation/screens/home/create_league/create_private_league/my_league_screens_private/tabs/leaderboard/leaderboard.dart';
+import 'package:mon5majeur/presentation/screens/home/global_league/tabs/create_team/create_team.dart';
+import 'package:mon5majeur/presentation/screens/home/global_league/tabs/leaderboard/leaderboard.dart';
 import '../../../../../../core/custom_assets/assets.gen.dart';
 import '../../../../../../core/routes/route_path.dart';
 import 'tabs/my_team.dart';
 import 'tabs/result.dart';
 import 'tabs/rules.dart';
 
-class FantasyLeagueScreenPrivate extends StatefulWidget {
-  const FantasyLeagueScreenPrivate({super.key});
+class GlobalLeagueScreen extends StatefulWidget {
+  const GlobalLeagueScreen({super.key});
 
   @override
-  State<FantasyLeagueScreenPrivate> createState() => _FantasyLeagueScreenPrivateState();
+  State<GlobalLeagueScreen> createState() => _GlobalLeagueScreenState();
 }
 
-class _FantasyLeagueScreenPrivateState extends State<FantasyLeagueScreenPrivate> {
+class _GlobalLeagueScreenState extends State<GlobalLeagueScreen> {
   int _selectedTab = 0;
 
   @override
@@ -32,7 +32,7 @@ class _FantasyLeagueScreenPrivateState extends State<FantasyLeagueScreenPrivate>
               child: IndexedStack(
                 index: _selectedTab,
                 children: const [
-                  BuildYourTeamTab(),
+                  BuildYourTeamTabGlobal(),
                   MyTeamTab(),
                   ResultTab(),
                   LeaderboardTab(),
@@ -49,13 +49,7 @@ class _FantasyLeagueScreenPrivateState extends State<FantasyLeagueScreenPrivate>
   Widget _buildHeader() {
     return Container(
       width: double.infinity,
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment(0.50, 0.00),
-          end: Alignment(0.50, 1.00),
-          colors: [Color(0xFFE8632C), Color(0xFFFF944D)],
-        ),
-      ),
+      color: const Color(0xFF1A1C2A),
       padding: const EdgeInsets.all(16),
       child: Column(
         children: [
@@ -65,7 +59,7 @@ class _FantasyLeagueScreenPrivateState extends State<FantasyLeagueScreenPrivate>
             children: [
               // Back Button
               GestureDetector(
-                onTap: () => context.go(RoutePath.createPrivateLeagueWaitingRoomScreen.addBasePath),
+                onTap: () => context.go(RoutePath.home.addBasePath),
                 child: SizedBox(
                   width: 30,
                   height: 30,
@@ -83,22 +77,11 @@ class _FantasyLeagueScreenPrivateState extends State<FantasyLeagueScreenPrivate>
                     _buildLeagueLogo(),
                     const SizedBox(height: 4),
                     const Text(
-                      'Elite Ballers',
+                      'Global League',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 12,
-                        fontFamily: 'Lato',
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    const SizedBox(height: 2),
-                    const Text(
-                      'private League',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 8,
+                        fontSize: 14,
                         fontFamily: 'Lato',
                         fontWeight: FontWeight.w600,
                       ),
@@ -137,7 +120,7 @@ class _FantasyLeagueScreenPrivateState extends State<FantasyLeagueScreenPrivate>
         ),
       ),
       child: Center(
-        child: Assets.icons.logo1.image(
+        child: Assets.icons.earth.image(
           width: 16,
           height: 18,
           fit: BoxFit.cover,
@@ -160,17 +143,17 @@ class _FantasyLeagueScreenPrivateState extends State<FantasyLeagueScreenPrivate>
           borderRadius: BorderRadius.circular(8),
         ),
       ),
-      child:  Row(
+      child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Assets.icons.play.image(width: 8, height: 8),
-          const SizedBox(width: 4),
+          Assets.icons.play.image(width: 12, height: 12),
+          const SizedBox(width: 6),
           const Text(
-            'Get extra 2M to your budget',
-            style: TextStyle(color: Colors.white, fontSize: 8),
+            'Get extra 10M to your budget twice Every Week',
+            style: TextStyle(color: Colors.white, fontSize: 10),
           ),
           const SizedBox(width: 4),
-          const Text('🎉', style: TextStyle(fontSize: 8)),
+          const Text('🎉', style: TextStyle(fontSize: 12)),
         ],
       ),
     );
@@ -185,7 +168,6 @@ class _FantasyLeagueScreenPrivateState extends State<FantasyLeagueScreenPrivate>
         children: [
           _buildTab('Create Team', Icons.add, 0),
           _buildTab('My Team', Icons.group, 1),
-          _buildTab('Result', Icons.receipt, 2),
           _buildTab('Leaderboard', Icons.leaderboard, 3),
           _buildTab('Rules', Icons.menu_book, 4),
         ],

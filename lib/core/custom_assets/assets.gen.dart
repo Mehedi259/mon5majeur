@@ -22,8 +22,14 @@ class $AssetsIconsGen {
   AssetGenImage get activeDot =>
       const AssetGenImage('assets/icons/active_dot.png');
 
+  /// File path: assets/icons/allstar.png
+  AssetGenImage get allstar => const AssetGenImage('assets/icons/allstar.png');
+
   /// File path: assets/icons/apple.png
   AssetGenImage get apple => const AssetGenImage('assets/icons/apple.png');
+
+  /// File path: assets/icons/ball.png
+  AssetGenImage get ball => const AssetGenImage('assets/icons/ball.png');
 
   /// File path: assets/icons/basket_ball.png
   AssetGenImage get basketBall =>
@@ -60,8 +66,15 @@ class $AssetsIconsGen {
   AssetGenImage get chefcurry =>
       const AssetGenImage('assets/icons/chefcurry.png');
 
+  /// File path: assets/icons/dataprotection.png
+  AssetGenImage get dataprotection =>
+      const AssetGenImage('assets/icons/dataprotection.png');
+
   /// File path: assets/icons/dress.png
   AssetGenImage get dress => const AssetGenImage('assets/icons/dress.png');
+
+  /// File path: assets/icons/earth.png
+  AssetGenImage get earth => const AssetGenImage('assets/icons/earth.png');
 
   /// File path: assets/icons/email.png
   AssetGenImage get email => const AssetGenImage('assets/icons/email.png');
@@ -102,6 +115,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/google.png
   AssetGenImage get google => const AssetGenImage('assets/icons/google.png');
+
+  /// File path: assets/icons/hall.png
+  AssetGenImage get hall => const AssetGenImage('assets/icons/hall.png');
 
   /// File path: assets/icons/home_active.png
   AssetGenImage get homeActive =>
@@ -157,6 +173,9 @@ class $AssetsIconsGen {
   AssetGenImage get luxarytax =>
       const AssetGenImage('assets/icons/luxarytax.png');
 
+  /// File path: assets/icons/mail.png
+  AssetGenImage get mail => const AssetGenImage('assets/icons/mail.png');
+
   /// File path: assets/icons/moneybag.png
   AssetGenImage get moneybag =>
       const AssetGenImage('assets/icons/moneybag.png');
@@ -165,9 +184,23 @@ class $AssetsIconsGen {
   AssetGenImage get morecoin =>
       const AssetGenImage('assets/icons/morecoin.png');
 
+  /// File path: assets/icons/mvp.png
+  AssetGenImage get mvp => const AssetGenImage('assets/icons/mvp.png');
+
   /// File path: assets/icons/name_logo.png
   AssetGenImage get nameLogo =>
       const AssetGenImage('assets/icons/name_logo.png');
+
+  /// File path: assets/icons/notification.png
+  AssetGenImage get notification =>
+      const AssetGenImage('assets/icons/notification.png');
+
+  /// File path: assets/icons/password.png
+  AssetGenImage get password =>
+      const AssetGenImage('assets/icons/password.png');
+
+  /// File path: assets/icons/person.png
+  AssetGenImage get person => const AssetGenImage('assets/icons/person.png');
 
   /// File path: assets/icons/play.png
   AssetGenImage get play => const AssetGenImage('assets/icons/play.png');
@@ -183,6 +216,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/profile_vector.png
   AssetGenImage get profileVector =>
       const AssetGenImage('assets/icons/profile_vector.png');
+
+  /// File path: assets/icons/rookle.png
+  AssetGenImage get rookle => const AssetGenImage('assets/icons/rookle.png');
 
   /// File path: assets/icons/runningball.png
   AssetGenImage get runningball =>
@@ -232,6 +268,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/uk.png
   AssetGenImage get uk => const AssetGenImage('assets/icons/uk.png');
 
+  /// File path: assets/icons/update.png
+  AssetGenImage get update => const AssetGenImage('assets/icons/update.png');
+
   /// File path: assets/icons/user.png
   AssetGenImage get user => const AssetGenImage('assets/icons/user.png');
 
@@ -248,7 +287,9 @@ class $AssetsIconsGen {
   List<AssetGenImage> get values => [
         backButton,
         activeDot,
+        allstar,
         apple,
+        ball,
         basketBall,
         basketBallActive,
         basketBallInactive,
@@ -258,7 +299,9 @@ class $AssetsIconsGen {
         calender,
         cap,
         chefcurry,
+        dataprotection,
         dress,
+        earth,
         email,
         entry,
         eye,
@@ -272,6 +315,7 @@ class $AssetsIconsGen {
         gercy4,
         gercy5,
         google,
+        hall,
         homeActive,
         homeInactive,
         hourglass,
@@ -288,13 +332,19 @@ class $AssetsIconsGen {
         logo5,
         logo6,
         luxarytax,
+        mail,
         moneybag,
         morecoin,
+        mvp,
         nameLogo,
+        notification,
+        password,
+        person,
         play,
         profileActive,
         profileInactive,
         profileVector,
+        rookle,
         runningball,
         shoppingCardActive,
         shoppingCardInactive,
@@ -308,6 +358,7 @@ class $AssetsIconsGen {
         trophie3,
         trophie4,
         uk,
+        update,
         user,
         vs,
         waiting,

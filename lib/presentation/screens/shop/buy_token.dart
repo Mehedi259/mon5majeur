@@ -10,120 +10,139 @@ class BuyTokenScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-        elevation: 0,
-
-        /// Back Button (Fixed)
-        leading: GestureDetector(
-          onTap: () => context.go(RoutePath.shopScreen.addBasePath),
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Assets.icons.backButton.image(
-              fit: BoxFit.contain,
-              color: Colors.white,
-            ),
-          ),
-        ),
-
-        /// Title
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Text(
-              'Get more Tokens',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 20,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-            const SizedBox(width: 8),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-              decoration: BoxDecoration(
-                color: const Color(0xFFFF6B35),
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: const Text(
-                '🎟️',
-                style: TextStyle(fontSize: 16),
-              ),
-            ),
-          ],
-        ),
-        centerTitle: true,
-      ),
-
-      /// Body
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(20),
+      backgroundColor: const Color(0xFF121212),
+      body: SafeArea(
         child: Column(
           children: [
-            const SizedBox(height: 20),
-            const Text(
-              'Choose a pack and boost your game.',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 14,
+            /// Custom Header
+            Container(
+              color: const Color(0xFF1A1A1A),
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+              child: Column(
+                children: [
+                  /// Back Button and Title Row
+                  Row(
+                    children: [
+                      GestureDetector(
+                        onTap: () => context.go(RoutePath.shopScreen.addBasePath),
+                        child: SizedBox(
+                          width: 30,
+                          height: 30,
+                          child: Assets.icons.backButton.image(
+                            fit: BoxFit.contain,
+                          ),
+                        ),
+                      ),
+                      const Expanded(
+                        child: Center(
+                          child: Text(
+                            'Get more Tokens',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 22,
+                              fontWeight: FontWeight.w700,
+                              height: 1,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 30), // Balance the back button
+                    ],
+                  ),
+                  const SizedBox(height: 16),
+
+                  /// Token Icon
+                  Assets.icons.morecoin.image(
+                    width: 30.5,
+                    height: 15,
+                  ),
+                ],
               ),
-              textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 30),
 
-            /// Rookie Pack
-            _buildTokenPack(
-              icon: '🎯',
-              iconColor: const Color(0xFF8B5CF6),
-              title: 'Rookie Pack',
-              tokens: '200 TOKENS',
-              price: '€ 1.99',
-              backgroundColor: const Color(0xFF1e1b4b),
-              borderColor: const Color(0xFF4c1d95),
-              buttonColor: const Color(0xFF8B5CF6),
-            ),
-            const SizedBox(height: 20),
+            /// Body
+            Expanded(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.all(24),
+                child: Column(
+                  children: [
+                    const SizedBox(height: 8),
+                    const Text(
+                      'Choose a pack and boost your game.',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                        height: 1.57,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 24),
 
-            /// All Star Pack
-            _buildTokenPack(
-              icon: '⭐',
-              iconColor: const Color(0xFF8B5CF6),
-              title: 'All Star Pack',
-              tokens: '550 TOKENS',
-              price: '€ 4.99',
-              backgroundColor: const Color(0xFF1e1b4b),
-              borderColor: const Color(0xFF4c1d95),
-              buttonColor: const Color(0xFF8B5CF6),
-            ),
-            const SizedBox(height: 20),
+                    /// Rookie Pack
+                    _buildTokenPack(
+                      iconAsset: Assets.icons.rookle,
+                      iconColor: const Color(0xFF7F38E8),
+                      title: 'Rookie Pack',
+                      tokens: '200 TOKENS',
+                      price: '€ 1.99',
+                      backgroundColor: const Color(0xFF1A2243),
+                      gradientColors: [
+                        const Color(0xFF8A35E9),
+                        const Color(0xFF5145E5),
+                      ],
+                    ),
+                    const SizedBox(height: 20),
 
-            /// MVP Pack
-            _buildTokenPack(
-              icon: '🏆',
-              iconColor: const Color(0xFFFF6B35),
-              title: 'MVP Pack',
-              tokens: '1200 TOKENS',
-              price: '€ 9.99',
-              backgroundColor: const Color(0xFF2d1810),
-              borderColor: const Color(0xFF78350f),
-              buttonColor: const Color(0xFFFF6B35),
-            ),
-            const SizedBox(height: 20),
+                    /// All Star Pack
+                    _buildTokenPack(
+                      iconAsset: Assets.icons.allstar,
+                      iconColor: const Color(0xFF5A43E6),
+                      title: 'All star pack',
+                      tokens: '550 TOKENS',
+                      price: '€ 4.99',
+                      backgroundColor: const Color(0xFF291B49),
+                      gradientColors: [
+                        const Color(0xFF8A35E9),
+                        const Color(0xFF5145E5),
+                      ],
+                    ),
+                    const SizedBox(height: 20),
 
-            /// Hall of Fame Pack
-            _buildTokenPack(
-              icon: '🌟',
-              iconColor: const Color(0xFF10b981),
-              title: 'Hall of Fame Pack',
-              tokens: '2500 TOKENS',
-              price: '€ 19.99',
-              backgroundColor: const Color(0xFF064e3b),
-              borderColor: const Color(0xFF065f46),
-              buttonColor: const Color(0xFF10b981),
+                    /// MVP Pack
+                    _buildTokenPack(
+                      iconAsset: Assets.icons.mvp,
+                      iconColor: const Color(0xFFDD784E),
+                      title: 'MVP Pack',
+                      tokens: '1200 TOKENS',
+                      price: '€ 9.99',
+                      backgroundColor: const Color(0xFF2D1D20),
+                      gradientColors: [
+                        const Color(0xFFE8632C),
+                        const Color(0xFFD58564),
+                      ],
+                    ),
+                    const SizedBox(height: 20),
+
+                    /// Hall of Fame Pack
+                    _buildTokenPack(
+                      iconAsset: Assets.icons.hall,
+                      iconColor: const Color(0xFF4BCF96),
+                      title: 'Hall of Fame Pack',
+                      tokens: '2500 TOKENS',
+                      price: '€ 19.99',
+                      backgroundColor: const Color(0xFF123431),
+                      gradientColors: [
+                        const Color(0xFF2CCA87),
+                        const Color(0xFF61D2A0),
+                      ],
+                    ),
+                    const SizedBox(height: 30),
+                  ],
+                ),
+              ),
             ),
-            const SizedBox(height: 30),
           ],
         ),
       ),
@@ -131,28 +150,21 @@ class BuyTokenScreen extends StatelessWidget {
   }
 
   Widget _buildTokenPack({
-    required String icon,
+    required AssetGenImage iconAsset,
     required Color iconColor,
     required String title,
     required String tokens,
     required String price,
     required Color backgroundColor,
-    required Color borderColor,
-    required Color buttonColor,
+    required List<Color> gradientColors,
   }) {
     return Container(
-      padding: const EdgeInsets.all(24),
+      width: 302,
+      height: 188,
+      padding: const EdgeInsets.all(19),
       decoration: BoxDecoration(
         color: backgroundColor,
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: borderColor, width: 2),
-        boxShadow: [
-          BoxShadow(
-            color: borderColor,
-            blurRadius: 10,
-            offset: const Offset(0, 4),
-          ),
-        ],
+        borderRadius: BorderRadius.circular(10),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -161,28 +173,33 @@ class BuyTokenScreen extends StatelessWidget {
           Row(
             children: [
               Container(
-                padding: const EdgeInsets.all(12),
+                width: 30,
+                height: 27,
                 decoration: BoxDecoration(
                   color: iconColor,
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(8),
                 ),
-                child: Text(
-                  icon,
-                  style: const TextStyle(fontSize: 14),
+                child: Center(
+                  child: iconAsset.image(
+                    width: 17,
+                    height: 17,
+                    fit: BoxFit.contain,
+                  ),
                 ),
               ),
-              const SizedBox(width: 12),
+              const SizedBox(width: 11),
               Text(
                 title,
                 style: const TextStyle(
                   color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w900,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w800,
+                  height: 1.57,
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 24),
+          const SizedBox(height: 32),
 
           /// Tokens Amount
           Text(
@@ -190,32 +207,33 @@ class BuyTokenScreen extends StatelessWidget {
             style: const TextStyle(
               color: Colors.white,
               fontSize: 20,
-              fontWeight: FontWeight.bold,
-              letterSpacing: 1,
+              fontWeight: FontWeight.w900,
+              height: 1.10,
             ),
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 22),
 
           /// Price Button
-          SizedBox(
+          Container(
             width: double.infinity,
-            child: ElevatedButton(
-              onPressed: () {
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: buttonColor,
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                elevation: 0,
+            height: 43,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: const Alignment(0.50, 0.00),
+                end: const Alignment(0.50, 1.00),
+                colors: gradientColors,
               ),
+              borderRadius: BorderRadius.circular(6),
+            ),
+            child: Center(
               child: Text(
                 price,
+                textAlign: TextAlign.center,
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 20,
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w600,
+                  height: 1.10,
                 ),
               ),
             ),

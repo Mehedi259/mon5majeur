@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:mon5majeur/core/routes/routes.dart';
+
+import '../../../core/custom_assets/assets.gen.dart';
+import '../../../core/routes/route_path.dart';
 
 class FaqScreen extends StatefulWidget {
   const FaqScreen({super.key});
@@ -51,18 +56,16 @@ class _FaqScreenState extends State<FaqScreen> {
         backgroundColor: Colors.black,
         elevation: 0,
         leading: IconButton(
-          onPressed: () => Navigator.of(context).pop(),
-          icon: const Icon(
-            Icons.arrow_back,
-            color: Colors.white,
-            size: 28,
+          icon: Assets.icons.backButton.image(
+            fit: BoxFit.contain,
           ),
+          onPressed: () => context.go(RoutePath.home.addBasePath),
         ),
         title: const Text(
           'FAQ',
           style: TextStyle(
             color: Colors.white,
-            fontSize: 20,
+            fontSize: 14,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -106,7 +109,7 @@ class _FaqScreenState extends State<FaqScreen> {
                                 item['question']!,
                                 style: const TextStyle(
                                   color: Colors.white,
-                                  fontSize: 16,
+                                  fontSize: 14,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -133,7 +136,7 @@ class _FaqScreenState extends State<FaqScreen> {
                           item['answer']!,
                           style: const TextStyle(
                             color: Colors.grey,
-                            fontSize: 15,
+                            fontSize: 14,
                             height: 1.5,
                           ),
                         ),

@@ -14,7 +14,26 @@ class BuildYourTeamTab extends StatefulWidget {
 class _BuildYourTeamTabState extends State<BuildYourTeamTab> {
   final double totalBudget = 100.0;
   List<Player?> selectedPlayers = List.filled(5, null);
+  Player? sixthManPlayer;
   int selectedJerseyIndex = 0;
+
+  // Bonus states
+  bool sixthManActivated = false;
+  bool chefsCurryActivated = false;
+  bool luxuryTaxActivated = false;
+
+  // Show bonus messages temporarily
+  bool showSixthManMessage = false;
+  bool showChefsCurryMessage = false;
+  bool showLuxuryTaxMessage = false;
+
+  // Show bonus options
+  bool showBonusOptions = false;
+
+  // Available counts
+  int sixthManAvailable = 3;
+  int chefsCurryAvailable = 2;
+  int luxuryTaxAvailable = 0;
 
   final List<Player> availablePlayers = [
     Player(name: 'Lebron James', position: 'SF/PF', team: 'Lakers', price: 26.0),
@@ -33,7 +52,9 @@ class _BuildYourTeamTabState extends State<BuildYourTeamTab> {
   ];
 
   double get usedBudget =>
-      selectedPlayers.fold(0.0, (sum, p) => sum + (p?.price ?? 0.0));
+      selectedPlayers.fold(0.0, (sum, p) => sum + (p?.price ?? 0.0)) +
+          (sixthManPlayer?.price ?? 0.0);
+
   int get remainingPlayers => selectedPlayers.where((p) => p == null).length;
   bool get isTeamComplete => selectedPlayers.every((p) => p != null);
 
@@ -41,10 +62,23 @@ class _BuildYourTeamTabState extends State<BuildYourTeamTab> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (ctx) => SelectPlayerScreen(
+        builder: (ctx) => SelectPlayerScreenprivate(
           players: availablePlayers,
           remainingBudget: totalBudget - usedBudget,
           onPlayerSelected: (p) => setState(() => selectedPlayers[index] = p),
+        ),
+      ),
+    );
+  }
+
+  void _selectSixthMan() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (ctx) => SelectPlayerScreenprivate(
+          players: availablePlayers,
+          remainingBudget: totalBudget - usedBudget,
+          onPlayerSelected: (p) => setState(() => sixthManPlayer = p),
         ),
       ),
     );
@@ -60,6 +94,67 @@ class _BuildYourTeamTabState extends State<BuildYourTeamTab> {
     if (result != null) {
       setState(() {
         selectedJerseyIndex = result;
+      });
+    }
+  }
+
+  void _activateSixthMan() {
+    if (sixthManAvailable > 0 && !sixthManActivated) {
+      setState(() {
+        sixthManActivated = true;
+        sixthManAvailable--;
+        showBonusOptions = false;
+        showSixthManMessage = true;
+      });
+      _selectSixthMan();
+
+      // Hide message after 3 seconds
+      Future.delayed(const Duration(seconds: 3), () {
+        if (mounted) {
+          setState(() {
+            showSixthManMessage = false;
+          });
+        }
+      });
+    }
+  }
+
+  void _activateChefsCurry() {
+    if (chefsCurryAvailable > 0 && !chefsCurryActivated) {
+      setState(() {
+        chefsCurryActivated = true;
+        chefsCurryAvailable--;
+        showBonusOptions = false;
+        showChefsCurryMessage = true;
+      });
+
+      // Hide message after 3 seconds
+      Future.delayed(const Duration(seconds: 3), () {
+        if (mounted) {
+          setState(() {
+            showChefsCurryMessage = false;
+          });
+        }
+      });
+    }
+  }
+
+  void _activateLuxuryTax() {
+    if (luxuryTaxAvailable > 0 && !luxuryTaxActivated) {
+      setState(() {
+        luxuryTaxActivated = true;
+        luxuryTaxAvailable--;
+        showBonusOptions = false;
+        showLuxuryTaxMessage = true;
+      });
+
+      // Hide message after 3 seconds
+      Future.delayed(const Duration(seconds: 3), () {
+        if (mounted) {
+          setState(() {
+            showLuxuryTaxMessage = false;
+          });
+        }
       });
     }
   }
@@ -86,6 +181,8 @@ class _BuildYourTeamTabState extends State<BuildYourTeamTab> {
           _buildCourtField(),
           const SizedBox(height: 12),
           _buildTeamStatus(),
+          const SizedBox(height: 12),
+          _buildActivatedBonuses(),
           const SizedBox(height: 12),
           _buildTodaysGames(),
           const SizedBox(height: 12),
@@ -127,8 +224,85 @@ class _BuildYourTeamTabState extends State<BuildYourTeamTab> {
                 ),
               ],
             ),
-          )
+          ),
+          const SizedBox(height: 24),
         ],
+      ),
+    );
+  }
+
+  Widget _buildActivatedBonuses() {
+    List<Widget> bonuses = [];
+
+    if (showSixthManMessage) {
+      bonuses.add(
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Assets.icons.sixman.image(width: 24, height: 24),
+            const SizedBox(width: 8),
+            const Text(
+              '6th Man Bonus Activated',
+              style: TextStyle(
+                color: Color(0xFF2941F1),
+                fontSize: 15,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
+    if (showChefsCurryMessage) {
+      bonuses.add(
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Assets.icons.chefcurry.image(width: 24, height: 24),
+            const SizedBox(width: 8),
+            const Text(
+              'Chefs Curry Bonus Activated',
+              style: TextStyle(
+                color: Color(0xFFFECD56),
+                fontSize: 15,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
+    if (showLuxuryTaxMessage) {
+      bonuses.add(
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Assets.icons.luxarytax.image(width: 24, height: 24),
+            const SizedBox(width: 8),
+            const Text(
+              'Luxury Tax Bonus Activated',
+              style: TextStyle(
+                color: Color(0xFF3CDF1C),
+                fontSize: 15,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
+    if (bonuses.isEmpty) return const SizedBox.shrink();
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Column(
+        children: bonuses.map((bonus) => Padding(
+          padding: const EdgeInsets.only(bottom: 8),
+          child: bonus,
+        )).toList(),
       ),
     );
   }
@@ -201,69 +375,201 @@ class _BuildYourTeamTabState extends State<BuildYourTeamTab> {
   }
 
   Widget _buildCourtField() {
+    return Stack(
+      children: [
+        Container(
+          margin: const EdgeInsets.symmetric(horizontal: 16),
+          height: 600,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(12),
+            child: Stack(
+              children: [
+                Positioned.fill(
+                  child: Assets.images.playground.image(
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                Positioned.fill(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.black.withOpacity(0.3),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  top: 50,
+                  left: 20,
+                  child: _buildChangeJerseyButton(),
+                ),
+                Positioned(
+                  top: 30,
+                  right: 20,
+                  child: _buildBonusButton(),
+                ),
+                Positioned(
+                  top: 150,
+                  left: 40,
+                  child: _buildPlayerSlot(0, 'SF/PF'),
+                ),
+                Positioned(
+                  top: 120,
+                  left: 0,
+                  right: 0,
+                  child: Center(child: _buildPlayerSlot(1, 'C')),
+                ),
+                Positioned(
+                  top: 150,
+                  right: 40,
+                  child: _buildPlayerSlot(2, 'SF/PF'),
+                ),
+                Positioned(
+                  top: 320,
+                  left: 60,
+                  child: _buildPlayerSlot(3, 'PG/SG'),
+                ),
+                Positioned(
+                  top: 320,
+                  right: 60,
+                  child: _buildPlayerSlot(4, 'PG/SG'),
+                ),
+                if (sixthManActivated)
+                  Positioned(
+                    bottom: 20,
+                    right: 40,
+                    child: _buildSixthManSlot(),
+                  ),
+              ],
+            ),
+          ),
+        ),
+        // Bonus options menu - on top layer
+        if (showBonusOptions)
+          Positioned(
+            top: 80,
+            right: 36,
+            child: _buildBonusOptionsMenu(),
+          ),
+      ],
+    );
+  }
+
+  Widget _buildBonusOptionsMenu() {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16),
-      height: 600,
+      padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
+        color: const Color(0xFF1A1A1A),
         borderRadius: BorderRadius.circular(12),
+        border: Border.all(
+          color: const Color(0xFF2C2C2C),
+          width: 1,
+        ),
       ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(12),
-        child: Stack(
-          children: [
-            // playground background
-            Positioned.fill(
-              child: Assets.images.playground.image(
-                fit: BoxFit.cover,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              _buildBonusOptionItem(
+                icon: Assets.icons.sixman,
+                label: '6th Man',
+                count: sixthManAvailable,
+                isActivated: sixthManActivated,
+                onTap: _activateSixthMan,
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          _buildBonusOptionItem(
+            icon: Assets.icons.chefcurry,
+            label: 'Chefs Curry',
+            count: chefsCurryAvailable,
+            isActivated: chefsCurryActivated,
+            onTap: _activateChefsCurry,
+          ),
+          const SizedBox(height: 12),
+          _buildBonusOptionItem(
+            icon: Assets.icons.luxarytax,
+            label: 'Luxury Tax',
+            count: luxuryTaxAvailable,
+            isActivated: luxuryTaxActivated,
+            onTap: _activateLuxuryTax,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildBonusOptionItem({
+    required AssetGenImage icon,
+    required String label,
+    required int count,
+    required bool isActivated,
+    required VoidCallback onTap,
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Row(
+        children: [
+          Container(
+            width: 37,
+            height: 37,
+            decoration: BoxDecoration(
+              color: isActivated
+                  ? const Color(0xFF777777)
+                  : const Color(0xFF1A1A1A),
+              borderRadius: BorderRadius.circular(19),
+              border: Border.all(
+                color: const Color(0xFF2C2C2C),
+                width: 1,
               ),
             ),
-            // Semi-transparent overlay
-            Positioned.fill(
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(0.3),
+            child: Center(
+              child: icon.image(width: 20, height: 20),
+            ),
+          ),
+          const SizedBox(width: 8),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+            decoration: BoxDecoration(
+              color: const Color(0xFF777777),
+              borderRadius: BorderRadius.circular(4),
+            ),
+            child: Text(
+              label,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 15,
+                fontFamily: 'Lato',
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ),
+          const SizedBox(width: 8),
+          Container(
+            width: 25,
+            height: 24,
+            decoration: BoxDecoration(
+              color: const Color(0xFF1A1A1A),
+              borderRadius: BorderRadius.circular(6),
+              border: Border.all(
+                color: const Color(0xFF2C2C2C),
+              ),
+            ),
+            child: Center(
+              child: Text(
+                '$count',
+                style: const TextStyle(
+                  color: Color(0xFFE8632C),
+                  fontSize: 15,
+                  fontWeight: FontWeight.w800,
                 ),
               ),
             ),
-            Positioned(
-              top: 50,
-              left: 20,
-              child: _buildChangeJerseyButton(),
-            ),
-            Positioned(
-              top: 30,
-              right: 20,
-              child: _buildBonusButton(),
-            ),
-
-            Positioned(
-              top: 150,
-              left: 40,
-              child: _buildPlayerSlot(0, 'SF/PF'),
-            ),
-            Positioned(
-              top: 120,
-              left: 0,
-              right: 0,
-              child: Center(child: _buildPlayerSlot(1, 'C')),
-            ),
-            Positioned(
-              top: 150,
-              right: 40,
-              child: _buildPlayerSlot(2, 'SF/PF'),
-            ),
-            Positioned(
-              top: 320,
-              left: 60,
-              child: _buildPlayerSlot(3, 'PG/SG'),
-            ),
-            Positioned(
-              top: 320,
-              right: 60,
-              child: _buildPlayerSlot(4, 'PG/SG'),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -271,71 +577,47 @@ class _BuildYourTeamTabState extends State<BuildYourTeamTab> {
   Widget _buildChangeJerseyButton() {
     return GestureDetector(
       onTap: _selectJersey,
-      child: SizedBox(
-        width: 45,
-        height: 55,
-        child: Stack(
+      child: Container(
+        width: 60,
+        height: 80,
+        decoration: ShapeDecoration(
+          color: const Color(0xFF2C2C2C),
+          shape: RoundedRectangleBorder(
+            side: const BorderSide(
+              width: 1,
+              color: Color(0xFF1A1A1A),
+            ),
+            borderRadius: BorderRadius.circular(6),
+          ),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Positioned(
-              left: 4,
-              top: 0,
-              child: Container(
-                width: 36,
-                height: 49,
-                decoration: ShapeDecoration(
-                  color: const Color(0xFF2C2C2C),
-                  shape: RoundedRectangleBorder(
-                    side: const BorderSide(
-                      width: 1,
-                      color: Color(0xFF1A1A1A),
-                    ),
-                    borderRadius: BorderRadius.circular(6),
-                  ),
-                ),
+            SizedBox(
+              width: 35,
+              height: 35,
+              child: jerseys[selectedJerseyIndex].image(fit: BoxFit.contain),
+            ),
+            const SizedBox(height: 4),
+            const Text(
+              'Change\nJersey',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 8,
+                fontFamily: 'Roboto',
+                fontWeight: FontWeight.w400,
+                height: 1.2,
               ),
             ),
-            Positioned(
-              left: 0,
-              top: 0,
-              child: Container(
-                width: 45,
-                height: 36,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: jerseys[selectedJerseyIndex].provider(),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-            ),
-            const Positioned(
-              left: 8,
-              top: 27,
-              child: Text(
-                'Change Jersey',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 4,
-                  fontFamily: 'Roboto',
-                  fontWeight: FontWeight.w400,
-                  height: 5.50,
-                ),
-              ),
-            ),
-            const Positioned(
-              left: 19,
-              top: 33,
-              child: Text(
-                '+',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 10,
-                  fontFamily: 'Roboto',
-                  fontWeight: FontWeight.w100,
-                  height: 2.20,
-                ),
+            const Text(
+              '+',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 10,
+                fontFamily: 'Roboto',
+                fontWeight: FontWeight.w100,
               ),
             ),
           ],
@@ -343,6 +625,7 @@ class _BuildYourTeamTabState extends State<BuildYourTeamTab> {
       ),
     );
   }
+
 
   Widget _buildPlayerSlot(int index, String position) {
     final player = selectedPlayers[index];
@@ -356,7 +639,6 @@ class _BuildYourTeamTabState extends State<BuildYourTeamTab> {
             height: 96,
             child: Stack(
               children: [
-                // Jersey background
                 Positioned(
                   left: 0,
                   top: 0,
@@ -371,7 +653,6 @@ class _BuildYourTeamTabState extends State<BuildYourTeamTab> {
                     ),
                   ),
                 ),
-                // Position label background
                 Positioned(
                   left: 41,
                   top: 85,
@@ -390,7 +671,6 @@ class _BuildYourTeamTabState extends State<BuildYourTeamTab> {
                     ),
                   ),
                 ),
-                // Position label text
                 Positioned(
                   left: 44,
                   top: 86,
@@ -410,7 +690,136 @@ class _BuildYourTeamTabState extends State<BuildYourTeamTab> {
                     ),
                   ),
                 ),
-                // + icon for empty slots
+                if (player == null)
+                  const Positioned(
+                    left: 48,
+                    top: 57,
+                    child: SizedBox(
+                      width: 17,
+                      height: 21,
+                      child: Text(
+                        '+',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Color(0xFFAAAAAA),
+                          fontSize: 20,
+                          fontFamily: 'Lato',
+                          fontWeight: FontWeight.w300,
+                          height: 1.10,
+                        ),
+                      ),
+                    ),
+                  ),
+              ],
+            ),
+          ),
+          if (player != null) ...[
+            const SizedBox(height: 8),
+            Text(
+              player.name,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                color: Color(0xFFFECD56),
+                fontSize: 12,
+                fontFamily: 'Roboto',
+                fontWeight: FontWeight.w600,
+                height: 1.83,
+              ),
+            ),
+            const SizedBox(height: 4),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 6),
+              decoration: ShapeDecoration(
+                color: const Color(0xFF1A1A1A),
+                shape: RoundedRectangleBorder(
+                  side: const BorderSide(
+                    width: 1,
+                    color: Color(0xFF2C2C2C),
+                  ),
+                  borderRadius: BorderRadius.circular(6),
+                ),
+              ),
+              child: Text(
+                '${player.price.toInt()} M',
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 12,
+                  fontFamily: 'Roboto',
+                  fontWeight: FontWeight.w800,
+                  height: 1.83,
+                ),
+              ),
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSixthManSlot() {
+    final player = sixthManPlayer;
+
+    return GestureDetector(
+      onTap: _selectSixthMan,
+      child: Column(
+        children: [
+          SizedBox(
+            width: 114,
+            height: 96,
+            child: Stack(
+              children: [
+                Positioned(
+                  left: 0,
+                  top: 0,
+                  child: Container(
+                    width: 114,
+                    height: 91,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: jerseys[selectedJerseyIndex].provider(),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 39,
+                  top: 85,
+                  child: Container(
+                    width: 36,
+                    height: 11,
+                    decoration: ShapeDecoration(
+                      color: const Color(0xFF777777),
+                      shape: RoundedRectangleBorder(
+                        side: const BorderSide(
+                          width: 0.50,
+                          color: Color(0xFFFFFFFF),
+                        ),
+                        borderRadius: BorderRadius.circular(3),
+                      ),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 44,
+                  top: 86,
+                  child: const SizedBox(
+                    width: 28,
+                    height: 9,
+                    child: Text(
+                      '6th Man',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 6,
+                        fontFamily: 'Lato',
+                        fontWeight: FontWeight.w500,
+                        height: 1.5,
+                      ),
+                    ),
+                  ),
+                ),
                 if (player == null)
                   const Positioned(
                     left: 48,
@@ -479,37 +888,50 @@ class _BuildYourTeamTabState extends State<BuildYourTeamTab> {
   }
 
   Widget _buildBonusButton() {
-    return Container(
-      width: 42,
-      height: 42,
-      decoration: ShapeDecoration(
-        color: const Color(0xFF1A1A1A),
-        shape: RoundedRectangleBorder(
-          side: const BorderSide(
-            width: 1,
-            color: Color(0xFF2C2C2C),
-          ),
-          borderRadius: BorderRadius.circular(6),
-        ),
-      ),
-      child: const Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SizedBox(
-            width: 30,
-            height: 5,
-          ),
-          Text(
-            '+ Bonuses',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 8,
-              fontFamily: 'Roboto',
-              fontWeight: FontWeight.w300,
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          showBonusOptions = !showBonusOptions;
+        });
+      },
+      child: Container(
+        width: 42,
+        height: 42,
+        decoration: ShapeDecoration(
+          color: showBonusOptions
+              ? const Color(0xFF777777)
+              : const Color(0xFF1A1A1A),
+          shape: RoundedRectangleBorder(
+            side: const BorderSide(
+              width: 1,
+              color: Color(0xFF2C2C2C),
             ),
+            borderRadius: BorderRadius.circular(6),
           ),
-        ],
+        ),
+        child: const Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              '+',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+                fontWeight: FontWeight.w300,
+              ),
+            ),
+            Text(
+              'Bonuses',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 8,
+                fontFamily: 'Roboto',
+                fontWeight: FontWeight.w300,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -521,7 +943,6 @@ class _BuildYourTeamTabState extends State<BuildYourTeamTab> {
         height: 27,
         child: Stack(
           children: [
-            // Outer layer
             Positioned(
               left: isTeamComplete ? 4 : 0,
               top: 0,
@@ -538,7 +959,6 @@ class _BuildYourTeamTabState extends State<BuildYourTeamTab> {
                 ),
               ),
             ),
-            // Inner layer
             Positioned(
               left: isTeamComplete ? 6 : 2,
               top: 0,
@@ -555,7 +975,6 @@ class _BuildYourTeamTabState extends State<BuildYourTeamTab> {
                 ),
               ),
             ),
-            // Text
             Positioned.fill(
               top: 3,
               child: Align(

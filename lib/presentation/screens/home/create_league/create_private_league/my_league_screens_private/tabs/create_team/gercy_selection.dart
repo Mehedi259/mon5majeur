@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../../../../../../core/custom_assets/assets.gen.dart';
 
 class JerseySelectionScreen extends StatefulWidget {
@@ -28,8 +27,10 @@ class _JerseySelectionScreenState extends State<JerseySelectionScreen> {
         backgroundColor: Colors.black,
         elevation: 0,
         leading: IconButton(
+          icon: Assets.icons.backButton.image(
+            fit: BoxFit.contain,
+          ),
           onPressed: () => Navigator.pop(context),
-          icon: const Icon(Icons.arrow_back, color: Colors.white),
         ),
       ),
       body: Column(

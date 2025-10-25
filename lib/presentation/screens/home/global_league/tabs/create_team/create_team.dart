@@ -1,39 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:mon5majeur/presentation/screens/home/global_league/select_player_screen.dart';
 import '../../../../../../../../core/custom_assets/assets.gen.dart';
-import '../../../../../../../../data/models/player.dart';
-import '../../select_player_screen.dart';
+import '../../../../../../data/models/player.dart';
 import 'gercy_selection.dart';
 
-class BuildYourTeamTab extends StatefulWidget {
-  const BuildYourTeamTab({super.key});
+class BuildYourTeamTabGlobal extends StatefulWidget {
+  const BuildYourTeamTabGlobal({super.key});
 
   @override
-  State<BuildYourTeamTab> createState() => _BuildYourTeamTabState();
+  State<BuildYourTeamTabGlobal> createState() => _BuildYourTeamTabGlobalState();
 }
 
-class _BuildYourTeamTabState extends State<BuildYourTeamTab> {
+class _BuildYourTeamTabGlobalState extends State<BuildYourTeamTabGlobal> {
   final double totalBudget = 100.0;
   List<Player?> selectedPlayers = List.filled(5, null);
   Player? sixthManPlayer;
   int selectedJerseyIndex = 0;
 
-  // Bonus states
-  bool sixthManActivated = false;
-  bool chefsCurryActivated = false;
-  bool luxuryTaxActivated = false;
-
-  // Show bonus messages temporarily
-  bool showSixthManMessage = false;
-  bool showChefsCurryMessage = false;
-  bool showLuxuryTaxMessage = false;
-
-  // Show bonus options
-  bool showBonusOptions = false;
-
-  // Available counts
-  int sixthManAvailable = 3;
-  int chefsCurryAvailable = 2;
-  int luxuryTaxAvailable = 0;
 
   final List<Player> availablePlayers = [
     Player(name: 'Lebron James', position: 'SF/PF', team: 'Lakers', price: 26.0),
@@ -62,7 +45,7 @@ class _BuildYourTeamTabState extends State<BuildYourTeamTab> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (ctx) => SelectPlayerScreenpublic(
+        builder: (ctx) => SelectPlayerScreenglobal(
           players: availablePlayers,
           remainingBudget: totalBudget - usedBudget,
           onPlayerSelected: (p) => setState(() => selectedPlayers[index] = p),
@@ -71,18 +54,6 @@ class _BuildYourTeamTabState extends State<BuildYourTeamTab> {
     );
   }
 
-  void _selectSixthMan() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (ctx) => SelectPlayerScreenpublic(
-          players: availablePlayers,
-          remainingBudget: totalBudget - usedBudget,
-          onPlayerSelected: (p) => setState(() => sixthManPlayer = p),
-        ),
-      ),
-    );
-  }
 
   void _selectJersey() async {
     final result = await Navigator.push<int>(
@@ -94,67 +65,6 @@ class _BuildYourTeamTabState extends State<BuildYourTeamTab> {
     if (result != null) {
       setState(() {
         selectedJerseyIndex = result;
-      });
-    }
-  }
-
-  void _activateSixthMan() {
-    if (sixthManAvailable > 0 && !sixthManActivated) {
-      setState(() {
-        sixthManActivated = true;
-        sixthManAvailable--;
-        showBonusOptions = false;
-        showSixthManMessage = true;
-      });
-      _selectSixthMan();
-
-      // Hide message after 3 seconds
-      Future.delayed(const Duration(seconds: 3), () {
-        if (mounted) {
-          setState(() {
-            showSixthManMessage = false;
-          });
-        }
-      });
-    }
-  }
-
-  void _activateChefsCurry() {
-    if (chefsCurryAvailable > 0 && !chefsCurryActivated) {
-      setState(() {
-        chefsCurryActivated = true;
-        chefsCurryAvailable--;
-        showBonusOptions = false;
-        showChefsCurryMessage = true;
-      });
-
-      // Hide message after 3 seconds
-      Future.delayed(const Duration(seconds: 3), () {
-        if (mounted) {
-          setState(() {
-            showChefsCurryMessage = false;
-          });
-        }
-      });
-    }
-  }
-
-  void _activateLuxuryTax() {
-    if (luxuryTaxAvailable > 0 && !luxuryTaxActivated) {
-      setState(() {
-        luxuryTaxActivated = true;
-        luxuryTaxAvailable--;
-        showBonusOptions = false;
-        showLuxuryTaxMessage = true;
-      });
-
-      // Hide message after 3 seconds
-      Future.delayed(const Duration(seconds: 3), () {
-        if (mounted) {
-          setState(() {
-            showLuxuryTaxMessage = false;
-          });
-        }
       });
     }
   }
@@ -181,8 +91,6 @@ class _BuildYourTeamTabState extends State<BuildYourTeamTab> {
           _buildCourtField(),
           const SizedBox(height: 12),
           _buildTeamStatus(),
-          const SizedBox(height: 12),
-          _buildActivatedBonuses(),
           const SizedBox(height: 12),
           _buildTodaysGames(),
           const SizedBox(height: 12),
@@ -231,81 +139,6 @@ class _BuildYourTeamTabState extends State<BuildYourTeamTab> {
     );
   }
 
-  Widget _buildActivatedBonuses() {
-    List<Widget> bonuses = [];
-
-    if (showSixthManMessage) {
-      bonuses.add(
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Assets.icons.sixman.image(width: 24, height: 24),
-            const SizedBox(width: 8),
-            const Text(
-              '6th Man Bonus Activated',
-              style: TextStyle(
-                color: Color(0xFF2941F1),
-                fontSize: 15,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
-          ],
-        ),
-      );
-    }
-
-    if (showChefsCurryMessage) {
-      bonuses.add(
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Assets.icons.chefcurry.image(width: 24, height: 24),
-            const SizedBox(width: 8),
-            const Text(
-              'Chefs Curry Bonus Activated',
-              style: TextStyle(
-                color: Color(0xFFFECD56),
-                fontSize: 15,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
-          ],
-        ),
-      );
-    }
-
-    if (showLuxuryTaxMessage) {
-      bonuses.add(
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Assets.icons.luxarytax.image(width: 24, height: 24),
-            const SizedBox(width: 8),
-            const Text(
-              'Luxury Tax Bonus Activated',
-              style: TextStyle(
-                color: Color(0xFF3CDF1C),
-                fontSize: 15,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
-          ],
-        ),
-      );
-    }
-
-    if (bonuses.isEmpty) return const SizedBox.shrink();
-
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Column(
-        children: bonuses.map((bonus) => Padding(
-          padding: const EdgeInsets.only(bottom: 8),
-          child: bonus,
-        )).toList(),
-      ),
-    );
-  }
 
   Widget _buildMatchdaySelector() {
     return Row(
@@ -405,11 +238,6 @@ class _BuildYourTeamTabState extends State<BuildYourTeamTab> {
                   child: _buildChangeJerseyButton(),
                 ),
                 Positioned(
-                  top: 30,
-                  right: 20,
-                  child: _buildBonusButton(),
-                ),
-                Positioned(
                   top: 150,
                   left: 40,
                   child: _buildPlayerSlot(0, 'SF/PF'),
@@ -435,142 +263,11 @@ class _BuildYourTeamTabState extends State<BuildYourTeamTab> {
                   right: 60,
                   child: _buildPlayerSlot(4, 'PG/SG'),
                 ),
-                if (sixthManActivated)
-                  Positioned(
-                    bottom: 20,
-                    right: 40,
-                    child: _buildSixthManSlot(),
-                  ),
               ],
             ),
           ),
         ),
-        // Bonus options menu - on top layer
-        if (showBonusOptions)
-          Positioned(
-            top: 80,
-            right: 36,
-            child: _buildBonusOptionsMenu(),
-          ),
       ],
-    );
-  }
-
-  Widget _buildBonusOptionsMenu() {
-    return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: const Color(0xFF1A1A1A),
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: const Color(0xFF2C2C2C),
-          width: 1,
-        ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              _buildBonusOptionItem(
-                icon: Assets.icons.sixman,
-                label: '6th Man',
-                count: sixthManAvailable,
-                isActivated: sixthManActivated,
-                onTap: _activateSixthMan,
-              ),
-            ],
-          ),
-          const SizedBox(height: 12),
-          _buildBonusOptionItem(
-            icon: Assets.icons.chefcurry,
-            label: 'Chefs Curry',
-            count: chefsCurryAvailable,
-            isActivated: chefsCurryActivated,
-            onTap: _activateChefsCurry,
-          ),
-          const SizedBox(height: 12),
-          _buildBonusOptionItem(
-            icon: Assets.icons.luxarytax,
-            label: 'Luxury Tax',
-            count: luxuryTaxAvailable,
-            isActivated: luxuryTaxActivated,
-            onTap: _activateLuxuryTax,
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildBonusOptionItem({
-    required AssetGenImage icon,
-    required String label,
-    required int count,
-    required bool isActivated,
-    required VoidCallback onTap,
-  }) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Row(
-        children: [
-          Container(
-            width: 37,
-            height: 37,
-            decoration: BoxDecoration(
-              color: isActivated
-                  ? const Color(0xFF777777)
-                  : const Color(0xFF1A1A1A),
-              borderRadius: BorderRadius.circular(19),
-              border: Border.all(
-                color: const Color(0xFF2C2C2C),
-                width: 1,
-              ),
-            ),
-            child: Center(
-              child: icon.image(width: 16, height: 16),
-            ),
-          ),
-          const SizedBox(width: 4),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-            decoration: BoxDecoration(
-              color: const Color(0xFF777777),
-              borderRadius: BorderRadius.circular(4),
-            ),
-            child: Text(
-              label,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 10,
-                fontFamily: 'Lato',
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ),
-          const SizedBox(width: 4),
-          Container(
-            width: 25,
-            height: 24,
-            decoration: BoxDecoration(
-              color: const Color(0xFF1A1A1A),
-              borderRadius: BorderRadius.circular(6),
-              border: Border.all(
-                color: const Color(0xFF2C2C2C),
-              ),
-            ),
-            child: Center(
-              child: Text(
-                '$count',
-                style: const TextStyle(
-                  color: Color(0xFFE8632C),
-                  fontSize: 10,
-                  fontWeight: FontWeight.w800,
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
     );
   }
 
@@ -757,184 +454,6 @@ class _BuildYourTeamTabState extends State<BuildYourTeamTab> {
     );
   }
 
-  Widget _buildSixthManSlot() {
-    final player = sixthManPlayer;
-
-    return GestureDetector(
-      onTap: _selectSixthMan,
-      child: Column(
-        children: [
-          SizedBox(
-            width: 114,
-            height: 96,
-            child: Stack(
-              children: [
-                Positioned(
-                  left: 0,
-                  top: 0,
-                  child: Container(
-                    width: 114,
-                    height: 91,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: jerseys[selectedJerseyIndex].provider(),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  left: 39,
-                  top: 85,
-                  child: Container(
-                    width: 36,
-                    height: 11,
-                    decoration: ShapeDecoration(
-                      color: const Color(0xFF777777),
-                      shape: RoundedRectangleBorder(
-                        side: const BorderSide(
-                          width: 0.50,
-                          color: Color(0xFFFFFFFF),
-                        ),
-                        borderRadius: BorderRadius.circular(3),
-                      ),
-                    ),
-                  ),
-                ),
-                const Positioned(
-                  left: 44,
-                  top: 86,
-                  child: SizedBox(
-                    width: 28,
-                    height: 9,
-                    child: Text(
-                      '6th Man',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 10,
-                        fontFamily: 'Lato',
-                        fontWeight: FontWeight.w500,
-                        height: 1.5,
-                      ),
-                    ),
-                  ),
-                ),
-                if (player == null)
-                  const Positioned(
-                    left: 48,
-                    top: 57,
-                    child: SizedBox(
-                      width: 17,
-                      height: 21,
-                      child: Text(
-                        '+',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Color(0xFFAAAAAA),
-                          fontSize: 10,
-                          fontFamily: 'Lato',
-                          fontWeight: FontWeight.w300,
-                          height: 1.10,
-                        ),
-                      ),
-                    ),
-                  ),
-              ],
-            ),
-          ),
-          if (player != null) ...[
-            const SizedBox(height: 8),
-            Text(
-              player.name,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                color: Color(0xFFFECD56),
-                fontSize: 12,
-                fontFamily: 'Roboto',
-                fontWeight: FontWeight.w600,
-                height: 1.83,
-              ),
-            ),
-            const SizedBox(height: 4),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 6),
-              decoration: ShapeDecoration(
-                color: const Color(0xFF1A1A1A),
-                shape: RoundedRectangleBorder(
-                  side: const BorderSide(
-                    width: 1,
-                    color: Color(0xFF2C2C2C),
-                  ),
-                  borderRadius: BorderRadius.circular(6),
-                ),
-              ),
-              child: Text(
-                '${player.price.toInt()} M',
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 12,
-                  fontFamily: 'Roboto',
-                  fontWeight: FontWeight.w800,
-                  height: 1.83,
-                ),
-              ),
-            ),
-          ],
-        ],
-      ),
-    );
-  }
-
-  Widget _buildBonusButton() {
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          showBonusOptions = !showBonusOptions;
-        });
-      },
-      child: Container(
-        width: 42,
-        height: 42,
-        decoration: ShapeDecoration(
-          color: showBonusOptions
-              ? const Color(0xFF777777)
-              : const Color(0xFF1A1A1A),
-          shape: RoundedRectangleBorder(
-            side: const BorderSide(
-              width: 1,
-              color: Color(0xFF2C2C2C),
-            ),
-            borderRadius: BorderRadius.circular(6),
-          ),
-        ),
-        child: const Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              '+',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-                fontWeight: FontWeight.w300,
-              ),
-            ),
-            Text(
-              'Bonuses',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 8,
-                fontFamily: 'Roboto',
-                fontWeight: FontWeight.w300,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 
   Widget _buildTeamStatus() {
     return Padding(

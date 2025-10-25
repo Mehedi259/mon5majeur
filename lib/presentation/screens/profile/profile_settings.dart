@@ -1,7 +1,9 @@
 // lib/presentation/screens/profile/profile_settings.dart
 import 'package:flutter/material.dart';
-
-import '../../widgets/navigation.dart';
+import 'package:go_router/go_router.dart';
+import 'package:mon5majeur/core/routes/route_path.dart';
+import 'package:mon5majeur/core/custom_assets/assets.gen.dart';
+import 'package:mon5majeur/core/routes/routes.dart';
 
 class ProfileSettingsScreen extends StatefulWidget {
   const ProfileSettingsScreen({super.key});
@@ -13,85 +15,86 @@ class ProfileSettingsScreen extends StatefulWidget {
 class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
   String selectedTeam = 'LAKERS';
   bool isTeamExpanded = false;
-  String selectedLogo = 'assets/logos/devil.png'; // default logo
+  String selectedLogo = 'assets/icons/logo1.png';
 
-  final List<Map<String, dynamic>> teamLogos = [
-    {'name': 'Zebra', 'icon': '🦓', 'asset': 'assets/logos/zebra.png'},
-    {'name': 'Flower', 'icon': '🌸', 'asset': 'assets/logos/flower.png'},
-    {'name': 'Shark', 'icon': '🦈', 'asset': 'assets/logos/shark.png'},
-    {'name': 'UFO', 'icon': '🛸', 'asset': 'assets/logos/ufo.png'},
-    {'name': 'Basketball', 'icon': '🏀', 'asset': 'assets/logos/basketball.png'},
-    {'name': 'Dinosaur', 'icon': '🦖', 'asset': 'assets/logos/dinosaur.png'},
+  final List<Map<String, String>> logoOptions = [
+    {'name': 'Logo 1', 'path': 'assets/icons/logo1.png'},
+    {'name': 'Logo 2', 'path': 'assets/icons/logo2.png'},
+    {'name': 'Logo 3', 'path': 'assets/icons/logo3.png'},
+    {'name': 'Logo 4', 'path': 'assets/icons/logo4.png'},
+    {'name': 'Logo 5', 'path': 'assets/icons/logo5.png'},
+    {'name': 'Logo 6', 'path': 'assets/icons/logo6.png'},
   ];
 
-  final List<String> teams = [
-    'Lakers',
-    'Boston Celtics',
-    'Chicago Bulls',
-    'Atlanta Hawks',
-  ];
+  final List<String> teams = ['Lakers', 'Boston Celtics', 'Chicago Bulls', 'Atlanta Hawks'];
 
   void _showLogoPickerDialog() {
     showDialog(
       context: context,
       builder: (context) => Dialog(
-        backgroundColor: const Color(0xFF2C2C2E),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: Container(
-          padding: const EdgeInsets.all(20),
+        backgroundColor: const Color(0xFF1A1A1A),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        child: Padding(
+          padding: const EdgeInsets.all(24),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Align(
-                alignment: Alignment.topRight,
-                child: GestureDetector(
-                  onTap: () => Navigator.pop(context),
-                  child: Container(
-                    padding: const EdgeInsets.all(8),
-                    decoration: const BoxDecoration(
-                      color: Colors.red,
-                      shape: BoxShape.circle,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'Choose Logo',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
                     ),
-                    child: const Icon(Icons.close, color: Colors.white, size: 20),
                   ),
-                ),
+                  GestureDetector(
+                    onTap: () => Navigator.pop(context),
+                    child: Container(
+                      padding: const EdgeInsets.all(6),
+                      decoration: const BoxDecoration(
+                        color: Color(0xFFD32F2F),
+                        shape: BoxShape.circle,
+                      ),
+                      child: const Icon(Icons.close, color: Colors.white, size: 18),
+                    ),
+                  ),
+                ],
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 20),
               GridView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 3,
-                  crossAxisSpacing: 16,
-                  mainAxisSpacing: 16,
+                  crossAxisSpacing: 12,
+                  mainAxisSpacing: 12,
+                  childAspectRatio: 1,
                 ),
-                itemCount: teamLogos.length,
+                itemCount: logoOptions.length,
                 itemBuilder: (context, index) {
-                  final logo = teamLogos[index];
-                  final isSelected = selectedLogo == logo['asset'];
+                  final logo = logoOptions[index];
+                  final isSelected = selectedLogo == logo['path'];
                   return GestureDetector(
                     onTap: () {
-                      setState(() {
-                        selectedLogo = logo['asset'];
-                      });
+                      setState(() => selectedLogo = logo['path']!);
                       Navigator.pop(context);
                     },
                     child: Container(
                       decoration: BoxDecoration(
-                        color: const Color(0xFF1C1C1E),
+                        color: const Color(0xFF2C2C2C),
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(
-                          color: isSelected ? Colors.orange : Colors.transparent,
-                          width: 3,
+                          color: isSelected ? const Color(0xFFE8632C) : Colors.transparent,
+                          width: 2,
                         ),
                       ),
-                      child: Center(
-                        child: Text(
-                          logo['icon'],
-                          style: const TextStyle(fontSize: 40),
-                        ),
+                      padding: const EdgeInsets.all(12),
+                      child: Image.asset(
+                        logo['path']!,
+                        fit: BoxFit.contain,
                       ),
                     ),
                   );
@@ -108,66 +111,61 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
     showDialog(
       context: context,
       builder: (context) => Dialog(
-        backgroundColor: const Color(0xFF2C2C2E),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
+        backgroundColor: const Color(0xFF1A1A1A),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         child: Padding(
           padding: const EdgeInsets.all(24),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               const Text(
-                'Are you sure you want to\nLog -Out?',
+                'Are you sure you want to\nLog Out?',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 20,
+                  fontSize: 18,
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 24),
               Row(
                 children: [
                   Expanded(
                     child: OutlinedButton(
                       onPressed: () => Navigator.pop(context),
                       style: OutlinedButton.styleFrom(
-                        side: const BorderSide(color: Colors.white54),
+                        side: const BorderSide(color: Color(0xFFB0B0B0)),
                         padding: const EdgeInsets.symmetric(vertical: 14),
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
+                          borderRadius: BorderRadius.circular(10),
                         ),
                       ),
                       child: const Text(
                         'Cancel',
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 16,
+                          fontSize: 15,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
                     ),
                   ),
-                  const SizedBox(width: 16),
+                  const SizedBox(width: 12),
                   Expanded(
                     child: ElevatedButton(
-                      onPressed: () {
-                        // Logout logic
-                        Navigator.pop(context);
-                      },
+                      onPressed: () => context.go(RoutePath.signInScreen.addBasePath),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.red,
+                        backgroundColor: const Color(0xFFD32F2F),
                         padding: const EdgeInsets.symmetric(vertical: 14),
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
+                          borderRadius: BorderRadius.circular(10),
                         ),
                       ),
                       child: const Text(
                         'Yes',
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 16,
+                          fontSize: 15,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
@@ -187,7 +185,7 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
     required String title,
     Widget? trailing,
     VoidCallback? onTap,
-    Color iconColor = Colors.blue,
+    Color iconColor = const Color(0xFF2196F3),
   }) {
     return GestureDetector(
       onTap: onTap,
@@ -195,9 +193,9 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
         margin: const EdgeInsets.only(bottom: 12),
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
         decoration: BoxDecoration(
-          color: const Color(0xFF2C2C2E),
+          color: const Color(0xFF1A1A1A),
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: Colors.grey.shade800, width: 1),
+          border: Border.all(color: const Color(0x7FB0B0B0), width: 1),
         ),
         child: Row(
           children: [
@@ -205,9 +203,9 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
                 color: iconColor,
-                borderRadius: BorderRadius.circular(8),
+                shape: BoxShape.circle,
               ),
-              child: Icon(icon, color: iconColor, size: 20),
+              child: Icon(icon, color: Colors.white, size: 16),
             ),
             const SizedBox(width: 12),
             Expanded(
@@ -215,8 +213,9 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
                 title,
                 style: const TextStyle(
                   color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                  letterSpacing: 0.07,
                 ),
               ),
             ),
@@ -230,11 +229,25 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF1C1C1E),
+      backgroundColor: const Color(0xFF121212),
+      appBar: AppBar(
+        backgroundColor: const Color(0xFF121212),
+        elevation: 0,
+        leading: IconButton(
+          icon: SizedBox(
+            width: 30,
+            height: 30,
+            child: Assets.icons.backButton.image(
+              fit: BoxFit.contain,
+            ),
+          ),
+          onPressed: () => context.go(RoutePath.profileScreen.addBasePath),
+        ),
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.all(22),
             child: Column(
               children: [
                 const SizedBox(height: 20),
@@ -243,18 +256,17 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
                   alignment: Alignment.center,
                   children: [
                     Container(
-                      width: 100,
-                      height: 100,
+                      width: 67,
+                      height: 67,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: const Color(0xFF2C2C2E),
-                        border: Border.all(color: Colors.grey.shade800, width: 2),
+                        color: const Color(0xFF1A1A1A),
+                        border: Border.all(color: const Color(0xFF2C2C2C), width: 1),
                       ),
-                      child: const Center(
-                        child: Text(
-                          '😈',
-                          style: TextStyle(fontSize: 50),
-                        ),
+                      padding: const EdgeInsets.all(12),
+                      child: Image.asset(
+                        selectedLogo,
+                        fit: BoxFit.contain,
                       ),
                     ),
                     Positioned(
@@ -263,36 +275,33 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
                       child: GestureDetector(
                         onTap: _showLogoPickerDialog,
                         child: Container(
-                          padding: const EdgeInsets.all(6),
-                          decoration: BoxDecoration(
-                            color: Colors.grey.shade700,
+                          width: 21,
+                          height: 21,
+                          decoration: const BoxDecoration(
+                            color: Color(0xFF777777),
                             shape: BoxShape.circle,
                           ),
-                          child: const Icon(
-                            Icons.add,
-                            color: Colors.white,
-                            size: 20,
-                          ),
+                          child: const Icon(Icons.add, color: Colors.white, size: 13),
                         ),
                       ),
                     ),
                   ],
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 12),
                 const Text(
                   'Paris FC',
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
                 const SizedBox(height: 4),
                 const Text(
                   'Since 2025',
                   style: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 14,
+                    color: Color(0xFFB0B0B0),
+                    fontSize: 12,
                   ),
                 ),
                 const SizedBox(height: 30),
@@ -301,20 +310,18 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
                 _buildSettingItem(
                   icon: Icons.email_outlined,
                   title: 'robmarti@gmail.com',
-                  iconColor: Colors.blue,
                 ),
 
                 // Password
                 _buildSettingItem(
                   icon: Icons.lock_outline,
                   title: 'PASSWORD',
-                  iconColor: Colors.blue,
-                  trailing: const Icon(Icons.edit, color: Colors.blue, size: 20),
+                  trailing: const Icon(Icons.edit, color: Color(0xFF2196F3), size: 16),
                   onTap: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const UpdatePasswordScreen(),
+                        builder: (context) => const ChangePasswordScreen(),
                       ),
                     );
                   },
@@ -324,7 +331,6 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
                 _buildSettingItem(
                   icon: Icons.person_outline,
                   title: 'PARIS FC',
-                  iconColor: Colors.blue,
                 ),
 
                 // Favorite Team
@@ -333,34 +339,27 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
                     _buildSettingItem(
                       icon: Icons.sports_basketball,
                       title: selectedTeam,
-                      iconColor: Colors.orange,
+                      iconColor: const Color(0xFFE8632C),
                       trailing: Icon(
                         isTeamExpanded ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down,
                         color: Colors.white,
                       ),
-                      onTap: () {
-                        setState(() {
-                          isTeamExpanded = !isTeamExpanded;
-                        });
-                      },
+                      onTap: () => setState(() => isTeamExpanded = !isTeamExpanded),
                     ),
                     if (isTeamExpanded)
                       Container(
                         margin: const EdgeInsets.only(bottom: 12),
                         decoration: BoxDecoration(
-                          color: const Color(0xFF2C2C2E),
+                          color: const Color(0xFF1A1A1A),
                           borderRadius: BorderRadius.circular(12),
-                          border: Border.all(color: Colors.grey.shade800, width: 1),
+                          border: Border.all(color: const Color(0x7FB0B0B0), width: 1),
                         ),
                         child: Column(
                           children: teams.map((team) {
                             return ListTile(
                               title: Text(
                                 team,
-                                style: const TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 14,
-                                ),
+                                style: const TextStyle(color: Color(0xFFB0B0B0), fontSize: 14),
                               ),
                               onTap: () {
                                 setState(() {
@@ -375,64 +374,32 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
                   ],
                 ),
 
-                // Notifications
-                _buildSettingItem(
-                  icon: Icons.notifications_outlined,
-                  title: 'NOTIFICATIONS',
-                  iconColor: Colors.blue,
-                ),
+                // Other Settings
+                _buildSettingItem(icon: Icons.notifications_outlined, title: 'NOTIFICATIONS'),
+                _buildSettingItem(icon: Icons.sync, title: 'UPDATE'),
+                _buildSettingItem(icon: Icons.cookie_outlined, title: 'COOKIES / ADS'),
+                _buildSettingItem(icon: Icons.shield_outlined, title: 'DATA PROTECTION'),
+                _buildSettingItem(icon: Icons.article_outlined, title: 'LEGAL NOTICE'),
 
-                // Update
-                _buildSettingItem(
-                  icon: Icons.sync,
-                  title: 'UPDATE',
-                  iconColor: Colors.blue,
-                ),
-
-                // Cookies/Ads
-                _buildSettingItem(
-                  icon: Icons.cookie_outlined,
-                  title: 'COOKIES / ADS',
-                  iconColor: Colors.blue,
-                ),
-
-                // Data Protection
-                _buildSettingItem(
-                  icon: Icons.shield_outlined,
-                  title: 'DATA PROTECTION',
-                  iconColor: Colors.blue,
-                ),
-
-                // Legal Notice
-                _buildSettingItem(
-                  icon: Icons.article_outlined,
-                  title: 'LEGAL NOTICE',
-                  iconColor: Colors.blue,
-                ),
-
-                const SizedBox(height: 20),
+                const SizedBox(height: 24),
 
                 // Action Buttons
                 Row(
                   children: [
                     Expanded(
                       child: ElevatedButton.icon(
-                        onPressed: () {
-                          // Delete account logic
-                        },
+                        onPressed: () {},
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.red,
-                          padding: const EdgeInsets.symmetric(vertical: 14),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
+                          backgroundColor: const Color(0xFFD32F2F),
+                          padding: const EdgeInsets.symmetric(vertical: 12),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                         ),
-                        icon: const Icon(Icons.delete_outline, color: Colors.white),
+                        icon: const Icon(Icons.delete_outline, color: Colors.white, size: 20),
                         label: const Text(
                           'Delete Account',
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 15,
+                            fontSize: 12,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
@@ -444,17 +411,15 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
                         onPressed: _showLogoutDialog,
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.white,
-                          padding: const EdgeInsets.symmetric(vertical: 14),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
+                          padding: const EdgeInsets.symmetric(vertical: 12),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                         ),
-                        icon: const Icon(Icons.logout, color: Colors.red),
+                        icon: const Icon(Icons.logout, color: Color(0xFF1A1A1A), size: 20),
                         label: const Text(
                           'Log out',
                           style: TextStyle(
-                            color: Colors.red,
-                            fontSize: 15,
+                            color: Color(0xFF1A1A1A),
+                            fontSize: 12,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
@@ -462,27 +427,25 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 20),
               ],
             ),
           ),
         ),
       ),
-      /// Bottom Navigation Bar
-      bottomNavigationBar: const NavigationWidget(currentIndex: 4),
     );
   }
 }
 
-// lib/presentation/screens/profile/update_password.dart
-class UpdatePasswordScreen extends StatefulWidget {
-  const UpdatePasswordScreen({super.key});
+// Change Password Screen
+class ChangePasswordScreen extends StatefulWidget {
+  const ChangePasswordScreen({super.key});
 
   @override
-  State<UpdatePasswordScreen> createState() => _UpdatePasswordScreenState();
+  State<ChangePasswordScreen> createState() => _ChangePasswordScreenState();
 }
 
-class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
+class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
+  final _formKey = GlobalKey<FormState>();
   final _oldPasswordController = TextEditingController();
   final _newPasswordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
@@ -499,51 +462,69 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
     super.dispose();
   }
 
+  void _updatePassword() {
+    if (_formKey.currentState!.validate()) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Password updated successfully!'),
+          backgroundColor: Color(0xFF4CAF50),
+        ),
+      );
+      Navigator.pop(context);
+    }
+  }
+
   Widget _buildPasswordField({
     required TextEditingController controller,
     required String hint,
     required bool isVisible,
     required VoidCallback onToggleVisibility,
+    String? Function(String?)? validator,
   }) {
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
-      padding: const EdgeInsets.symmetric(horizontal: 16),
       decoration: BoxDecoration(
-        color: const Color(0xFF2C2C2E),
+        color: const Color(0xFF1A1A1A),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.grey.shade800, width: 1),
+        border: Border.all(color: const Color(0x7FB0B0B0), width: 1),
       ),
-      child: Row(
-        children: [
-          Container(
-            padding: const EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              color: Colors.blue,
-              borderRadius: BorderRadius.circular(8),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(8),
+              decoration: const BoxDecoration(
+                color: Color(0xFF2196F3),
+                shape: BoxShape.circle,
+              ),
+              child: const Icon(Icons.lock, color: Colors.white, size: 16),
             ),
-            child: const Icon(Icons.lock_outline, color: Colors.blue, size: 20),
-          ),
-          const SizedBox(width: 12),
-          Expanded(
-            child: TextField(
-              controller: controller,
-              obscureText: !isVisible,
-              style: const TextStyle(color: Colors.white),
-              decoration: InputDecoration(
-                hintText: hint,
-                hintStyle: TextStyle(color: Colors.grey.shade600),
-                border: InputBorder.none,
+            const SizedBox(width: 12),
+            Expanded(
+              child: TextFormField(
+                controller: controller,
+                obscureText: !isVisible,
+                style: const TextStyle(color: Colors.white, fontSize: 14),
+                decoration: InputDecoration(
+                  hintText: hint,
+                  hintStyle: const TextStyle(color: Color(0xFF777777), fontSize: 14),
+                  border: InputBorder.none,
+                  errorStyle: const TextStyle(color: Color(0xFFD32F2F), fontSize: 12),
+                ),
+                validator: validator,
               ),
             ),
-          ),
-          IconButton(
-            icon: Icon(
-              isVisible ? Icons.visibility_off_outlined : Icons.visibility_outlined,
-              color: Colors.grey,
+            IconButton(
+              onPressed: onToggleVisibility,
+              icon: Icon(
+                isVisible ? Icons.visibility : Icons.visibility_off,
+                color: const Color(0xFF777777),
+                size: 22,
+              ),
             ),
-            onPressed: onToggleVisibility,
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -551,12 +532,18 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF1C1C1E),
+      backgroundColor: const Color(0xFF121212),
       appBar: AppBar(
-        backgroundColor: const Color(0xFF1C1C1E),
+        backgroundColor: const Color(0xFF121212),
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          icon: SizedBox(
+            width: 30,
+            height: 30,
+            child: Assets.icons.backButton.image(
+              fit: BoxFit.contain,
+            ),
+          ),
           onPressed: () => Navigator.pop(context),
         ),
         title: const Text(
@@ -569,67 +556,93 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
         ),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            const SizedBox(height: 100),
-            _buildPasswordField(
-              controller: _oldPasswordController,
-              hint: 'Old Password',
-              isVisible: _isOldPasswordVisible,
-              onToggleVisibility: () {
-                setState(() {
-                  _isOldPasswordVisible = !_isOldPasswordVisible;
-                });
-              },
-            ),
-            _buildPasswordField(
-              controller: _newPasswordController,
-              hint: 'New Password',
-              isVisible: _isNewPasswordVisible,
-              onToggleVisibility: () {
-                setState(() {
-                  _isNewPasswordVisible = !_isNewPasswordVisible;
-                });
-              },
-            ),
-            _buildPasswordField(
-              controller: _confirmPasswordController,
-              hint: 'Confirm New Password',
-              isVisible: _isConfirmPasswordVisible,
-              onToggleVisibility: () {
-                setState(() {
-                  _isConfirmPasswordVisible = !_isConfirmPasswordVisible;
-                });
-              },
-            ),
-            const SizedBox(height: 30),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () {
-                  // Update password logic
-                  Navigator.pop(context);
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.orange,
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(24),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  const SizedBox(height: 80),
+                  _buildPasswordField(
+                    controller: _oldPasswordController,
+                    hint: 'Old Password',
+                    isVisible: _isOldPasswordVisible,
+                    onToggleVisibility: () {
+                      setState(() => _isOldPasswordVisible = !_isOldPasswordVisible);
+                    },
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your old password';
+                      }
+                      return null;
+                    },
                   ),
-                ),
-                child: const Text(
-                  'Update Password',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
+                  _buildPasswordField(
+                    controller: _newPasswordController,
+                    hint: 'New Password',
+                    isVisible: _isNewPasswordVisible,
+                    onToggleVisibility: () {
+                      setState(() => _isNewPasswordVisible = !_isNewPasswordVisible);
+                    },
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter a new password';
+                      }
+                      if (value.length < 6) {
+                        return 'Password must be at least 6 characters';
+                      }
+                      if (value == _oldPasswordController.text) {
+                        return 'New password must be different from old password';
+                      }
+                      return null;
+                    },
                   ),
-                ),
+                  _buildPasswordField(
+                    controller: _confirmPasswordController,
+                    hint: 'Confirm New Password',
+                    isVisible: _isConfirmPasswordVisible,
+                    onToggleVisibility: () {
+                      setState(() => _isConfirmPasswordVisible = !_isConfirmPasswordVisible);
+                    },
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please confirm your new password';
+                      }
+                      if (value != _newPasswordController.text) {
+                        return 'Passwords do not match';
+                      }
+                      return null;
+                    },
+                  ),
+                  const SizedBox(height: 40),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: _updatePassword,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFFE8632C),
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(9),
+                        ),
+                        elevation: 0,
+                      ),
+                      child: const Text(
+                        'Update Password',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
-          ],
+          ),
         ),
       ),
     );

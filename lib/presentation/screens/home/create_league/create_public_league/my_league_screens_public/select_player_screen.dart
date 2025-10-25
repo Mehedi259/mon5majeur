@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../../core/custom_assets/assets.gen.dart';
 import '../../../../../../data/models/player.dart';
 
-class SelectPlayerScreen extends StatefulWidget {
+class SelectPlayerScreenpublic extends StatefulWidget {
   final List<Player> players;
   final double remainingBudget;
   final Function(Player) onPlayerSelected;
 
-  const SelectPlayerScreen({
+  const SelectPlayerScreenpublic({
     super.key,
     required this.players,
     required this.remainingBudget,
@@ -15,10 +16,10 @@ class SelectPlayerScreen extends StatefulWidget {
   });
 
   @override
-  State<SelectPlayerScreen> createState() => _SelectPlayerScreenState();
+  State<SelectPlayerScreenpublic> createState() => _SelectPlayerScreenpublicState();
 }
 
-class _SelectPlayerScreenState extends State<SelectPlayerScreen> {
+class _SelectPlayerScreenpublicState extends State<SelectPlayerScreenpublic> {
   String searchQuery = '';
 
   @override
@@ -52,7 +53,13 @@ class _SelectPlayerScreenState extends State<SelectPlayerScreen> {
         children: [
           GestureDetector(
             onTap: () => Navigator.pop(context),
-            child: const Icon(Icons.arrow_back, color: Colors.white, size: 28),
+            child: SizedBox(
+              width: 30,
+              height: 30,
+              child: Assets.icons.backButton.image(
+                fit: BoxFit.contain,
+              ),
+            ),
           ),
           const Expanded(
             child: Text(
@@ -204,8 +211,11 @@ class _SelectPlayerScreenState extends State<SelectPlayerScreen> {
         color: const Color(0xFF2A2D3E),
         borderRadius: BorderRadius.circular(10),
       ),
-      child: const Center(
-        child: Text('🏀', style: TextStyle(fontSize: 24)),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(10),
+        child: Assets.icons.dress.image(
+          fit: BoxFit.cover,
+        ),
       ),
     );
   }

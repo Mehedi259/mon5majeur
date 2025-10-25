@@ -103,6 +103,7 @@ class _MyTeamTabState extends State<MyTeamTab> {
                 ),
               ),
             ),
+
             // Player positions matching BuildYourTeamTab layout
             Positioned(
               top: 150,

@@ -26,8 +26,6 @@ dependencies:
   internet_connection_checker_plus: ^2.7.2
   get_it: ^8.0.3
   logger: ^2.5.0
-  flutter_paypal: ^0.2.1
-  flutter_stripe: ^11.5.0
   device_preview: ^1.2.0
   flutter_verification_code: ^1.1.7
   pin_code_fields: ^8.0.1
